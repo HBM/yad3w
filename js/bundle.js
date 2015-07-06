@@ -1,1 +1,0 @@
-console.error("ReactifyError: /home/zeiss/dev/js/chart/js/YAxis.react.js: Parse Error: Line 26: Unexpected token = while parsing file: /home/zeiss/dev/js/chart/js/YAxis.react.js")js")

@@ -32,12 +32,18 @@ class YGrid extends React.Component {
 
 
 
+  /**
+   * Constructor function
+   */
   constructor(props) {
     super(props);
   }
 
 
 
+  /**
+   * Render component
+   */
   render() {
 
     var {height, xScale, ticks} = this.props;
@@ -68,4 +74,7 @@ class YGrid extends React.Component {
 
 
 
+/**
+ * Export component
+ */
 module.exports = YGrid;

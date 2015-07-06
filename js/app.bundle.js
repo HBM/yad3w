@@ -24,6 +24,11 @@ var max = _require2.max;
  */
 
 var Chart = (function (_React$Component) {
+
+  /**
+   * Constructor function
+   */
+
   function Chart(props) {
     _classCallCheck(this, Chart);
 
@@ -34,6 +39,10 @@ var Chart = (function (_React$Component) {
 
   _createClass(Chart, [{
     key: 'render',
+
+    /**
+     * Render component
+     */
     value: function render() {
 
       // get highest value from all data arrays
@@ -115,6 +124,9 @@ var Chart = (function (_React$Component) {
   return Chart;
 })(React.Component);
 
+/**
+ * Export component
+ */
 module.exports = Chart;
 
 },{"d3-arrays":11,"d3-scale":12,"react/addons":14}],2:[function(require,module,exports){
@@ -235,6 +247,8 @@ var Line = (function (_React$Component) {
     value: function render() {
       var _this = this;
 
+      // line is not yet done
+      // https://github.com/mbostock/d3/issues/2461
       var line = d3.svg.line().x(function (d, i) {
         return _this.props.xScale(i);
       }).y(function (d) {
@@ -279,7 +293,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
 
 var React = require('react');
-// var d3 = require('d3');
 
 var styles = {
   d: {
@@ -316,8 +329,6 @@ var XAxis = (function (_React$Component) {
       var children = React.Children.map(this.props.children, function (child) {
         return React.addons.cloneWithProps(child, { data: data, xScale: xScale });
       });
-
-      // var test = d3.svg.axis().scale(xScale);
 
       return React.createElement(
         'g',

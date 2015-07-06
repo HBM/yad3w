@@ -17,16 +17,27 @@ class XGrid extends React.Component {
 
 
 
+  /**
+   * Default properties
+   */
   static defaultProps = {
     ticks: 10
   };
 
 
 
+  /**
+   * Constructor function
+   */
   constructor(props) {
     super(props);
   }
 
+
+
+  /**
+   * Render component
+   */
   render() {
 
     var {width, yScale} = this.props;
@@ -56,4 +67,7 @@ class XGrid extends React.Component {
 
 
 
+/**
+ * Export component
+ */
 module.exports = XGrid;

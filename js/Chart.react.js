@@ -14,7 +14,7 @@ class Chart extends React.Component {
 
 
   /**
-   * Property types.
+   * Property types
    */
   static propTypes = {
     width: React.PropTypes.number,
@@ -25,7 +25,7 @@ class Chart extends React.Component {
 
 
   /**
-   * Default properties.
+   * Default properties
    */
   static defaultProps = {
     width: 960,

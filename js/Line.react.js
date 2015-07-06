@@ -23,12 +23,22 @@ class Line extends React.Component {
 
 
 
+  /**
+   * Constructor function
+   */
   constructor(props) {
     super(props);
   }
 
+
+
+  /**
+   * Render component
+   */
   render() {
 
+    // line is not yet done
+    // https://github.com/mbostock/d3/issues/2461
     var line = d3.svg.line()
       .x((d, i) => this.props.xScale(i))
       .y(d => this.props.yScale(d));
@@ -47,4 +57,7 @@ class Line extends React.Component {
 
 
 
+/**
+ * Export component
+ */
 module.exports = Line;

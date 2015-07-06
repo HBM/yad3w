@@ -12,7 +12,7 @@ class Circles extends React.Component {
 
 
   /**
-   * Default properties.
+   * Default properties
    */
   static defaultProps = {
     radius: 5,

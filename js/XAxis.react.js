@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-// var d3 = require('d3');
+
 
 
 var styles = {
@@ -23,7 +23,7 @@ class XAxis extends React.Component {
 
 
   /**
-   * Property types.
+   * Property types
    */
   static propTypes = {
     width: React.PropTypes.number,
@@ -34,7 +34,7 @@ class XAxis extends React.Component {
 
 
   /**
-   * Default properties.
+   * Default properties
    */
   static defaultProps = {
     outerTickSize: 6
@@ -42,10 +42,18 @@ class XAxis extends React.Component {
 
 
 
+  /**
+   * Constructor function
+   */
   constructor(props) {
     super(props);
   }
 
+
+
+  /**
+   * Render component
+   */
   render() {
 
     var {data, width, height, outerTickSize, xScale} = this.props;
@@ -53,8 +61,6 @@ class XAxis extends React.Component {
     var children = React.Children.map(this.props.children, child =>
       React.addons.cloneWithProps(child, {data, xScale})
     );
-
-    // var test = d3.svg.axis().scale(xScale);
 
     return (
       <g transform={'translate(0, ' + height + ')'}>

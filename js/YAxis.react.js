@@ -32,10 +32,18 @@ class YAxis extends React.Component {
 
 
 
+  /**
+   * Constructor function
+   */
   constructor(props) {
     super(props);
   }
 
+
+
+  /**
+   * Render component
+   */
   render() {
 
     var {height, outerTickSize} = this.props;
@@ -58,4 +66,7 @@ class YAxis extends React.Component {
 
 
 
+/**
+ * Export component
+ */
 module.exports = YAxis;

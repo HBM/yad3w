@@ -28,7 +28,7 @@ class XTicks extends React.Component {
 
 
   /**
-   * Property types.
+   * Property types
    */
   static propTypes = {
     data: React.PropTypes.oneOfType([
@@ -43,7 +43,7 @@ class XTicks extends React.Component {
 
 
   /**
-   * Default properties.
+   * Default properties
    */
   static defaultProps = {
     innerTickSize: 6,
@@ -52,10 +52,18 @@ class XTicks extends React.Component {
 
 
 
+  /**
+   * Constructor function
+   */
   constructor(props) {
     super(props);
   }
 
+
+
+  /**
+   * Render component
+   */
   render() {
 
     var {xScale, innerTickSize, tickPadding} = this.props;
@@ -79,4 +87,7 @@ class XTicks extends React.Component {
 
 
 
+/**
+ * Export component
+ */
 module.exports = XTicks;

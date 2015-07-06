@@ -57,10 +57,8 @@ class Chart extends React.Component {
     // get highest value from all data arrays
     var currentMax = 0;
     React.Children.forEach(this.props.children, child => {
-      if (child.props.data) {
-        var m = max(child.props.data);
-        if (m > currentMax) {currentMax = m; }
-      }
+      var m = max(child.props.data || []);
+      if (m > currentMax) {currentMax = m; }
     });
 
     var margin = this.props.margin;

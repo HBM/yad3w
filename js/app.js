@@ -9,6 +9,7 @@ var XTicks = require('./XTicks.react.js');
 var YAxis = require('./YAxis.react');
 var XGrid = require('./XGrid.react.js');
 var YGrid = require('./YGrid.react.js');
+var Overlay = require('./Overlay');
 
 var data = [10, 5, 20, 16, 30, 51, 40, 19, 50];
 
@@ -48,6 +49,12 @@ class App extends React.Component {
 
 
 
+  onMouseMove(coords) {
+    console.log(coords);
+  }
+
+
+
   /**
    * Render component
    */
@@ -82,13 +89,22 @@ class App extends React.Component {
           strokeWidth="2">
         </Line>
 
+        <Overlay
+          onMouseMove={::this.onMouseMove}
+        />
+
       </Chart>
     );
   }
 
 }
 
+
+
+/**
+ * Render app
+ */
 React.render(
   <App />,
-  document.body
+  document.getElementById('react')
 );

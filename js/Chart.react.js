@@ -21,7 +21,7 @@ class Chart extends React.Component {
     React.Children.forEach(this.props.children, child => {
       if (child.props.data) {
         var max = d3.max(child.props.data);
-        if (max > currentMax) currentMax = max;
+        if (max > currentMax) {currentMax = max; }
       }
     });
 

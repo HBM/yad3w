@@ -1,14 +1,15 @@
+'use strict';
 
 var React = require('react');
-var d3 = require('d3');
+// var d3 = require('d3');
 
 
 var styles = {
   d: {
-    shapeRendering: "crispEdges",
-    stroke: "#000",
-    fill: "none",
-    strokeWidth: "1"
+    shapeRendering: 'crispEdges',
+    stroke: '#000',
+    fill: 'none',
+    strokeWidth: '1'
   }
 };
 
@@ -31,7 +32,7 @@ class XAxis extends React.Component {
       React.addons.cloneWithProps(child, {data, xScale})
     );
 
-    var test = d3.svg.axis().scale(xScale);
+    // var test = d3.svg.axis().scale(xScale);
 
     return (
       <g transform={'translate(0, ' + height + ')'}>
@@ -54,7 +55,7 @@ class XAxis extends React.Component {
 XAxis.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
-  outerTickSize: React.PropTypes.number,
+  outerTickSize: React.PropTypes.number
 };
 
 

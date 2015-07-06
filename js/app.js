@@ -1,3 +1,4 @@
+'use strict';
 
 var React = require('react');
 var Chart = require('./Chart.react');
@@ -18,11 +19,11 @@ class App extends React.Component {
   }
 
   onMouseOver(event) {
-    event.target.setAttribute("r", 12);
+    event.target.setAttribute('r', 12);
   }
 
   onMouseOut(event) {
-    event.target.setAttribute("r", 10);
+    event.target.setAttribute('r', 10);
   }
 
   render() {

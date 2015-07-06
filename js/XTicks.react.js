@@ -1,3 +1,4 @@
+'use strict';
 
 var React = require('react');
 
@@ -6,14 +7,14 @@ var React = require('react');
 var styles = {
 
   line: {
-    shapeRendering: "crispEdges",
-    stroke: "#000",
-    fill: "none",
-    strokeWidth: "1"
+    shapeRendering: 'crispEdges',
+    stroke: '#000',
+    fill: 'none',
+    strokeWidth: '1'
   },
 
   text: {
-    textAnchor: "middle"
+    textAnchor: 'middle'
   }
 };
 
@@ -30,7 +31,7 @@ class XTicks extends React.Component {
 
   render() {
 
-    var {data, xScale, innerTickSize, tickPadding} = this.props;
+    var {xScale, innerTickSize, tickPadding} = this.props;
     var tickSpacing = Math.max(innerTickSize, 0) + tickPadding;
 
     var ticks = this.props.data.map((d, i) =>

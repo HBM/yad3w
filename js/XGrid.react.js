@@ -1,3 +1,4 @@
+'use strict';
 
 var React = require('react');
 
@@ -20,7 +21,7 @@ class XGrid extends React.Component {
 
   render() {
 
-    var {width, margin, data, yScale} = this.props;
+    var {width, yScale} = this.props;
 
     var lines = yScale.ticks(this.props.ticks).map((d, i) =>
       <line

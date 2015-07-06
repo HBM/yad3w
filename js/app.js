@@ -11,6 +11,7 @@ var XGrid = require('./XGrid.react.js');
 var YGrid = require('./YGrid.react.js');
 var Overlay = require('./Overlay');
 var Crosshair = require('./Crosshair');
+var Area = require('./Area');
 
 var data = [10, 5, 20, 16, 30, 51, 40, 19, 50];
 
@@ -82,6 +83,8 @@ class App extends React.Component {
         <Line
           strokeWidth="2"
         />
+
+        <Area />
 
         <Overlay
           onMouseMove={::this.onMouseMove}

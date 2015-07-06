@@ -68,7 +68,7 @@ class Chart extends React.Component {
 
     // x scale
     var xScale = linear()
-      .domain([0, data.length])
+      .domain([0, data.length - 1])
       .range([0, width]);
 
     // y scale

@@ -18,6 +18,20 @@ var style = {
  */
 class YAxis extends React.Component {
 
+
+
+  /**
+   * Default properties
+   */
+  static defaultProps = {
+    outerTickSize: 6,
+    stroke: '#000',
+    fill: 'none',
+    strokeWidth: '1'
+  };
+
+
+
   constructor(props) {
     super(props);
   }
@@ -41,18 +55,6 @@ class YAxis extends React.Component {
   }
 
 }
-
-
-
-/**
- * Default properties
- */
-YAxis.defaultProps = {
-  outerTickSize: 6,
-  stroke: '#000',
-  fill: 'none',
-  strokeWidth: '1'
-};
 
 
 

@@ -25,6 +25,33 @@ var styles = {
  */
 class XTicks extends React.Component {
 
+
+
+  /**
+   * Property types.
+   */
+  static propTypes = {
+    data: React.PropTypes.oneOfType([
+      React.PropTypes.array,
+      React.PropTypes.object
+    ]),
+    xScale: React.PropTypes.func,
+    innerTickSize: React.PropTypes.number,
+    tickPadding: React.PropTypes.number
+  };
+
+
+
+  /**
+   * Default properties.
+   */
+  static defaultProps = {
+    innerTickSize: 6,
+    tickPadding: 3
+  };
+
+
+
   constructor(props) {
     super(props);
   }
@@ -49,31 +76,6 @@ class XTicks extends React.Component {
   }
 
 }
-
-
-
-/**
- * Property types.
- */
-XTicks.propTypes = {
-  data: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.object
-  ]),
-  xScale: React.PropTypes.func,
-  innerTickSize: React.PropTypes.number,
-  tickPadding: React.PropTypes.number
-};
-
-
-
-/**
- * Default properties.
- */
-XTicks.defaultProps = {
-  innerTickSize: 6,
-  tickPadding: 3
-};
 
 
 

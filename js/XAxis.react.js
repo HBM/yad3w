@@ -20,6 +20,28 @@ var styles = {
  */
 class XAxis extends React.Component {
 
+
+
+  /**
+   * Property types.
+   */
+  static propTypes = {
+    width: React.PropTypes.number,
+    height: React.PropTypes.number,
+    outerTickSize: React.PropTypes.number
+  };
+
+
+
+  /**
+   * Default properties.
+   */
+  static defaultProps = {
+    outerTickSize: 6
+  };
+
+
+
   constructor(props) {
     super(props);
   }
@@ -46,26 +68,6 @@ class XAxis extends React.Component {
   }
 
 }
-
-
-
-/**
- * Property types.
- */
-XAxis.propTypes = {
-  width: React.PropTypes.number,
-  height: React.PropTypes.number,
-  outerTickSize: React.PropTypes.number
-};
-
-
-
-/**
- * Default properties.
- */
-XAxis.defaultProps = {
-  outerTickSize: 6
-};
 
 
 

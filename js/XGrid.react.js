@@ -15,6 +15,14 @@ var style = {
  */
 class XGrid extends React.Component {
 
+
+
+  static defaultProps = {
+    ticks: 10
+  };
+
+
+
   constructor(props) {
     super(props);
   }
@@ -46,11 +54,6 @@ class XGrid extends React.Component {
 
 }
 
-
-
-XGrid.defaultProps = {
-  ticks: 10
-};
 
 
 module.exports = XGrid;

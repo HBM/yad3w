@@ -10,6 +10,19 @@ var d3 = require('d3');
  */
 class Line extends React.Component {
 
+
+
+  /**
+   * Default properties
+   */
+  static defaultProps = {
+    fill: 'none',
+    strokeWidth: 1,
+    stroke: 'steelblue'
+  };
+
+
+
   constructor(props) {
     super(props);
   }
@@ -31,16 +44,6 @@ class Line extends React.Component {
   }
 
 }
-
-
-/**
- * Default properties
- */
-Line.defaultProps = {
-  fill: 'none',
-  strokeWidth: 1,
-  stroke: 'steelblue'
-};
 
 
 

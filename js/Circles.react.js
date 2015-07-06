@@ -6,6 +6,20 @@ var React = require('react');
 
 class Circles extends React.Component {
 
+
+
+  /**
+   * Default properties.
+   */
+  static defaultProps = {
+    radius: 5,
+    fill: '#000',
+    stroke: '#000',
+    strokeWidth: 0
+  };
+
+
+
   constructor(props) {
     super(props);
   }
@@ -44,18 +58,6 @@ class Circles extends React.Component {
   }
 
 }
-
-
-
-/**
- * Default properties.
- */
-Circles.defaultProps = {
-  radius: 5,
-  fill: '#000',
-  stroke: '#000',
-  strokeWidth: 0
-};
 
 
 

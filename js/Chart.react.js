@@ -10,9 +10,40 @@ var d3 = require('d3');
  */
 class Chart extends React.Component {
 
+
+
+  /**
+   * Property types.
+   */
+  static propTypes = {
+    width: React.PropTypes.number,
+    height: React.PropTypes.number,
+    margin: React.PropTypes.object
+  };
+
+
+
+  /**
+   * Default properties.
+   */
+  static defaultProps = {
+    width: 960,
+    height: 500,
+    margin: {
+      top: 20,
+      right: 10,
+      bottom: 20,
+      left: 10
+    }
+  };
+
+
+
   constructor(props) {
     super(props);
   }
+
+
 
   render() {
 
@@ -63,33 +94,6 @@ class Chart extends React.Component {
   }
 
 }
-
-
-
-/**
- * Property types.
- */
-Chart.propTypes = {
-  width: React.PropTypes.number,
-  height: React.PropTypes.number,
-  margin: React.PropTypes.object
-};
-
-
-
-/**
- * Default properties.
- */
-Chart.defaultProps = {
-  width: 960,
-  height: 500,
-  margin: {
-    top: 20,
-    right: 10,
-    bottom: 20,
-    left: 10
-  }
-};
 
 
 

@@ -14,7 +14,7 @@ var style = {
 
 
 /**
- * YAxis
+ * YAxis component
  */
 class YAxis extends React.Component {
 

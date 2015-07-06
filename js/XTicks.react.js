@@ -21,7 +21,7 @@ var styles = {
 
 
 /**
- * XTicks Class
+ * XTicks component
  */
 class XTicks extends React.Component {
 

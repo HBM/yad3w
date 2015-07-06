@@ -6,7 +6,7 @@ var d3 = require('d3');
 
 
 /**
- * Line Class
+ * Line component
  */
 class Line extends React.Component {
 

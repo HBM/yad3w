@@ -1,12 +1,13 @@
 'use strict';
 
 var React = require('react/addons');
-var d3 = require('d3');
+var {linear} = require('d3-scale');
+var {max} = require('d3-arrays');
 
 
 
 /**
- * Chart class.
+ * Chart component
  */
 class Chart extends React.Component {
 
@@ -39,20 +40,26 @@ class Chart extends React.Component {
 
 
 
+  /**
+   * Constructor function
+   */
   constructor(props) {
     super(props);
   }
 
 
 
+  /**
+   * Render component
+   */
   render() {
 
     // get highest value from all data arrays
     var currentMax = 0;
     React.Children.forEach(this.props.children, child => {
       if (child.props.data) {
-        var max = d3.max(child.props.data);
-        if (max > currentMax) {currentMax = max; }
+        var m = max(child.props.data);
+        if (m > currentMax) {currentMax = m; }
       }
     });
 
@@ -62,12 +69,12 @@ class Chart extends React.Component {
     var data = this.props.data;
 
     // x scale
-    var xScale = d3.scale.linear()
+    var xScale = linear()
       .domain([0, data.length])
       .range([0, width]);
 
     // y scale
-    var yScale = d3.scale.linear()
+    var yScale = linear()
       .domain([0, currentMax])
       .range([height, 0]);
 
@@ -97,4 +104,7 @@ class Chart extends React.Component {
 
 
 
+/**
+ * Export component
+ */
 module.exports = Chart;

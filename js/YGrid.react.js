@@ -14,7 +14,7 @@ var style = {
 
 
 /**
- * YGrid class
+ * YGrid component
  */
 class YGrid extends React.Component {
 

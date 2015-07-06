@@ -4,6 +4,9 @@ var React = require('react');
 
 
 
+/**
+ * Circle component
+ */
 class Circles extends React.Component {
 
 

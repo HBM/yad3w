@@ -11,7 +11,7 @@ var style = {
 
 
 /**
- * XGrid class
+ * XGrid component
  */
 class XGrid extends React.Component {
 

@@ -16,7 +16,7 @@ var styles = {
 
 
 /**
- * Axis Class
+ * Axis component
  */
 class XAxis extends React.Component {
 

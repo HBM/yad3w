@@ -94,7 +94,7 @@ var Chart = (function (_React$Component) {
     key: 'propTypes',
 
     /**
-     * Property types.
+     * Property types
      */
     value: {
       width: React.PropTypes.number,
@@ -106,7 +106,7 @@ var Chart = (function (_React$Component) {
     key: 'defaultProps',
 
     /**
-     * Default properties.
+     * Default properties
      */
     value: {
       width: 960,
@@ -199,7 +199,7 @@ var Circles = (function (_React$Component) {
     key: 'defaultProps',
 
     /**
-     * Default properties.
+     * Default properties
      */
     value: {
       radius: 5,
@@ -234,6 +234,11 @@ var d3 = require('d3');
  */
 
 var Line = (function (_React$Component) {
+
+  /**
+   * Constructor function
+   */
+
   function Line(props) {
     _classCallCheck(this, Line);
 
@@ -244,6 +249,10 @@ var Line = (function (_React$Component) {
 
   _createClass(Line, [{
     key: 'render',
+
+    /**
+     * Render component
+     */
     value: function render() {
       var _this = this;
 
@@ -279,6 +288,9 @@ var Line = (function (_React$Component) {
   return Line;
 })(React.Component);
 
+/**
+ * Export component
+ */
 module.exports = Line;
 
 },{"d3":13,"react":183}],4:[function(require,module,exports){
@@ -308,6 +320,11 @@ var styles = {
  */
 
 var XAxis = (function (_React$Component) {
+
+  /**
+   * Constructor function
+   */
+
   function XAxis(props) {
     _classCallCheck(this, XAxis);
 
@@ -318,6 +335,10 @@ var XAxis = (function (_React$Component) {
 
   _createClass(XAxis, [{
     key: 'render',
+
+    /**
+     * Render component
+     */
     value: function render() {
       var _props = this.props;
       var data = _props.data;
@@ -344,7 +365,7 @@ var XAxis = (function (_React$Component) {
     key: 'propTypes',
 
     /**
-     * Property types.
+     * Property types
      */
     value: {
       width: React.PropTypes.number,
@@ -356,7 +377,7 @@ var XAxis = (function (_React$Component) {
     key: 'defaultProps',
 
     /**
-     * Default properties.
+     * Default properties
      */
     value: {
       outerTickSize: 6
@@ -391,6 +412,11 @@ var style = {
  */
 
 var XGrid = (function (_React$Component) {
+
+  /**
+   * Constructor function
+   */
+
   function XGrid(props) {
     _classCallCheck(this, XGrid);
 
@@ -401,6 +427,10 @@ var XGrid = (function (_React$Component) {
 
   _createClass(XGrid, [{
     key: 'render',
+
+    /**
+     * Render component
+     */
     value: function render() {
       var _props = this.props;
       var width = _props.width;
@@ -428,6 +458,10 @@ var XGrid = (function (_React$Component) {
     }
   }], [{
     key: 'defaultProps',
+
+    /**
+     * Default properties
+     */
     value: {
       ticks: 10
     },
@@ -437,6 +471,9 @@ var XGrid = (function (_React$Component) {
   return XGrid;
 })(React.Component);
 
+/**
+ * Export component
+ */
 module.exports = XGrid;
 
 },{"react":183}],6:[function(require,module,exports){
@@ -471,6 +508,11 @@ var styles = {
  */
 
 var XTicks = (function (_React$Component) {
+
+  /**
+   * Constructor function
+   */
+
   function XTicks(props) {
     _classCallCheck(this, XTicks);
 
@@ -481,6 +523,10 @@ var XTicks = (function (_React$Component) {
 
   _createClass(XTicks, [{
     key: 'render',
+
+    /**
+     * Render component
+     */
     value: function render() {
       var _props = this.props;
       var xScale = _props.xScale;
@@ -512,7 +558,7 @@ var XTicks = (function (_React$Component) {
     key: 'propTypes',
 
     /**
-     * Property types.
+     * Property types
      */
     value: {
       data: React.PropTypes.oneOfType([React.PropTypes.array, React.PropTypes.object]),
@@ -525,7 +571,7 @@ var XTicks = (function (_React$Component) {
     key: 'defaultProps',
 
     /**
-     * Default properties.
+     * Default properties
      */
     value: {
       innerTickSize: 6,
@@ -537,6 +583,9 @@ var XTicks = (function (_React$Component) {
   return XTicks;
 })(React.Component);
 
+/**
+ * Export component
+ */
 module.exports = XTicks;
 
 },{"react":183}],7:[function(require,module,exports){
@@ -564,6 +613,11 @@ var style = {
  */
 
 var YAxis = (function (_React$Component) {
+
+  /**
+   * Constructor function
+   */
+
   function YAxis(props) {
     _classCallCheck(this, YAxis);
 
@@ -574,6 +628,10 @@ var YAxis = (function (_React$Component) {
 
   _createClass(YAxis, [{
     key: 'render',
+
+    /**
+     * Render component
+     */
     value: function render() {
       var _props = this.props;
       var height = _props.height;
@@ -609,6 +667,9 @@ var YAxis = (function (_React$Component) {
   return YAxis;
 })(React.Component);
 
+/**
+ * Export component
+ */
 module.exports = YAxis;
 
 },{"react":183}],8:[function(require,module,exports){
@@ -636,6 +697,11 @@ var style = {
  */
 
 var YGrid = (function (_React$Component) {
+
+  /**
+   * Constructor function
+   */
+
   function YGrid(props) {
     _classCallCheck(this, YGrid);
 
@@ -646,6 +712,10 @@ var YGrid = (function (_React$Component) {
 
   _createClass(YGrid, [{
     key: 'render',
+
+    /**
+     * Render component
+     */
     value: function render() {
       var _this = this;
 
@@ -692,6 +762,9 @@ var YGrid = (function (_React$Component) {
   return YGrid;
 })(React.Component);
 
+/**
+ * Export component
+ */
 module.exports = YGrid;
 
 },{"react":183}],9:[function(require,module,exports){

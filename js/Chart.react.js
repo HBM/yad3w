@@ -92,7 +92,8 @@ class Chart extends React.Component {
     return (
       <svg
         width={this.props.width}
-        height={this.props.height}>
+        height={this.props.height}
+      >
           <g transform={'translate(' + margin.left + ', ' + margin.top + ')'}>
             {children}
           </g>

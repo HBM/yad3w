@@ -12,38 +12,58 @@ var YGrid = require('./YGrid.react.js');
 
 var data = [10, 5, 20, 16, 30, 51, 40, 19, 50];
 
+
+
+/**
+ * App component
+ */
 class App extends React.Component {
 
+
+
+  /**
+   * Constructor function
+   */
   constructor(props) {
     super(props);
   }
 
+
+
+  /**
+   * Handle mouse over circle
+   */
   onMouseOver(event) {
     event.target.setAttribute('r', 12);
   }
 
+
+
+  /**
+   * Handle mouse out circle
+   */
   onMouseOut(event) {
     event.target.setAttribute('r', 10);
   }
 
+
+
+  /**
+   * Render component
+   */
   render() {
     return (
       <Chart data={data}>
 
-        <XGrid
-          ticks="10"
-        />
+        <XGrid ticks="10"/>
 
-        <YGrid
-          ticks="15"
-        />
+        <YGrid ticks="15" />
 
         <XAxis>
           <XTicks />
         </XAxis>
 
-        <YAxis>
-        </YAxis>
+        <YAxis />
 
         <Line
           strokeWidth="2"
@@ -52,8 +72,8 @@ class App extends React.Component {
         <Circles
           radius="10"
           fill="orange"
-          onMouseOver={this.onMouseOver.bind(this)}
-          onMouseOut={this.onMouseOut.bind(this)}
+          onMouseOver={::this.onMouseOver}
+          onMouseOut={::this.onMouseOut}
         />
 
         <Line

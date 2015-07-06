@@ -10,6 +10,7 @@ var YAxis = require('./YAxis.react');
 var XGrid = require('./XGrid.react.js');
 var YGrid = require('./YGrid.react.js');
 var Overlay = require('./Overlay');
+var Crosshair = require('./Crosshair');
 
 var data = [10, 5, 20, 16, 30, 51, 40, 19, 50];
 
@@ -27,6 +28,10 @@ class App extends React.Component {
    */
   constructor(props) {
     super(props);
+
+    this.state = {
+      mouse: [0, 0]
+    };
   }
 
 
@@ -50,7 +55,9 @@ class App extends React.Component {
 
 
   onMouseMove(coords) {
-    console.log(coords);
+    this.setState({
+      mouse: coords.mouse
+    });
   }
 
 
@@ -76,6 +83,10 @@ class App extends React.Component {
           strokeWidth="2"
         />
 
+        <Overlay
+          onMouseMove={::this.onMouseMove}
+        />
+
         <Circles
           radius="10"
           fill="orange"
@@ -89,8 +100,11 @@ class App extends React.Component {
           strokeWidth="2">
         </Line>
 
-        <Overlay
-          onMouseMove={::this.onMouseMove}
+        <Crosshair
+          x={this.state.mouse[0]}
+          y={this.state.mouse[1]}
+          horizontal={true}
+          vertical={true}
         />
 
       </Chart>

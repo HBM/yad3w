@@ -12,6 +12,9 @@ var YGrid = require('./YGrid.react.js');
 var Overlay = require('./Overlay');
 var Crosshair = require('./Crosshair');
 var Area = require('./Area');
+var Piechart = require('./Piechart');
+var Arc = require('./Arc');
+var d3 = require('d3');
 
 var data = [10, 5, 20, 16, 30, 51, 40, 19, 50];
 
@@ -67,50 +70,61 @@ class App extends React.Component {
    * Render component
    */
   render() {
+
+    var color = d3.scale.category10();
+
     return (
-      <Chart data={data}>
+      <div>
+        <Chart data={data}>
 
-        <XGrid ticks="10"/>
+          <XGrid ticks="10"/>
 
-        <YGrid ticks="15" />
+          <YGrid ticks="15" />
 
-        <XAxis>
-          <XTicks />
-        </XAxis>
+          <XAxis>
+            <XTicks />
+          </XAxis>
 
-        <YAxis />
+          <YAxis />
 
-        <Line
-          strokeWidth="2"
-        />
+          <Line
+            strokeWidth="2"
+          />
 
-        <Area />
+          <Area />
 
-        <Overlay
-          onMouseMove={this.onMouseMove}
-        />
+          <Overlay
+            onMouseMove={this.onMouseMove}
+          />
 
-        <Circles
-          radius="10"
-          fill="orange"
-          onMouseOver={this.onMouseOver}
-          onMouseOut={this.onMouseOut}
-        />
+          <Circles
+            radius="10"
+            fill="orange"
+            onMouseOver={this.onMouseOver}
+            onMouseOut={this.onMouseOut}
+          />
 
-        <Line
-          data={[1, 10, 7, 30, 20, 60, 35]}
-          stroke="red"
-          strokeWidth="2">
-        </Line>
+          <Line
+            data={[1, 10, 7, 30, 20, 60, 35]}
+            stroke="red"
+            strokeWidth="2">
+          </Line>
 
-        <Crosshair
-          x={this.state.mouse[0]}
-          y={this.state.mouse[1]}
-          horizontal={true}
-          vertical={true}
-        />
+          <Crosshair
+            x={this.state.mouse[0]}
+            y={this.state.mouse[1]}
+            horizontal={true}
+            vertical={true}
+          />
 
-      </Chart>
+        </Chart>
+
+        <Piechart width={400} height={300} innerRadius={35} outerRadius={150}>
+          <Arc value={20} fill={color(0)} text="London" />
+          <Arc value={10} fill={color(1)} text="Berlin" />
+          <Arc value={50} fill={color(2)} text="Munich" />
+        </Piechart>
+      </div>
     );
   }
 

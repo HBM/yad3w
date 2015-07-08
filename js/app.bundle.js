@@ -210,39 +210,31 @@ var Circles = (function (_React$Component) {
    */
 
   function Circles(props) {
+    var _this = this;
+
     _classCallCheck(this, Circles);
 
     _get(Object.getPrototypeOf(Circles.prototype), 'constructor', this).call(this, props);
+
+    this.onMouseOver = function (event) {
+      _this.props.onMouseOver(event);
+    };
+
+    this.onMouseOut = function (event) {
+      _this.props.onMouseOut(event);
+    };
   }
 
   _inherits(Circles, _React$Component);
 
   _createClass(Circles, [{
-    key: 'onMouseOver',
-
-    /**
-     * Handle mouse over event
-     */
-    value: function onMouseOver(event) {
-      this.props.onMouseOver(event);
-    }
-  }, {
-    key: 'onMouseOut',
-
-    /**
-     * Handle mouse out event
-     */
-    value: function onMouseOut(event) {
-      this.props.onMouseOut(event);
-    }
-  }, {
     key: 'render',
 
     /**
      * Render component
      */
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       var _props = this.props;
       var data = _props.data;
@@ -252,14 +244,14 @@ var Circles = (function (_React$Component) {
       var circles = data.map(function (d, i) {
         return React.createElement('circle', {
           key: i,
-          r: _this.props.radius,
+          r: _this2.props.radius,
           cx: xScale(i),
           cy: yScale(d),
-          fill: _this.props.fill,
-          stroke: _this.props.stroke,
-          strokeWidth: _this.props.strokeWidth,
-          onMouseOver: _this.onMouseOver.bind(_this),
-          onMouseOut: _this.onMouseOut.bind(_this)
+          fill: _this2.props.fill,
+          stroke: _this2.props.stroke,
+          strokeWidth: _this2.props.strokeWidth,
+          onMouseOver: _this2.onMouseOver,
+          onMouseOut: _this2.onMouseOut
         });
       });
 
@@ -291,6 +283,14 @@ var Circles = (function (_React$Component) {
  * Export component
  */
 module.exports = Circles;
+
+/**
+ * Handle mouse over event
+ */
+
+/**
+ * Handle mouse out event
+ */
 
 },{"react":190}],4:[function(require,module,exports){
 'use strict';
@@ -488,35 +488,32 @@ var mouse = _require.mouse;
 
 var Overlay = (function (_React$Component) {
   function Overlay() {
+    var _this = this;
+
     _classCallCheck(this, Overlay);
 
     _get(Object.getPrototypeOf(Overlay.prototype), 'constructor', this).apply(this, arguments);
-  }
 
-  _inherits(Overlay, _React$Component);
-
-  _createClass(Overlay, [{
-    key: 'onMouseMove',
-
-    /**
-     * Handle mouse move event
-     */
-    value: function onMouseMove(event) {
-      var _mouse = mouse(React.findDOMNode(this), event);
+    this.onMouseMove = function (event) {
+      var _mouse = mouse(React.findDOMNode(_this), event);
 
       var _mouse2 = _slicedToArray(_mouse, 2);
 
       var x = _mouse2[0];
       var y = _mouse2[1];
 
-      var x0 = this.props.xScale.invert(x);
-      var y0 = this.props.yScale.invert(y);
-      this.props.onMouseMove({
+      var x0 = _this.props.xScale.invert(x);
+      var y0 = _this.props.yScale.invert(y);
+      _this.props.onMouseMove({
         mouse: [x, y],
         data: [x0, y0]
       });
-    }
-  }, {
+    };
+  }
+
+  _inherits(Overlay, _React$Component);
+
+  _createClass(Overlay, [{
     key: 'render',
 
     /**
@@ -536,7 +533,7 @@ var Overlay = (function (_React$Component) {
         width: width,
         height: height,
         style: style,
-        onMouseMove: this.onMouseMove.bind(this)
+        onMouseMove: this.onMouseMove
       });
     }
   }]);
@@ -548,6 +545,10 @@ var Overlay = (function (_React$Component) {
  * Export component
  */
 module.exports = Overlay;
+
+/**
+ * Handle mouse move event
+ */
 
 },{"d3-selection":16,"react":190}],7:[function(require,module,exports){
 'use strict';
@@ -1060,9 +1061,25 @@ var App = (function (_React$Component) {
    */
 
   function App(props) {
+    var _this = this;
+
     _classCallCheck(this, App);
 
     _get(Object.getPrototypeOf(App.prototype), 'constructor', this).call(this, props);
+
+    this.onMouseOver = function (event) {
+      event.target.setAttribute('r', 12);
+    };
+
+    this.onMouseOut = function (event) {
+      event.target.setAttribute('r', 10);
+    };
+
+    this.onMouseMove = function (coords) {
+      _this.setState({
+        mouse: coords.mouse
+      });
+    };
 
     this.state = {
       mouse: [0, 0]
@@ -1072,31 +1089,6 @@ var App = (function (_React$Component) {
   _inherits(App, _React$Component);
 
   _createClass(App, [{
-    key: 'onMouseOver',
-
-    /**
-     * Handle mouse over circle
-     */
-    value: function onMouseOver(event) {
-      event.target.setAttribute('r', 12);
-    }
-  }, {
-    key: 'onMouseOut',
-
-    /**
-     * Handle mouse out circle
-     */
-    value: function onMouseOut(event) {
-      event.target.setAttribute('r', 10);
-    }
-  }, {
-    key: 'onMouseMove',
-    value: function onMouseMove(coords) {
-      this.setState({
-        mouse: coords.mouse
-      });
-    }
-  }, {
     key: 'render',
 
     /**
@@ -1119,13 +1111,13 @@ var App = (function (_React$Component) {
         }),
         React.createElement(Area, null),
         React.createElement(Overlay, {
-          onMouseMove: this.onMouseMove.bind(this)
+          onMouseMove: this.onMouseMove
         }),
         React.createElement(Circles, {
           radius: '10',
           fill: 'orange',
-          onMouseOver: this.onMouseOver.bind(this),
-          onMouseOut: this.onMouseOut.bind(this)
+          onMouseOver: this.onMouseOver,
+          onMouseOut: this.onMouseOut
         }),
         React.createElement(Line, {
           data: [1, 10, 7, 30, 20, 60, 35],
@@ -1149,43 +1141,84 @@ var App = (function (_React$Component) {
  */
 React.render(React.createElement(App, null), document.getElementById('react'));
 
+/**
+ * Handle mouse over circle
+ */
+
+/**
+ * Handle mouse out circle
+ */
+
 },{"./Area":1,"./Chart.react":2,"./Circles.react":3,"./Crosshair":4,"./Line.react":5,"./Overlay":6,"./XAxis.react":7,"./XGrid.react.js":8,"./XTicks.react.js":9,"./YAxis.react":10,"./YGrid.react.js":11,"react":190}],13:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
 var queue = [];
 var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
 
 function drainQueue() {
     if (draining) {
         return;
     }
+    var timeout = setTimeout(cleanUpNextTick);
     draining = true;
-    var currentQueue;
+
     var len = queue.length;
     while(len) {
         currentQueue = queue;
         queue = [];
-        var i = -1;
-        while (++i < len) {
-            currentQueue[i]();
+        while (++queueIndex < len) {
+            currentQueue[queueIndex].run();
         }
+        queueIndex = -1;
         len = queue.length;
     }
+    currentQueue = null;
     draining = false;
+    clearTimeout(timeout);
 }
+
 process.nextTick = function (fun) {
-    queue.push(fun);
-    if (!draining) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
         setTimeout(drainQueue, 0);
     }
 };
 
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
 process.title = 'browser';
 process.browser = true;
 process.env = {};
 process.argv = [];
 process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
 
 function noop() {}
 
@@ -1673,40 +1706,29 @@ if (typeof Map === "undefined") {
   factory((global.scale = {}));
 }(this, function (exports) { 'use strict';
 
-  var pads = {"-": "", "_": " ", "0": "0"};
-
-  var LocalDate = Date;
-
-  var date = Date;
-
-  function UtcDate() {
-    this._ = new date(arguments.length > 1 ? date.UTC.apply(this, arguments) : arguments[0]);
+  function utcDate(d) {
+    if (0 <= d.y && d.y < 100) {
+      var date = new Date(Date.UTC(-1, d.m, d.d, d.H, d.M, d.S, d.L));
+      date.setUTCFullYear(d.y);
+      return date;
+    }
+    return new Date(Date.UTC(d.y, d.m, d.d, d.H, d.M, d.S, d.L));
   }
 
-  var proto = date.prototype;
+  function localDate(d) {
+    if (0 <= d.y && d.y < 100) {
+      var date = new Date(-1, d.m, d.d, d.H, d.M, d.S, d.L);
+      date.setFullYear(d.y);
+      return date;
+    }
+    return new Date(d.y, d.m, d.d, d.H, d.M, d.S, d.L);
+  }
 
-  UtcDate.prototype = {
-    getDate: function() { return this._.getUTCDate(); },
-    getDay: function() { return this._.getUTCDay(); },
-    getFullYear: function() { return this._.getUTCFullYear(); },
-    getHours: function() { return this._.getUTCHours(); },
-    getMilliseconds: function() { return this._.getUTCMilliseconds(); },
-    getMinutes: function() { return this._.getUTCMinutes(); },
-    getMonth: function() { return this._.getUTCMonth(); },
-    getSeconds: function() { return this._.getUTCSeconds(); },
-    getTime: function() { return this._.getTime(); },
-    getTimezoneOffset: function() { return 0; },
-    valueOf: function() { return this._.valueOf(); },
-    setDate: function() { return proto.setUTCDate.apply(this._, arguments); },
-    setDay: function() { return proto.setUTCDay.apply(this._, arguments); },
-    setFullYear: function() { return proto.setUTCFullYear.apply(this._, arguments); },
-    setHours: function() { return proto.setUTCHours.apply(this._, arguments); },
-    setMilliseconds: function() { return proto.setUTCMilliseconds.apply(this._, arguments); },
-    setMinutes: function() { return proto.setUTCMinutes.apply(this._, arguments); },
-    setMonth: function() { return proto.setUTCMonth.apply(this._, arguments); },
-    setSeconds: function() { return proto.setUTCSeconds.apply(this._, arguments); },
-    setTime: function() { return proto.setTime.apply(this._, arguments); }
-  };
+  var pads = {"-": "", "_": " ", "0": "0"};
+
+  function newYear(y) {
+    return {y: y, m: 0, d: 1, H: 0, M: 0, S: 0, L: 0};
+  }
 
   var percentRe = /^%/;
 
@@ -1748,17 +1770,16 @@ if (typeof Map === "undefined") {
     return n ? (d.m = n[0] - 1, i + n[0].length) : -1;
   }
 
-  function parseDay(d, string, i) {
+  function parseDayOfMonth(d, string, i) {
     var n = numberRe.exec(string.slice(i, i + 2));
     return n ? (d.d = +n[0], i + n[0].length) : -1;
   }
 
   function parseDayOfYear(d, string, i) {
     var n = numberRe.exec(string.slice(i, i + 3));
-    return n ? (d.j = +n[0], i + n[0].length) : -1;
+    return n ? (d.m = 0, d.d = +n[0], i + n[0].length) : -1;
   }
 
-  // Note: we don't validate that the hour is in the range [0,23] or [1,12].
   function parseHour24(d, string, i) {
     var n = numberRe.exec(string.slice(i, i + 2));
     return n ? (d.H = +n[0], i + n[0].length) : -1;
@@ -1784,6 +1805,14 @@ if (typeof Map === "undefined") {
     return n ? (d.y = +n[0], i + n[0].length) : -1;
   }
 
+  function formatLiteralPercent() {
+    return "%";
+  }
+
+  function formatUTCZone() {
+    return "+0000";
+  }
+
   function pad(value, fill, width) {
     var sign = value < 0 ? "-" : "",
         string = (sign ? -value : value) + "",
@@ -1791,12 +1820,17 @@ if (typeof Map === "undefined") {
     return sign + (length < width ? new Array(width - length + 1).join(fill) + string : string);
   }
 
-  function formatZone(d) {
-    var z = d.getTimezoneOffset();
-    return (z > 0 ? "-" : (z *= -1, "+"))
-        + pad(z / 60 | 0, "0", 2)
-        + pad(z % 60, "0", 2);
+  function formatUTCFullYear(d, p) {
+    return pad(d.getUTCFullYear() % 10000, p, 4);
   }
+
+  function _formatUTCYear(d, p) {
+    return pad(d.getUTCFullYear() % 100, p, 2);
+  }
+
+  var t1 = new Date;
+
+  var t0 = new Date;
 
   function newInterval(floori, offseti, count) {
 
@@ -1842,20 +1876,110 @@ if (typeof Map === "undefined") {
     };
 
     if (count) interval.count = function(start, end) {
-      start = new Date(+start);
-      end = new Date(+end);
-      floori(start), floori(end);
-      return Math.floor(count(start, end));
+      t0.setTime(+start), t1.setTime(+end);
+      floori(t0), floori(t1);
+      return Math.floor(count(t0, t1));
     };
 
     return interval;
   }
 
+  var utcYear = newInterval(function(date) {
+    date.setUTCHours(0, 0, 0, 0);
+    date.setUTCMonth(0, 1);
+  }, function(date, step) {
+    date.setUTCFullYear(date.getUTCFullYear() + step);
+  }, function(start, end) {
+    return end.getUTCFullYear() - start.getUTCFullYear();
+  });
+
+  function utcWeekday(i) {
+    return newInterval(function(date) {
+      date.setUTCHours(0, 0, 0, 0);
+      date.setUTCDate(date.getUTCDate() - (date.getUTCDay() + 7 - i) % 7);
+    }, function(date, step) {
+      date.setUTCDate(date.getUTCDate() + step * 7);
+    }, function(start, end) {
+      return (end - start) / 6048e5;
+    });
+  }
+
+  var utcMonday = utcWeekday(1);
+
+  function formatUTCWeekNumberMonday(d, p) {
+    return pad(utcMonday.count(utcYear(d), d), p, 2);
+  }
+
+  function formatUTCWeekdayNumber(d) {
+    return d.getUTCDay();
+  }
+
+  var utcSunday = utcWeekday(0);
+
+  function formatUTCWeekNumberSunday(d, p) {
+    return pad(utcSunday.count(utcYear(d), d), p, 2);
+  }
+
+  function formatUTCSeconds(d, p) {
+    return pad(d.getUTCSeconds(), p, 2);
+  }
+
+  function formatUTCMinutes(d, p) {
+    return pad(d.getUTCMinutes(), p, 2);
+  }
+
+  function formatUTCMonthNumber(d, p) {
+    return pad(d.getUTCMonth() + 1, p, 2);
+  }
+
+  function formatUTCMilliseconds(d, p) {
+    return pad(d.getUTCMilliseconds(), p, 3);
+  }
+
+  var utcDay = newInterval(function(date) {
+    date.setUTCHours(0, 0, 0, 0);
+  }, function(date, step) {
+    date.setUTCDate(date.getUTCDate() + step);
+  }, function(start, end) {
+    return (end - start) / 864e5;
+  });
+
+  function formatUTCDayOfYear(d, p) {
+    return pad(1 + utcDay.count(utcYear(d), d), p, 3);
+  }
+
+  function formatUTCHour12(d, p) {
+    return pad(d.getUTCHours() % 12 || 12, p, 2);
+  }
+
+  function formatUTCHour24(d, p) {
+    return pad(d.getUTCHours(), p, 2);
+  }
+
+  function formatUTCDayOfMonth(d, p) {
+    return pad(d.getUTCDate(), p, 2);
+  }
+
+  function formatZone(d) {
+    var z = d.getTimezoneOffset();
+    return (z > 0 ? "-" : (z *= -1, "+"))
+        + pad(z / 60 | 0, "0", 2)
+        + pad(z % 60, "0", 2);
+  }
+
+  function formatFullYear(d, p) {
+    return pad(d.getFullYear() % 10000, p, 4);
+  }
+
+  function _formatYear(d, p) {
+    return pad(d.getFullYear() % 100, p, 2);
+  }
+
   var year = newInterval(function(date) {
     date.setHours(0, 0, 0, 0);
     date.setMonth(0, 1);
-  }, function(date, offset) {
-    date.setFullYear(date.getFullYear() + offset);
+  }, function(date, step) {
+    date.setFullYear(date.getFullYear() + step);
   }, function(start, end) {
     return end.getFullYear() - start.getFullYear();
   });
@@ -1864,8 +1988,8 @@ if (typeof Map === "undefined") {
     return newInterval(function(date) {
       date.setHours(0, 0, 0, 0);
       date.setDate(date.getDate() - (date.getDay() + 7 - i) % 7);
-    }, function(date, offset) {
-      date.setDate(date.getDate() + offset * 7);
+    }, function(date, step) {
+      date.setDate(date.getDate() + step * 7);
     }, function(start, end) {
       return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * 6e4) / 6048e5;
     });
@@ -1873,15 +1997,59 @@ if (typeof Map === "undefined") {
 
   var monday = weekday(1);
 
+  function formatWeekNumberMonday(d, p) {
+    return pad(monday.count(year(d), d), p, 2);
+  }
+
+  function formatWeekdayNumber(d) {
+    return d.getDay();
+  }
+
   var sunday = weekday(0);
+
+  function formatWeekNumberSunday(d, p) {
+    return pad(sunday.count(year(d), d), p, 2);
+  }
+
+  function formatSeconds(d, p) {
+    return pad(d.getSeconds(), p, 2);
+  }
+
+  function formatMinutes(d, p) {
+    return pad(d.getMinutes(), p, 2);
+  }
+
+  function formatMonthNumber(d, p) {
+    return pad(d.getMonth() + 1, p, 2);
+  }
+
+  function formatMilliseconds(d, p) {
+    return pad(d.getMilliseconds(), p, 3);
+  }
 
   var day = newInterval(function(date) {
     date.setHours(0, 0, 0, 0);
-  }, function(date, offset) {
-    date.setDate(date.getDate() + offset);
+  }, function(date, step) {
+    date.setDate(date.getDate() + step);
   }, function(start, end) {
     return (end - start - (end.getTimezoneOffset() - start.getTimezoneOffset()) * 6e4) / 864e5;
   });
+
+  function formatDayOfYear(d, p) {
+    return pad(1 + day.count(year(d), d), p, 3);
+  }
+
+  function formatHour12(d, p) {
+    return pad(d.getHours() % 12 || 12, p, 2);
+  }
+
+  function formatHour24(d, p) {
+    return pad(d.getHours(), p, 2);
+  }
+
+  function formatDayOfMonth(d, p) {
+    return pad(d.getDate(), p, 2);
+  }
 
   function formatLookup(names) {
     var map = new Map, i = -1, n = names.length;
@@ -1904,63 +2072,90 @@ if (typeof Map === "undefined") {
         locale_date = locale.date,
         locale_time = locale.time,
         locale_periods = locale.periods,
-        locale_days = locale.days,
-        locale_shortDays = locale.shortDays,
+        locale_weekdays = locale.days,
+        locale_shortWeekdays = locale.shortDays,
         locale_months = locale.months,
         locale_shortMonths = locale.shortMonths;
 
     var periodLookup = formatLookup(locale_periods),
-        dayRe = formatRe(locale_days),
-        dayLookup = formatLookup(locale_days),
-        dayAbbrevRe = formatRe(locale_shortDays),
-        dayAbbrevLookup = formatLookup(locale_shortDays),
+        weekdayRe = formatRe(locale_weekdays),
+        weekdayLookup = formatLookup(locale_weekdays),
+        shortWeekdayRe = formatRe(locale_shortWeekdays),
+        shortWeekdayLookup = formatLookup(locale_shortWeekdays),
         monthRe = formatRe(locale_months),
         monthLookup = formatLookup(locale_months),
-        monthAbbrevRe = formatRe(locale_shortMonths),
-        monthAbbrevLookup = formatLookup(locale_shortMonths);
+        shortMonthRe = formatRe(locale_shortMonths),
+        shortMonthLookup = formatLookup(locale_shortMonths);
 
     var formats = {
-      "a": function(d) { return locale_shortDays[d.getDay()]; },
-      "A": function(d) { return locale_days[d.getDay()]; },
-      "b": function(d) { return locale_shortMonths[d.getMonth()]; },
-      "B": function(d) { return locale_months[d.getMonth()]; },
-      "c": newFormat(locale_dateTime),
-      "d": function(d, p) { return pad(d.getDate(), p, 2); },
-      "e": function(d, p) { return pad(d.getDate(), p, 2); },
-      "H": function(d, p) { return pad(d.getHours(), p, 2); },
-      "I": function(d, p) { return pad(d.getHours() % 12 || 12, p, 2); },
-      "j": function(d, p) { return pad(1 + day.count(year(d), d), p, 3); },
-      "L": function(d, p) { return pad(d.getMilliseconds(), p, 3); },
-      "m": function(d, p) { return pad(d.getMonth() + 1, p, 2); },
-      "M": function(d, p) { return pad(d.getMinutes(), p, 2); },
-      "p": function(d) { return locale_periods[+(d.getHours() >= 12)]; },
-      "S": function(d, p) { return pad(d.getSeconds(), p, 2); },
-      "U": function(d, p) { return pad(sunday.count(year(d), d), p, 2); },
-      "w": function(d) { return d.getDay(); },
-      "W": function(d, p) { return pad(monday.count(year(d), d), p, 2); },
-      "x": newFormat(locale_date),
-      "X": newFormat(locale_time),
-      "y": function(d, p) { return pad(d.getFullYear() % 100, p, 2); },
-      "Y": function(d, p) { return pad(d.getFullYear() % 10000, p, 4); },
+      "a": formatShortWeekday,
+      "A": formatWeekday,
+      "b": formatShortMonth,
+      "B": formatMonth,
+      "c": null,
+      "d": formatDayOfMonth,
+      "e": formatDayOfMonth,
+      "H": formatHour24,
+      "I": formatHour12,
+      "j": formatDayOfYear,
+      "L": formatMilliseconds,
+      "m": formatMonthNumber,
+      "M": formatMinutes,
+      "p": formatPeriod,
+      "S": formatSeconds,
+      "U": formatWeekNumberSunday,
+      "w": formatWeekdayNumber,
+      "W": formatWeekNumberMonday,
+      "x": null,
+      "X": null,
+      "y": _formatYear,
+      "Y": formatFullYear,
       "Z": formatZone,
-      "%": function() { return "%"; }
+      "%": formatLiteralPercent
+    };
+
+    var utcFormats = {
+      "a": formatUTCShortWeekday,
+      "A": formatUTCWeekday,
+      "b": formatUTCShortMonth,
+      "B": formatUTCMonth,
+      "c": null,
+      "d": formatUTCDayOfMonth,
+      "e": formatUTCDayOfMonth,
+      "H": formatUTCHour24,
+      "I": formatUTCHour12,
+      "j": formatUTCDayOfYear,
+      "L": formatUTCMilliseconds,
+      "m": formatUTCMonthNumber,
+      "M": formatUTCMinutes,
+      "p": formatUTCPeriod,
+      "S": formatUTCSeconds,
+      "U": formatUTCWeekNumberSunday,
+      "w": formatUTCWeekdayNumber,
+      "W": formatUTCWeekNumberMonday,
+      "x": null,
+      "X": null,
+      "y": _formatUTCYear,
+      "Y": formatUTCFullYear,
+      "Z": formatUTCZone,
+      "%": formatLiteralPercent
     };
 
     var parses = {
-      "a": parseWeekdayAbbrev,
+      "a": parseShortWeekday,
       "A": parseWeekday,
-      "b": parseMonthAbbrev,
+      "b": parseShortMonth,
       "B": parseMonth,
       "c": parseLocaleDateTime,
-      "d": parseDay,
-      "e": parseDay,
+      "d": parseDayOfMonth,
+      "e": parseDayOfMonth,
       "H": parseHour24,
       "I": parseHour24,
       "j": parseDayOfYear,
       "L": parseMilliseconds,
       "m": parseMonthNumber,
       "M": parseMinutes,
-      "p": parseAmPm,
+      "p": parsePeriod,
       "S": parseSeconds,
       "U": parseWeekNumberSunday,
       "w": parseWeekdayNumber,
@@ -1973,10 +2168,16 @@ if (typeof Map === "undefined") {
       "%": parseLiteralPercent
     };
 
-    function newFormat(specifier) {
-      specifier += "";
+    // These recursive directive definitions must be deferred.
+    formats.x = newFormat(locale_date, formats);
+    formats.X = newFormat(locale_time, formats);
+    formats.c = newFormat(locale_dateTime, formats);
+    utcFormats.x = newFormat(locale_date, utcFormats);
+    utcFormats.X = newFormat(locale_time, utcFormats);
+    utcFormats.c = newFormat(locale_dateTime, utcFormats);
 
-      function format(date) {
+    function newFormat(specifier, formats) {
+      return function(date) {
         var string = [],
             i = -1,
             j = 0,
@@ -1997,73 +2198,41 @@ if (typeof Map === "undefined") {
 
         string.push(specifier.slice(j, i));
         return string.join("");
-      }
+      };
+    }
 
-      format.parse = function(string) {
-        var d = {y: 1900, m: 0, d: 1, H: 0, M: 0, S: 0, L: 0, Z: null},
+    function newParse(specifier, newDate) {
+      return function(string) {
+        var d = newYear(1900),
             i = parseSpecifier(d, specifier, string, 0);
         if (i != string.length) return null;
 
         // The am-pm flag is 0 for AM, and 1 for PM.
         if ("p" in d) d.H = d.H % 12 + d.p * 12;
 
-        // If a time zone is specified, it is always relative to UTC;
-        // we need to use UtcDate if we aren’t already.
-        var localZ = d.Z != null && Date !== UtcDate,
-            date = new (localZ ? UtcDate : Date);
-
-        // Set year, month, date.
-        if ("j" in d) {
-          date.setFullYear(d.y, 0, d.j);
-        } else if ("w" in d && ("W" in d || "U" in d)) {
-          date.setFullYear(d.y, 0, 1);
-          date.setFullYear(d.y, 0, "W" in d
-              ? (d.w + 6) % 7 + d.W * 7 - (date.getDay() + 5) % 7
-              :  d.w          + d.U * 7 - (date.getDay() + 6) % 7);
-        } else {
-          date.setFullYear(d.y, d.m, d.d);
+        // If a time zone is specified, all fields are interpreted as UTC and then
+        // offset according to the specified time zone.
+        if ("Z" in d) {
+          if ("w" in d && ("W" in d || "U" in d)) {
+            var day = utcDate(newYear(d.y)).getUTCDay();
+            if ("W" in d) d.U = d.W, d.w = (d.w + 6) % 7, --day;
+            d.m = 0;
+            d.d = d.w + d.U * 7 - (day + 6) % 7;
+          }
+          d.H += d.Z / 100 | 0;
+          d.M += d.Z % 100;
+          return utcDate(d);
         }
 
-        // Set hours, minutes, seconds and milliseconds.
-        date.setHours(d.H + (d.Z / 100 | 0), d.M + d.Z % 100, d.S, d.L);
-
-        return localZ ? date._ : date;
-      };
-
-      format.toString = function() {
-        return specifier;
-      };
-
-      return format;
-    }
-
-    function newUtcFormat(specifier) {
-      var local = newFormat(specifier);
-
-      function format(date) {
-        try {
-          Date = UtcDate;
-          var utc = new Date;
-          utc._ = date;
-          return local(utc);
-        } finally {
-          Date = LocalDate;
+        // Otherwise, all fields are in local time.
+        if ("w" in d && ("W" in d || "U" in d)) {
+          var day = newDate(newYear(d.y)).getDay();
+          if ("W" in d) d.U = d.W, d.w = (d.w + 6) % 7, --day;
+          d.m = 0;
+          d.d = d.w + d.U * 7 - (day + 6) % 7;
         }
-      }
-
-      format.parse = function(string) {
-        try {
-          Date = UtcDate;
-          var date = local.parse(string);
-          return date && date._;
-        } finally {
-          Date = LocalDate;
-        }
+        return newDate(d);
       };
-
-      format.toString = local.toString;
-
-      return format;
     }
 
     function parseSpecifier(d, specifier, string, j) {
@@ -2088,19 +2257,19 @@ if (typeof Map === "undefined") {
       return j;
     }
 
-    function parseWeekdayAbbrev(d, string, i) {
-      var n = dayAbbrevRe.exec(string.slice(i));
-      return n ? (d.w = dayAbbrevLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
+    function parseShortWeekday(d, string, i) {
+      var n = shortWeekdayRe.exec(string.slice(i));
+      return n ? (d.w = shortWeekdayLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
     }
 
     function parseWeekday(d, string, i) {
-      var n = dayRe.exec(string.slice(i));
-      return n ? (d.w = dayLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
+      var n = weekdayRe.exec(string.slice(i));
+      return n ? (d.w = weekdayLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
     }
 
-    function parseMonthAbbrev(d, string, i) {
-      var n = monthAbbrevRe.exec(string.slice(i));
-      return n ? (d.m = monthAbbrevLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
+    function parseShortMonth(d, string, i) {
+      var n = shortMonthRe.exec(string.slice(i));
+      return n ? (d.m = shortMonthLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
     }
 
     function parseMonth(d, string, i) {
@@ -2120,14 +2289,64 @@ if (typeof Map === "undefined") {
       return parseSpecifier(d, locale_time, string, i);
     }
 
-    function parseAmPm(d, string, i) {
+    function parsePeriod(d, string, i) {
       var n = periodLookup.get(string.slice(i, i += 2).toLowerCase());
       return n == null ? -1 : (d.p = n, i);
     }
 
+    function formatShortWeekday(d) {
+      return locale_shortWeekdays[d.getDay()];
+    }
+
+    function formatWeekday(d) {
+      return locale_weekdays[d.getDay()];
+    }
+
+    function formatShortMonth(d) {
+      return locale_shortMonths[d.getMonth()];
+    }
+
+    function formatMonth(d) {
+      return locale_months[d.getMonth()];
+    }
+
+    function formatPeriod(d) {
+      return locale_periods[+(d.getHours() >= 12)];
+    }
+
+    function formatUTCShortWeekday(d) {
+      return locale_shortWeekdays[d.getUTCDay()];
+    }
+
+    function formatUTCWeekday(d) {
+      return locale_weekdays[d.getUTCDay()];
+    }
+
+    function formatUTCShortMonth(d) {
+      return locale_shortMonths[d.getUTCMonth()];
+    }
+
+    function formatUTCMonth(d) {
+      return locale_months[d.getUTCMonth()];
+    }
+
+    function formatUTCPeriod(d) {
+      return locale_periods[+(d.getUTCHours() >= 12)];
+    }
+
     return {
-      format: newFormat,
-      utcFormat: newUtcFormat
+      format: function(specifier) {
+        var f = newFormat(specifier += "", formats);
+        f.parse = newParse(specifier, localDate);
+        f.toString = function() { return specifier; };
+        return f;
+      },
+      utcFormat: function(specifier) {
+        var f = newFormat(specifier += "", utcFormats);
+        f.parse = newParse(specifier, utcDate);
+        f.toString = function() { return specifier; };
+        return f;
+      }
     };
   }
 
@@ -2148,59 +2367,29 @@ if (typeof Map === "undefined") {
 
   var formatUTCMonth = utcFormat("%B");
 
-  var utcYear = newInterval(function(date) {
-    date.setUTCHours(0, 0, 0, 0);
-    date.setUTCMonth(0, 1);
-  }, function(date, offset) {
-    date.setUTCFullYear(date.getUTCFullYear() + offset);
-  }, function(start, end) {
-    return end.getUTCFullYear() - start.getUTCFullYear();
-  });
-
   var formatUTCWeek = utcFormat("%b %d");
 
   var formatUTCDay = utcFormat("%a %d");
-
-  function utcWeekday(i) {
-    return newInterval(function(date) {
-      date.setUTCHours(0, 0, 0, 0);
-      date.setUTCDate(date.getUTCDate() - (date.getUTCDay() + 7 - i) % 7);
-    }, function(date, offset) {
-      date.setUTCDate(date.getUTCDate() + offset * 7);
-    }, function(start, end) {
-      return (end - start) / 6048e5;
-    });
-  }
-
-  var utcSunday = utcWeekday(0);
 
   var utcWeek = utcSunday;
 
   var utcMonth = newInterval(function(date) {
     date.setUTCHours(0, 0, 0, 0);
     date.setUTCDate(1);
-  }, function(date, offset) {
-    date.setUTCMonth(date.getUTCMonth() + offset);
+  }, function(date, step) {
+    date.setUTCMonth(date.getUTCMonth() + step);
   }, function(start, end) {
     return end.getUTCMonth() - start.getUTCMonth() + (end.getUTCFullYear() - start.getUTCFullYear()) * 12;
   });
 
   var formatUTCHour = utcFormat("%I %p");
 
-  var utcDay = newInterval(function(date) {
-    date.setUTCHours(0, 0, 0, 0);
-  }, function(date, offset) {
-    date.setUTCDate(date.getUTCDate() + offset);
-  }, function(start, end) {
-    return (end - start) / 864e5;
-  });
-
   var formatUTCMinute = utcFormat("%I:%M");
 
   var utcHour = newInterval(function(date) {
     date.setUTCMinutes(0, 0, 0);
-  }, function(date, offset) {
-    date.setTime(+date + offset * 36e5);
+  }, function(date, step) {
+    date.setTime(+date + step * 36e5);
   }, function(start, end) {
     return (end - start) / 36e5;
   });
@@ -2209,8 +2398,8 @@ if (typeof Map === "undefined") {
 
   var utcMinute = newInterval(function(date) {
     date.setUTCSeconds(0, 0);
-  }, function(date, offset) {
-    date.setTime(+date + offset * 6e4);
+  }, function(date, step) {
+    date.setTime(+date + step * 6e4);
   }, function(start, end) {
     return (end - start) / 6e4;
   });
@@ -2219,8 +2408,8 @@ if (typeof Map === "undefined") {
 
   var utcSecond = newInterval(function(date) {
     date.setUTCMilliseconds(0);
-  }, function(date, offset) {
-    date.setTime(+date + offset * 1e3);
+  }, function(date, step) {
+    date.setTime(+date + step * 1e3);
   }, function(start, end) {
     return (end - start) / 1e3;
   });
@@ -2395,24 +2584,18 @@ if (typeof Map === "undefined") {
 
       // If a desired tick count is specified, pick a reasonable tick interval
       // based on the extent of the domain and a rough estimate of tick size.
-      if (typeof interval === "number") {
-        interval = chooseTickInterval(start, stop, interval);
-        step = interval[1], interval = interval[0];
-      }
-
-      // Otherwise, a named interval such as "seconds" was specified.
-      // If a step is also specified, then skip some ticks.
-      else {
-        step = step == null ? 1 : Math.floor(step), interval += "";
+      // If a named interval such as "seconds" was specified, convert to the
+      // corresponding time interval and optionally filter using the step.
+      // Otherwise, assume interval is already a time interval and use it.
+      switch (typeof interval) {
+        case "number": interval = chooseTickInterval(start, stop, interval), step = interval[1], interval = interval[0]; break;
+        case "string": step = step == null ? 1 : Math.floor(step); break;
+        default: return interval;
       }
 
       return isFinite(step) && step > 0 ? timeInterval(interval, step) : null;
     }
 
-    // ticks() - generate about ten ticks
-    // ticks(10) - generate about ten ticks
-    // ticks("seconds") - generate a tick every second
-    // ticks("seconds", 10) - generate a tick every ten seconds
     scale.ticks = function(interval, step) {
       var domain = linear.domain(),
           t0 = domain[0],
@@ -3456,8 +3639,8 @@ if (typeof Map === "undefined") {
   var month = newInterval(function(date) {
     date.setHours(0, 0, 0, 0);
     date.setDate(1);
-  }, function(date, offset) {
-    date.setMonth(date.getMonth() + offset);
+  }, function(date, step) {
+    date.setMonth(date.getMonth() + step);
   }, function(start, end) {
     return end.getMonth() - start.getMonth() + (end.getFullYear() - start.getFullYear()) * 12;
   });
@@ -3468,8 +3651,8 @@ if (typeof Map === "undefined") {
 
   var hour = newInterval(function(date) {
     date.setMinutes(0, 0, 0);
-  }, function(date, offset) {
-    date.setTime(+date + offset * 36e5);
+  }, function(date, step) {
+    date.setTime(+date + step * 36e5);
   }, function(start, end) {
     return (end - start) / 36e5;
   });
@@ -3478,8 +3661,8 @@ if (typeof Map === "undefined") {
 
   var minute = newInterval(function(date) {
     date.setSeconds(0, 0);
-  }, function(date, offset) {
-    date.setTime(+date + offset * 6e4);
+  }, function(date, step) {
+    date.setTime(+date + step * 6e4);
   }, function(start, end) {
     return (end - start) / 6e4;
   });
@@ -3488,8 +3671,8 @@ if (typeof Map === "undefined") {
 
   var second = newInterval(function(date) {
     date.setMilliseconds(0);
-  }, function(date, offset) {
-    date.setTime(+date + offset * 1e3);
+  }, function(date, step) {
+    date.setTime(+date + step * 1e3);
   }, function(start, end) {
     return (end - start) / 1e3;
   });

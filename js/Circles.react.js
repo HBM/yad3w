@@ -35,7 +35,7 @@ class Circles extends React.Component {
   /**
    * Handle mouse over event
    */
-  onMouseOver(event) {
+  onMouseOver = (event) => {
     this.props.onMouseOver(event);
   }
 
@@ -44,7 +44,7 @@ class Circles extends React.Component {
   /**
    * Handle mouse out event
    */
-  onMouseOut(event) {
+  onMouseOut = (event) => {
     this.props.onMouseOut(event);
   }
 
@@ -66,8 +66,8 @@ class Circles extends React.Component {
         fill={this.props.fill}
         stroke={this.props.stroke}
         strokeWidth={this.props.strokeWidth}
-        onMouseOver={::this.onMouseOver}
-        onMouseOut={::this.onMouseOut}
+        onMouseOver={this.onMouseOver}
+        onMouseOut={this.onMouseOut}
       />
     );
 

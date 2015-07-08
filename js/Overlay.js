@@ -15,7 +15,7 @@ class Overlay extends React.Component {
   /**
    * Handle mouse move event
    */
-  onMouseMove(event) {
+  onMouseMove = (event) => {
     var [x, y] = mouse(React.findDOMNode(this), event);
     var x0 = this.props.xScale.invert(x);
     var y0 = this.props.yScale.invert(y);
@@ -44,7 +44,7 @@ class Overlay extends React.Component {
         width={width}
         height={height}
         style={style}
-        onMouseMove={::this.onMouseMove}
+        onMouseMove={this.onMouseMove}
       />
     );
   }

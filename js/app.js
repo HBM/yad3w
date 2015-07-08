@@ -40,7 +40,7 @@ class App extends React.Component {
   /**
    * Handle mouse over circle
    */
-  onMouseOver(event) {
+  onMouseOver = (event) => {
     event.target.setAttribute('r', 12);
   }
 
@@ -49,13 +49,13 @@ class App extends React.Component {
   /**
    * Handle mouse out circle
    */
-  onMouseOut(event) {
+  onMouseOut = (event) => {
     event.target.setAttribute('r', 10);
   }
 
 
 
-  onMouseMove(coords) {
+  onMouseMove = (coords) => {
     this.setState({
       mouse: coords.mouse
     });
@@ -87,14 +87,14 @@ class App extends React.Component {
         <Area />
 
         <Overlay
-          onMouseMove={::this.onMouseMove}
+          onMouseMove={this.onMouseMove}
         />
 
         <Circles
           radius="10"
           fill="orange"
-          onMouseOver={::this.onMouseOver}
-          onMouseOut={::this.onMouseOut}
+          onMouseOver={this.onMouseOver}
+          onMouseOut={this.onMouseOut}
         />
 
         <Line

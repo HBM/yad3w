@@ -40,8 +40,9 @@ class Piechart extends React.Component {
     let {width, height, innerRadius, outerRadius} = this.props;
 
     // construct new arc generator
+    // https://github.com/mbostock/d3/wiki/SVG-Shapes#arc
     var arc = d3.svg.arc()
-      .outerRadius(outerRadius)
+      .padRadius(outerRadius)
       .innerRadius(innerRadius);
 
     // get values from Arc components
@@ -52,7 +53,9 @@ class Piechart extends React.Component {
 
     // construct new pie function
     // return function
+    // https://github.com/mbostock/d3/wiki/Pie-Layout#_pie
     var pie = d3.layout.pie()
+      .padAngle(.02)
       .sort(null);
 
     // evaluate pie function on array of values
@@ -62,7 +65,8 @@ class Piechart extends React.Component {
     var children = React.Children.map(this.props.children, (child, index) =>
       React.addons.cloneWithProps(child, {
         descriptor: descriptors[index],
-        arc
+        arc,
+        outerRadius
       })
     );
 

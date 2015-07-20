@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react');
-var d3 = require('d3');
+var {Spring} = require('react-motion');
 
 
 
@@ -26,7 +26,9 @@ class Arc extends React.Component {
       endAngle: React.PropTypes.number,
       padAngle: React.PropTypes.number,
       data: React.PropTypes.number
-    })
+    }),
+    onMouseOver: React.PropTypes.func,
+    onMouseOut: React.PropTypes.func
   };
 
 
@@ -36,8 +38,7 @@ class Arc extends React.Component {
    */
   render() {
 
-    let {descriptor, fill, arc, text} = this.props;
-    var d = arc(descriptor);
+    let {descriptor, fill, arc, text, outerRadius, active} = this.props;
 
     var style = {
       textAnchor: 'middle',
@@ -45,16 +46,24 @@ class Arc extends React.Component {
     };
 
     return (
-      <g>
-        <path ref="path" d={d} fill={fill} />
-        <text
-          dy="0.35em"
-          style={style}
-          transform={`translate(${arc.centroid(descriptor)})`}
-        >
-          {text}
-        </text>
-      </g>
+      <Spring endValue={{val: active ? outerRadius : outerRadius - 20}}>
+        {interpolated => {
+          descriptor.outerRadius = interpolated.val;
+          return (
+            <g onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}>
+              <path d={arc(descriptor)} fill={fill} />
+              <text
+                dy="0.35em"
+                style={style}
+                transform={`translate(${arc.centroid(descriptor)})`}
+              >
+                {text}
+              </text>
+            </g>
+          );
+        }}
+      </Spring>
+
     );
   }
 

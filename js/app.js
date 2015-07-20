@@ -34,7 +34,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      mouse: [0, 0]
+      mouse: [0, 0],
+      active: false
     };
   }
 
@@ -66,6 +67,22 @@ class App extends React.Component {
 
 
 
+  onMouseOverArc = () => {
+    this.setState({
+      active: true
+    });
+  }
+
+
+
+  onMouseOutArc = () => {
+    this.setState({
+      active: false
+    });
+  }
+
+
+
   /**
    * Render component
    */
@@ -73,54 +90,24 @@ class App extends React.Component {
 
     var color = d3.scale.category10();
 
+    var width = 960;
+    var height = 500;
+    var outerRadius = height / 2 - 20;
+    var innerRadius = outerRadius / 3;
+
     return (
       <div>
-        <Chart data={data}>
 
-          <XGrid ticks="10"/>
 
-          <YGrid ticks="15" />
-
-          <XAxis>
-            <XTicks />
-          </XAxis>
-
-          <YAxis />
-
-          <Line
-            strokeWidth="2"
+        <Piechart width={width} height={height} innerRadius={innerRadius} outerRadius={outerRadius}>
+          <Arc
+            value={20}
+            fill={color(0)}
+            text="London"
+            onMouseOver={this.onMouseOverArc}
+            onMouseOut={this.onMouseOutArc}
+            active={this.state.active}
           />
-
-          <Area />
-
-          <Overlay
-            onMouseMove={this.onMouseMove}
-          />
-
-          <Circles
-            radius="10"
-            fill="orange"
-            onMouseOver={this.onMouseOver}
-            onMouseOut={this.onMouseOut}
-          />
-
-          <Line
-            data={[1, 10, 7, 30, 20, 60, 35]}
-            stroke="red"
-            strokeWidth="2">
-          </Line>
-
-          <Crosshair
-            x={this.state.mouse[0]}
-            y={this.state.mouse[1]}
-            horizontal={true}
-            vertical={true}
-          />
-
-        </Chart>
-
-        <Piechart width={400} height={300} innerRadius={35} outerRadius={150}>
-          <Arc value={20} fill={color(0)} text="London" />
           <Arc value={10} fill={color(1)} text="Berlin" />
           <Arc value={50} fill={color(2)} text="Munich" />
         </Piechart>
@@ -130,6 +117,49 @@ class App extends React.Component {
 
 }
 
+// <Chart data={data}>
+//
+//   <XGrid ticks="10"/>
+//
+//   <YGrid ticks="15" />
+//
+//   <XAxis>
+//     <XTicks />
+//   </XAxis>
+//
+//   <YAxis />
+//
+//   <Line
+//     strokeWidth="2"
+//   />
+//
+//   <Area />
+//
+//   <Overlay
+//     onMouseMove={this.onMouseMove}
+//   />
+//
+//   <Circles
+//     radius="10"
+//     fill="orange"
+//     onMouseOver={this.onMouseOver}
+//     onMouseOut={this.onMouseOut}
+//   />
+//
+//   <Line
+//     data={[1, 10, 7, 30, 20, 60, 35]}
+//     stroke="red"
+//     strokeWidth="2">
+//   </Line>
+//
+//   <Crosshair
+//     x={this.state.mouse[0]}
+//     y={this.state.mouse[1]}
+//     horizontal={true}
+//     vertical={true}
+//   />
+//
+// </Chart>
 
 
 /**

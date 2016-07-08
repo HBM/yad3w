@@ -1,8 +1,16 @@
 {
   "name": "yad3w",
   "version": "1.0.0",
-  "description": "D3 React wrapper",
-  "main": "js/app.js",
+  "description": "Yet Another D3 Wrapper",
+  "main": "index.js",
+  "keywords": [
+    "d3",
+    "react",
+    "wrapper",
+    "visualization",
+    "chart",
+    "graph"
+  ],
   "dependencies": {
     "d3-array": "^1.0.0",
     "d3-scale": "^1.0.0",

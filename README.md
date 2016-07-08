@@ -11,7 +11,7 @@ work in progress
 
 How do I pronounce yad3w?
 
-- Djadoo. It means magic in persian.
+- Djadoo. It means magic in Persian.
 
 ## License
 

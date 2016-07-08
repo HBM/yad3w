@@ -4,1255 +4,77 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.YGrid = exports.YAxis = exports.XTicks = exports.XGrid = exports.XAxis = exports.Piechart = exports.Overlay = exports.Line = exports.Crosshair = exports.Circles = exports.Chart = exports.Area = exports.Arc = undefined;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _Arc2 = require('./src/Arc');
 
-var _react = require('react');
+var _Arc3 = _interopRequireDefault(_Arc2);
 
-var _react2 = _interopRequireDefault(_react);
+var _Area2 = require('./src/Area');
 
-var _reactMotion = require('react-motion');
+var _Area3 = _interopRequireDefault(_Area2);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _Chart2 = require('./src/Chart');
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _Chart3 = _interopRequireDefault(_Chart2);
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+var _Circles2 = require('./src/Circles');
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+var _Circles3 = _interopRequireDefault(_Circles2);
 
-var Arc = function (_React$Component) {
-  _inherits(Arc, _React$Component);
+var _Crosshair2 = require('./src/Crosshair');
 
-  function Arc() {
-    _classCallCheck(this, Arc);
+var _Crosshair3 = _interopRequireDefault(_Crosshair2);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Arc).apply(this, arguments));
-  }
+var _Line2 = require('./src/Line');
 
-  _createClass(Arc, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
+var _Line3 = _interopRequireDefault(_Line2);
 
-      var _props = this.props;
-      var descriptor = _props.descriptor;
-      var fill = _props.fill;
-      var arc = _props.arc;
-      var text = _props.text;
-      var outerRadius = _props.outerRadius;
-      var active = _props.active;
+var _Overlay2 = require('./src/Overlay');
 
+var _Overlay3 = _interopRequireDefault(_Overlay2);
 
-      var inline = {
-        textAnchor: 'middle',
-        alignmentBaseline: 'middle'
-      };
+var _Piechart2 = require('./src/Piechart');
 
-      return _react2.default.createElement(
-        _reactMotion.Motion,
-        { style: { val: active ? (0, _reactMotion.spring)(outerRadius) : (0, _reactMotion.spring)(outerRadius - 20) } },
-        function (style) {
-          descriptor.outerRadius = style.val;
-          return _react2.default.createElement(
-            'g',
-            { onMouseOver: _this2.props.onMouseOver, onMouseOut: _this2.props.onMouseOut },
-            _react2.default.createElement('path', { d: arc(descriptor), fill: fill }),
-            _react2.default.createElement(
-              'text',
-              {
-                dy: '0.35em',
-                style: inline,
-                transform: 'translate(' + arc.centroid(descriptor) + ')'
-              },
-              text
-            )
-          );
-        }
-      );
-    }
-  }]);
+var _Piechart3 = _interopRequireDefault(_Piechart2);
 
-  return Arc;
-}(_react2.default.Component);
+var _XAxis2 = require('./src/XAxis');
 
-Arc.propTypes = {
-  value: _react2.default.PropTypes.number,
-  fill: _react2.default.PropTypes.string,
-  text: _react2.default.PropTypes.string,
-  arc: _react2.default.PropTypes.func,
-  descriptor: _react2.default.PropTypes.shape({
-    value: _react2.default.PropTypes.number,
-    startAngle: _react2.default.PropTypes.number,
-    endAngle: _react2.default.PropTypes.number,
-    padAngle: _react2.default.PropTypes.number,
-    data: _react2.default.PropTypes.number
-  }),
-  onMouseOver: _react2.default.PropTypes.func,
-  onMouseOut: _react2.default.PropTypes.func
-};
-exports.default = Arc;
+var _XAxis3 = _interopRequireDefault(_XAxis2);
 
-},{"react":208,"react-motion":63}],2:[function(require,module,exports){
-'use strict';
+var _XGrid2 = require('./src/XGrid');
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _XGrid3 = _interopRequireDefault(_XGrid2);
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _XTicks2 = require('./src/XTicks');
 
-var _react = require('react');
+var _XTicks3 = _interopRequireDefault(_XTicks2);
 
-var _react2 = _interopRequireDefault(_react);
+var _YAxis2 = require('./src/YAxis');
 
-var _d3Shape = require('d3-shape');
+var _YAxis3 = _interopRequireDefault(_YAxis2);
+
+var _YGrid2 = require('./src/YGrid');
+
+var _YGrid3 = _interopRequireDefault(_YGrid2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Area = function (_React$Component) {
-  _inherits(Area, _React$Component);
-
-  function Area() {
-    _classCallCheck(this, Area);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Area).apply(this, arguments));
-  }
-
-  _createClass(Area, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var style = {
-        fill: 'steelblue',
-        opacity: 0.25
-      };
-
-      var area = (0, _d3Shape.area)().x(function (d, i) {
-        return _this2.props.xScale(i);
-      }).y0(this.props.height).y1(function (d) {
-        return _this2.props.yScale(d);
-      });
-
-      return _react2.default.createElement('path', {
-        style: style,
-        d: area(this.props.data)
-      });
-    }
-  }]);
-
-  return Area;
-}(_react2.default.Component);
-
-exports.default = Area;
-
-},{"d3-shape":23,"react":208}],3:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _d3Scale = require('d3-scale');
-
-var _d3Array = require('d3-array');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Chart = function (_React$Component) {
-  _inherits(Chart, _React$Component);
-
-  function Chart() {
-    _classCallCheck(this, Chart);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Chart).apply(this, arguments));
-  }
-
-  _createClass(Chart, [{
-    key: 'render',
-    value: function render() {
-      // get highest value from all data arrays
-      var currentMax = 0;
-      _react2.default.Children.forEach(this.props.children, function (child) {
-        var m = (0, _d3Array.max)(child.props.data || []);
-        if (m > currentMax) {
-          currentMax = m;
-        }
-      });
-
-      var margin = this.props.margin;
-      var width = this.props.width - margin.left - margin.right;
-      var height = this.props.height - margin.top - margin.bottom;
-      var data = this.props.data;
-
-      // x scale
-      var xScale = (0, _d3Scale.scaleLinear)().domain([0, data.length - 1]).range([0, width]);
-
-      // y scale
-      var yScale = (0, _d3Scale.scaleLinear)().domain([0, currentMax]).range([height, 0]);
-
-      var children = _react2.default.Children.map(this.props.children, function (child) {
-        return _react2.default.cloneElement(child, {
-          width: width,
-          height: height,
-          margin: margin,
-          data: child.props.data || data,
-          xScale: xScale,
-          yScale: yScale
-        });
-      });
-
-      return _react2.default.createElement(
-        'svg',
-        {
-          width: this.props.width,
-          height: this.props.height
-        },
-        _react2.default.createElement(
-          'g',
-          { transform: 'translate(' + margin.left + ', ' + margin.top + ')' },
-          children
-        )
-      );
-    }
-  }]);
-
-  return Chart;
-}(_react2.default.Component);
-
-Chart.propTypes = {
-  width: _react2.default.PropTypes.number,
-  height: _react2.default.PropTypes.number,
-  margin: _react2.default.PropTypes.object
-};
-Chart.defaultProps = {
-  width: 960,
-  height: 500,
-  margin: {
-    top: 20,
-    right: 10,
-    bottom: 20,
-    left: 10
-  }
-};
-exports.default = Chart;
-
-},{"d3-array":15,"d3-scale":21,"react":208}],4:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Circles = function (_React$Component) {
-  _inherits(Circles, _React$Component);
-
-  function Circles() {
-    var _Object$getPrototypeO;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Circles);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Circles)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.onMouseOver = function (event) {
-      _this.props.onMouseOver(event);
-    }, _this.onMouseOut = function (event) {
-      _this.props.onMouseOut(event);
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(Circles, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props;
-      var data = _props.data;
-      var xScale = _props.xScale;
-      var yScale = _props.yScale;
-
-
-      var circles = data.map(function (d, i) {
-        return _react2.default.createElement('circle', {
-          key: i,
-          r: _this2.props.radius,
-          cx: xScale(i),
-          cy: yScale(d),
-          fill: _this2.props.fill,
-          stroke: _this2.props.stroke,
-          strokeWidth: _this2.props.strokeWidth,
-          onMouseOver: _this2.onMouseOver,
-          onMouseOut: _this2.onMouseOut
-        });
-      });
-
-      return _react2.default.createElement(
-        'g',
-        null,
-        circles
-      );
-    }
-  }]);
-
-  return Circles;
-}(_react2.default.Component);
-
-Circles.defaultProps = {
-  radius: 5,
-  fill: '#000',
-  stroke: '#000',
-  strokeWidth: 0
-};
-exports.default = Circles;
-
-},{"react":208}],5:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Crosshair = function (_React$Component) {
-  _inherits(Crosshair, _React$Component);
-
-  function Crosshair() {
-    _classCallCheck(this, Crosshair);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Crosshair).apply(this, arguments));
-  }
-
-  _createClass(Crosshair, [{
-    key: 'render',
-    value: function render() {
-      var style = {
-        shapeRendering: 'crispEdges',
-        stroke: '#000',
-        fill: 'none',
-        strokeWidth: '1'
-      };
-
-      var horizontal;
-      if (this.props.horizontal) {
-        horizontal = _react2.default.createElement('line', {
-          x1: 0,
-          y1: this.props.y,
-          x2: this.props.width,
-          y2: this.props.y,
-          style: style
-        });
-      }
-
-      var vertical;
-      if (this.props.vertical) {
-        vertical = _react2.default.createElement('line', {
-          x1: this.props.x,
-          y1: 0,
-          x2: this.props.x,
-          y2: this.props.height,
-          style: style
-        });
-      }
-
-      return _react2.default.createElement(
-        'g',
-        null,
-        horizontal,
-        vertical
-      );
-    }
-  }]);
-
-  return Crosshair;
-}(_react2.default.Component);
-
-Crosshair.propTypes = {
-  x: _react2.default.PropTypes.number,
-  y: _react2.default.PropTypes.number,
-  horizontal: _react2.default.PropTypes.bool,
-  vertical: _react2.default.PropTypes.bool
-};
-exports.default = Crosshair;
-
-},{"react":208}],6:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _d3Shape = require('d3-shape');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Line = function (_React$Component) {
-  _inherits(Line, _React$Component);
-
-  function Line() {
-    _classCallCheck(this, Line);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Line).apply(this, arguments));
-  }
-
-  _createClass(Line, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      // line is not yet done
-      // https://github.com/mbostock/d3/issues/2461
-      var line = (0, _d3Shape.line)().x(function (d, i) {
-        return _this2.props.xScale(i);
-      }).y(function (d) {
-        return _this2.props.yScale(d);
-      });
-
-      return _react2.default.createElement('path', {
-        d: line(this.props.data),
-        fill: this.props.fill,
-        strokeWidth: this.props.strokeWidth,
-        stroke: this.props.stroke
-      });
-    }
-  }]);
-
-  return Line;
-}(_react2.default.Component);
-
-Line.defaultProps = {
-  fill: 'none',
-  strokeWidth: 1,
-  stroke: 'steelblue'
-};
-exports.default = Line;
-
-},{"d3-shape":23,"react":208}],7:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _d3Selection = require('d3-selection');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Overlay = function (_React$Component) {
-  _inherits(Overlay, _React$Component);
-
-  function Overlay() {
-    var _Object$getPrototypeO;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Overlay);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Overlay)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.onMouseMove = function (event) {
-      // console.log(event)
-
-      var _mouse = (0, _d3Selection.mouse)(_this.rect, event);
-
-      var _mouse2 = _slicedToArray(_mouse, 2);
-
-      var x = _mouse2[0];
-      var y = _mouse2[1];
-      // this.rect.sourceEvent = event
-      // this.rect.event = event
-      // var [x, y] = mouse(customEvent(event, this.onMouseMove))
-
-      var x0 = _this.props.xScale.invert(x);
-      var y0 = _this.props.yScale.invert(y);
-      _this.props.onMouseMove({
-        mouse: [x, y],
-        data: [x0, y0]
-      });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(Overlay, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props;
-      var width = _props.width;
-      var height = _props.height;
-
-
-      var style = {
-        fill: 'none',
-        pointerEvents: 'all'
-      };
-
-      return _react2.default.createElement('rect', {
-        ref: function ref(c) {
-          _this2.rect = c;
-        },
-        width: width,
-        height: height,
-        style: style,
-        onMouseMove: function onMouseMove(event) {
-          (0, _d3Selection.customEvent)(event.nativeEvent, _this2.onMouseMove);
-        }
-      });
-    }
-  }]);
-
-  return Overlay;
-}(_react2.default.Component);
-
-exports.default = Overlay;
-
-},{"d3-selection":22,"react":208}],8:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _d3Shape = require('d3-shape');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Piechart = function (_React$Component) {
-  _inherits(Piechart, _React$Component);
-
-  function Piechart() {
-    _classCallCheck(this, Piechart);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(Piechart).apply(this, arguments));
-  }
-
-  _createClass(Piechart, [{
-    key: 'render',
-    value: function render() {
-      // var radius = Math.min(this.props.width, this.props.height) / 2
-      var _props = this.props;
-      var width = _props.width;
-      var height = _props.height;
-      var innerRadius = _props.innerRadius;
-      var outerRadius = _props.outerRadius;
-
-      // construct new arc generator
-      // https://github.com/mbostock/d3/wiki/SVG-Shapes#arc
-
-      var arc = (0, _d3Shape.arc)().padRadius(outerRadius).innerRadius(innerRadius);
-
-      // get values from Arc components
-      var values = [];
-      _react2.default.Children.forEach(this.props.children, function (c) {
-        values.push(c.props.value);
-      });
-
-      // construct new pie function
-      // return function
-      // https://github.com/mbostock/d3/wiki/Pie-Layout#_pie
-      var pie = (0, _d3Shape.pie)().padAngle(0.02).sort(null);
-
-      // evaluate pie function on array of values
-      // return array of arc descriptors
-      var descriptors = pie(values);
-
-      var children = _react2.default.Children.map(this.props.children, function (child, index) {
-        return _react2.default.cloneElement(child, {
-          descriptor: descriptors[index],
-          arc: arc,
-          outerRadius: outerRadius
-        });
-      });
-
-      return _react2.default.createElement(
-        'svg',
-        { width: width, height: height },
-        _react2.default.createElement(
-          'g',
-          { transform: 'translate(' + width / 2 + ',' + height / 2 + ')' },
-          children
-        )
-      );
-    }
-  }]);
-
-  return Piechart;
-}(_react2.default.Component);
-
-Piechart.propTypes = {
-  width: _react2.default.PropTypes.number,
-  height: _react2.default.PropTypes.number
-};
-Piechart.defaultProps = {
-  width: 960,
-  height: 500
-};
-exports.default = Piechart;
-
-},{"d3-shape":23,"react":208}],9:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var styles = {
-  d: {
-    shapeRendering: 'crispEdges',
-    stroke: '#000',
-    fill: 'none',
-    strokeWidth: '1'
-  }
-};
-
-var XAxis = function (_React$Component) {
-  _inherits(XAxis, _React$Component);
-
-  function XAxis() {
-    _classCallCheck(this, XAxis);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(XAxis).apply(this, arguments));
-  }
-
-  _createClass(XAxis, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props;
-      var data = _props.data;
-      var width = _props.width;
-      var height = _props.height;
-      var outerTickSize = _props.outerTickSize;
-      var xScale = _props.xScale;
-
-
-      var children = _react2.default.Children.map(this.props.children, function (child) {
-        return _react2.default.cloneElement(child, { data: data, xScale: xScale });
-      });
-
-      return _react2.default.createElement(
-        'g',
-        { transform: 'translate(0, ' + height + ')' },
-        children,
-        _react2.default.createElement('path', {
-          d: 'M0,' + outerTickSize + 'V0H' + width + 'V' + outerTickSize,
-          style: styles.d
-        })
-      );
-    }
-  }]);
-
-  return XAxis;
-}(_react2.default.Component);
-
-XAxis.propTypes = {
-  width: _react2.default.PropTypes.number,
-  height: _react2.default.PropTypes.number,
-  outerTickSize: _react2.default.PropTypes.number
-};
-XAxis.defaultProps = {
-  outerTickSize: 6
-};
-exports.default = XAxis;
-
-},{"react":208}],10:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var style = {
-  shapeRendering: 'crispEdges'
-};
-
-var XGrid = function (_React$Component) {
-  _inherits(XGrid, _React$Component);
-
-  function XGrid() {
-    _classCallCheck(this, XGrid);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(XGrid).apply(this, arguments));
-  }
-
-  _createClass(XGrid, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props;
-      var width = _props.width;
-      var yScale = _props.yScale;
-
-
-      var lines = yScale.ticks(this.props.ticks).map(function (d, i) {
-        return _react2.default.createElement('line', {
-          key: i,
-          x1: '0',
-          y1: yScale(d),
-          x2: width,
-          y2: yScale(d),
-          fill: 'none',
-          stroke: 'lightgrey',
-          strokeWidth: '1',
-          style: style
-        });
-      });
-
-      return _react2.default.createElement(
-        'g',
-        null,
-        lines
-      );
-    }
-  }]);
-
-  return XGrid;
-}(_react2.default.Component);
-
-XGrid.defaultProps = {
-  ticks: 10
-};
-exports.default = XGrid;
-
-},{"react":208}],11:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var styles = {
-  line: {
-    shapeRendering: 'crispEdges',
-    stroke: '#000',
-    fill: 'none',
-    strokeWidth: '1'
-  },
-  text: {
-    textAnchor: 'middle'
-  }
-};
-
-var XTicks = function (_React$Component) {
-  _inherits(XTicks, _React$Component);
-
-  function XTicks() {
-    _classCallCheck(this, XTicks);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(XTicks).apply(this, arguments));
-  }
-
-  _createClass(XTicks, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props;
-      var xScale = _props.xScale;
-      var innerTickSize = _props.innerTickSize;
-      var tickPadding = _props.tickPadding;
-
-      var tickSpacing = Math.max(innerTickSize, 0) + tickPadding;
-
-      var ticks = this.props.data.map(function (d, i) {
-        return _react2.default.createElement(
-          'g',
-          { key: i, transform: 'translate(' + xScale(i) + ',0)' },
-          _react2.default.createElement('line', { y2: innerTickSize, x2: '0', style: styles.line }),
-          _react2.default.createElement(
-            'text',
-            { dy: '.71em', y: tickSpacing, x: '0', style: styles.text },
-            i
-          )
-        );
-      });
-
-      return _react2.default.createElement(
-        'g',
-        null,
-        ticks
-      );
-    }
-  }]);
-
-  return XTicks;
-}(_react2.default.Component);
-
-XTicks.propTypes = {
-  data: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.array, _react2.default.PropTypes.object]),
-  xScale: _react2.default.PropTypes.func,
-  innerTickSize: _react2.default.PropTypes.number,
-  tickPadding: _react2.default.PropTypes.number
-};
-XTicks.defaultProps = {
-  innerTickSize: 6,
-  tickPadding: 3
-};
-exports.default = XTicks;
-
-},{"react":208}],12:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var style = {
-  shapeRendering: 'crispEdges'
-};
-
-var YAxis = function (_React$Component) {
-  _inherits(YAxis, _React$Component);
-
-  function YAxis() {
-    _classCallCheck(this, YAxis);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(YAxis).apply(this, arguments));
-  }
-
-  _createClass(YAxis, [{
-    key: 'render',
-    value: function render() {
-      var _props = this.props;
-      var height = _props.height;
-      var outerTickSize = _props.outerTickSize;
-
-
-      return _react2.default.createElement(
-        'g',
-        null,
-        _react2.default.createElement('path', {
-          d: 'M' + -outerTickSize + ',0H0V' + height + 'H' + -outerTickSize,
-          stroke: this.props.stroke,
-          fill: this.props.fill,
-          strokeWidth: this.props.strokeWidth,
-          style: style
-        })
-      );
-    }
-  }]);
-
-  return YAxis;
-}(_react2.default.Component);
-
-YAxis.defaultProps = {
-  outerTickSize: 6,
-  stroke: '#000',
-  fill: 'none',
-  strokeWidth: '1'
-};
-exports.default = YAxis;
-
-},{"react":208}],13:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var style = {
-  shapeRendering: 'crispEdges'
-};
-
-var YGrid = function (_React$Component) {
-  _inherits(YGrid, _React$Component);
-
-  function YGrid() {
-    _classCallCheck(this, YGrid);
-
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(YGrid).apply(this, arguments));
-  }
-
-  _createClass(YGrid, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props;
-      var height = _props.height;
-      var xScale = _props.xScale;
-      var ticks = _props.ticks;
-
-
-      var lines = xScale.ticks(ticks).map(function (d, i) {
-        return _react2.default.createElement('line', {
-          key: i,
-          x1: xScale(d),
-          y1: '0',
-          x2: xScale(d),
-          y2: height,
-          fill: _this2.props.fill,
-          stroke: _this2.props.stroke,
-          strokeWidth: _this2.props.strokeWidth,
-          style: style
-        });
-      });
-
-      return _react2.default.createElement(
-        'g',
-        null,
-        lines
-      );
-    }
-  }]);
-
-  return YGrid;
-}(_react2.default.Component);
-
-YGrid.defaultProps = {
-  ticks: 10,
-  fill: 'none',
-  stroke: 'lightgrey',
-  strokeWidth: '1'
-};
-exports.default = YGrid;
-
-},{"react":208}],14:[function(require,module,exports){
-'use strict';
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _Chart = require('./Chart');
-
-var _Chart2 = _interopRequireDefault(_Chart);
-
-var _Line = require('./Line');
-
-var _Line2 = _interopRequireDefault(_Line);
-
-var _Circles = require('./Circles');
-
-var _Circles2 = _interopRequireDefault(_Circles);
-
-var _XAxis = require('./XAxis');
-
-var _XAxis2 = _interopRequireDefault(_XAxis);
-
-var _XTicks = require('./XTicks');
-
-var _XTicks2 = _interopRequireDefault(_XTicks);
-
-var _YAxis = require('./YAxis');
-
-var _YAxis2 = _interopRequireDefault(_YAxis);
-
-var _XGrid = require('./XGrid');
-
-var _XGrid2 = _interopRequireDefault(_XGrid);
-
-var _YGrid = require('./YGrid');
-
-var _YGrid2 = _interopRequireDefault(_YGrid);
-
-var _Overlay = require('./Overlay');
-
-var _Overlay2 = _interopRequireDefault(_Overlay);
-
-var _Crosshair = require('./Crosshair');
-
-var _Crosshair2 = _interopRequireDefault(_Crosshair);
-
-var _Area = require('./Area');
-
-var _Area2 = _interopRequireDefault(_Area);
-
-var _Piechart = require('./Piechart');
-
-var _Piechart2 = _interopRequireDefault(_Piechart);
-
-var _Arc = require('./Arc');
-
-var _Arc2 = _interopRequireDefault(_Arc);
-
-var _d3Scale = require('d3-scale');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var data = [10, 5, 20, 16, 30, 51, 40, 19, 50];
-
-var App = function (_React$Component) {
-  _inherits(App, _React$Component);
-
-  function App(props) {
-    _classCallCheck(this, App);
-
-    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
-
-    _this.onMouseOver = function (event) {
-      event.target.setAttribute('r', 12);
-    };
-
-    _this.onMouseOut = function (event) {
-      event.target.setAttribute('r', 10);
-    };
-
-    _this.onMouseMove = function (coords) {
-      _this.setState({
-        mouse: coords.mouse
-      });
-    };
-
-    _this.onMouseOverArc = function () {
-      _this.setState({
-        active: true
-      });
-    };
-
-    _this.onMouseOutArc = function () {
-      _this.setState({
-        active: false
-      });
-    };
-
-    _this.state = {
-      mouse: [0, 0],
-      active: false
-    };
-    return _this;
-  }
-
-  _createClass(App, [{
-    key: 'render',
-    value: function render() {
-      var color = (0, _d3Scale.scaleOrdinal)(_d3Scale.schemeCategory10);
-
-      var width = 960;
-      var height = 500;
-      var outerRadius = height / 2 - 20;
-      var innerRadius = outerRadius / 3;
-
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          _Piechart2.default,
-          { width: width, height: height, innerRadius: innerRadius, outerRadius: outerRadius },
-          _react2.default.createElement(_Arc2.default, {
-            value: 20,
-            fill: color(0),
-            text: 'London',
-            onMouseOver: this.onMouseOverArc,
-            onMouseOut: this.onMouseOutArc,
-            active: this.state.active
-          }),
-          _react2.default.createElement(_Arc2.default, { value: 10, fill: color(1), text: 'Berlin' }),
-          _react2.default.createElement(_Arc2.default, { value: 50, fill: color(2), text: 'Munich' })
-        ),
-        _react2.default.createElement(
-          _Chart2.default,
-          { data: data },
-          _react2.default.createElement(_XGrid2.default, { ticks: '10' }),
-          _react2.default.createElement(_YGrid2.default, { ticks: '15' }),
-          _react2.default.createElement(
-            _XAxis2.default,
-            null,
-            _react2.default.createElement(_XTicks2.default, null)
-          ),
-          _react2.default.createElement(_YAxis2.default, null),
-          _react2.default.createElement(_Line2.default, {
-            strokeWidth: '2'
-          }),
-          _react2.default.createElement(_Area2.default, null),
-          _react2.default.createElement(_Overlay2.default, {
-            onMouseMove: this.onMouseMove
-          }),
-          _react2.default.createElement(_Circles2.default, {
-            radius: '10',
-            fill: 'orange',
-            onMouseOver: this.onMouseOver,
-            onMouseOut: this.onMouseOut
-          }),
-          _react2.default.createElement(_Line2.default, {
-            data: [1, 10, 7, 30, 20, 60, 35],
-            stroke: 'red',
-            strokeWidth: '2'
-          }),
-          _react2.default.createElement(_Crosshair2.default, {
-            x: this.state.mouse[0],
-            y: this.state.mouse[1],
-            horizontal: true,
-            vertical: true
-          })
-        )
-      );
-    }
-  }]);
-
-  return App;
-}(_react2.default.Component);
-
-_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('react'));
-
-},{"./Arc":1,"./Area":2,"./Chart":3,"./Circles":4,"./Crosshair":5,"./Line":6,"./Overlay":7,"./Piechart":8,"./XAxis":9,"./XGrid":10,"./XTicks":11,"./YAxis":12,"./YGrid":13,"d3-scale":21,"react":208,"react-dom":56}],15:[function(require,module,exports){
+exports.Arc = _Arc3.default;
+exports.Area = _Area3.default;
+exports.Chart = _Chart3.default;
+exports.Circles = _Circles3.default;
+exports.Crosshair = _Crosshair3.default;
+exports.Line = _Line3.default;
+exports.Overlay = _Overlay3.default;
+exports.Piechart = _Piechart3.default;
+exports.XAxis = _XAxis3.default;
+exports.XGrid = _XGrid3.default;
+exports.XTicks = _XTicks3.default;
+exports.YAxis = _YAxis3.default;
+exports.YGrid = _YGrid3.default;
+
+},{"./src/Arc":196,"./src/Area":197,"./src/Chart":198,"./src/Circles":199,"./src/Crosshair":200,"./src/Line":201,"./src/Overlay":202,"./src/Piechart":203,"./src/XAxis":204,"./src/XGrid":205,"./src/XTicks":206,"./src/YAxis":207,"./src/YGrid":208}],2:[function(require,module,exports){
 // https://d3js.org/d3-array/ Version 1.0.0. Copyright 2016 Mike Bostock.
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -1717,7 +539,7 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-},{}],16:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 // https://d3js.org/d3-collection/ Version 1.0.0. Copyright 2016 Mike Bostock.
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -1935,7 +757,7 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-},{}],17:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 // https://d3js.org/d3-color/ Version 1.0.0. Copyright 2016 Mike Bostock.
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -2453,7 +1275,7 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-},{}],18:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 // https://d3js.org/d3-format/ Version 1.0.0. Copyright 2016 Mike Bostock.
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -2786,7 +1608,7 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-},{}],19:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 // https://d3js.org/d3-interpolate/ Version 1.1.0. Copyright 2016 Mike Bostock.
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-color')) :
@@ -3329,7 +2151,7 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-},{"d3-color":17}],20:[function(require,module,exports){
+},{"d3-color":4}],7:[function(require,module,exports){
 // https://d3js.org/d3-path/ Version 1.0.0. Copyright 2016 Mike Bostock.
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -3485,7 +2307,7 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-},{}],21:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 // https://d3js.org/d3-scale/ Version 1.0.0. Copyright 2016 Mike Bostock.
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-array'), require('d3-collection'), require('d3-interpolate'), require('d3-format'), require('d3-time'), require('d3-time-format'), require('d3-color')) :
@@ -4388,7 +3210,7 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-},{"d3-array":15,"d3-collection":16,"d3-color":17,"d3-format":18,"d3-interpolate":19,"d3-time":25,"d3-time-format":24}],22:[function(require,module,exports){
+},{"d3-array":2,"d3-collection":3,"d3-color":4,"d3-format":5,"d3-interpolate":6,"d3-time":12,"d3-time-format":11}],9:[function(require,module,exports){
 // https://d3js.org/d3-selection/ Version 1.0.0. Copyright 2016 Mike Bostock.
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -5362,7 +4184,7 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-},{}],23:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 // https://d3js.org/d3-shape/ Version 1.0.0. Copyright 2016 Mike Bostock.
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-path')) :
@@ -7178,7 +6000,7 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-},{"d3-path":20}],24:[function(require,module,exports){
+},{"d3-path":7}],11:[function(require,module,exports){
 // https://d3js.org/d3-time-format/ Version 2.0.0. Copyright 2016 Mike Bostock.
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('d3-time')) :
@@ -7766,7 +6588,7 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-},{"d3-time":25}],25:[function(require,module,exports){
+},{"d3-time":12}],12:[function(require,module,exports){
 // https://d3js.org/d3-time/ Version 1.0.0. Copyright 2016 Mike Bostock.
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -8144,7 +6966,7 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-},{}],26:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -8230,7 +7052,7 @@ var EventListener = {
 
 module.exports = EventListener;
 }).call(this,require('_process'))
-},{"./emptyFunction":33,"_process":54}],27:[function(require,module,exports){
+},{"./emptyFunction":20,"_process":41}],14:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -8266,7 +7088,7 @@ var ExecutionEnvironment = {
 };
 
 module.exports = ExecutionEnvironment;
-},{}],28:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 "use strict";
 
 /**
@@ -8298,7 +7120,7 @@ function camelize(string) {
 }
 
 module.exports = camelize;
-},{}],29:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -8338,7 +7160,7 @@ function camelizeStyleName(string) {
 }
 
 module.exports = camelizeStyleName;
-},{"./camelize":28}],30:[function(require,module,exports){
+},{"./camelize":15}],17:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8378,7 +7200,7 @@ function containsNode(outerNode, innerNode) {
 }
 
 module.exports = containsNode;
-},{"./isTextNode":43}],31:[function(require,module,exports){
+},{"./isTextNode":30}],18:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -8507,7 +7329,7 @@ function createArrayFromMixed(obj) {
 
 module.exports = createArrayFromMixed;
 }).call(this,require('_process'))
-},{"./invariant":41,"_process":54}],32:[function(require,module,exports){
+},{"./invariant":28,"_process":41}],19:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -8593,7 +7415,7 @@ function createNodesFromMarkup(markup, handleScript) {
 
 module.exports = createNodesFromMarkup;
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":27,"./createArrayFromMixed":31,"./getMarkupWrap":37,"./invariant":41,"_process":54}],33:[function(require,module,exports){
+},{"./ExecutionEnvironment":14,"./createArrayFromMixed":18,"./getMarkupWrap":24,"./invariant":28,"_process":41}],20:[function(require,module,exports){
 "use strict";
 
 /**
@@ -8632,7 +7454,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 };
 
 module.exports = emptyFunction;
-},{}],34:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 (function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -8654,7 +7476,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = emptyObject;
 }).call(this,require('_process'))
-},{"_process":54}],35:[function(require,module,exports){
+},{"_process":41}],22:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -8681,7 +7503,7 @@ function focusNode(node) {
 }
 
 module.exports = focusNode;
-},{}],36:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8716,7 +7538,7 @@ function getActiveElement() /*?DOMElement*/{
 }
 
 module.exports = getActiveElement;
-},{}],37:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -8813,7 +7635,7 @@ function getMarkupWrap(nodeName) {
 
 module.exports = getMarkupWrap;
 }).call(this,require('_process'))
-},{"./ExecutionEnvironment":27,"./invariant":41,"_process":54}],38:[function(require,module,exports){
+},{"./ExecutionEnvironment":14,"./invariant":28,"_process":41}],25:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -8852,7 +7674,7 @@ function getUnboundedScrollPosition(scrollable) {
 }
 
 module.exports = getUnboundedScrollPosition;
-},{}],39:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8885,7 +7707,7 @@ function hyphenate(string) {
 }
 
 module.exports = hyphenate;
-},{}],40:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -8924,7 +7746,7 @@ function hyphenateStyleName(string) {
 }
 
 module.exports = hyphenateStyleName;
-},{"./hyphenate":39}],41:[function(require,module,exports){
+},{"./hyphenate":26}],28:[function(require,module,exports){
 (function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -8976,7 +7798,7 @@ function invariant(condition, format, a, b, c, d, e, f) {
 
 module.exports = invariant;
 }).call(this,require('_process'))
-},{"_process":54}],42:[function(require,module,exports){
+},{"_process":41}],29:[function(require,module,exports){
 'use strict';
 
 /**
@@ -8999,7 +7821,7 @@ function isNode(object) {
 }
 
 module.exports = isNode;
-},{}],43:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9024,7 +7846,7 @@ function isTextNode(object) {
 }
 
 module.exports = isTextNode;
-},{"./isNode":42}],44:[function(require,module,exports){
+},{"./isNode":29}],31:[function(require,module,exports){
 (function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -9074,7 +7896,7 @@ var keyMirror = function keyMirror(obj) {
 
 module.exports = keyMirror;
 }).call(this,require('_process'))
-},{"./invariant":41,"_process":54}],45:[function(require,module,exports){
+},{"./invariant":28,"_process":41}],32:[function(require,module,exports){
 "use strict";
 
 /**
@@ -9109,7 +7931,7 @@ var keyOf = function keyOf(oneKeyObj) {
 };
 
 module.exports = keyOf;
-},{}],46:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -9160,7 +7982,7 @@ function mapObject(object, callback, context) {
 }
 
 module.exports = mapObject;
-},{}],47:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -9190,7 +8012,7 @@ function memoizeStringOnly(callback) {
 }
 
 module.exports = memoizeStringOnly;
-},{}],48:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -9213,7 +8035,7 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 module.exports = performance || {};
-},{"./ExecutionEnvironment":27}],49:[function(require,module,exports){
+},{"./ExecutionEnvironment":14}],36:[function(require,module,exports){
 'use strict';
 
 /**
@@ -9247,7 +8069,7 @@ if (performance.now) {
 }
 
 module.exports = performanceNow;
-},{"./performance":48}],50:[function(require,module,exports){
+},{"./performance":35}],37:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -9314,7 +8136,7 @@ function shallowEqual(objA, objB) {
 }
 
 module.exports = shallowEqual;
-},{}],51:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -9373,7 +8195,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = warning;
 }).call(this,require('_process'))
-},{"./emptyFunction":33,"_process":54}],52:[function(require,module,exports){
+},{"./emptyFunction":20,"_process":41}],39:[function(require,module,exports){
 'use strict';
 /* eslint-disable no-unused-vars */
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -9458,7 +8280,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-},{}],53:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 (function (process){
 // Generated by CoffeeScript 1.7.1
 (function() {
@@ -9494,7 +8316,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 }).call(this);
 
 }).call(this,require('_process'))
-},{"_process":54}],54:[function(require,module,exports){
+},{"_process":41}],41:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -9615,7 +8437,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],55:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 (function (global){
 var now = require('performance-now')
   , root = typeof window === 'undefined' ? global : window
@@ -9691,12 +8513,12 @@ module.exports.polyfill = function() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"performance-now":53}],56:[function(require,module,exports){
+},{"performance-now":40}],43:[function(require,module,exports){
 'use strict';
 
 module.exports = require('react/lib/ReactDOM');
 
-},{"react/lib/ReactDOM":105}],57:[function(require,module,exports){
+},{"react/lib/ReactDOM":92}],44:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -9938,7 +8760,7 @@ var Motion = _react2['default'].createClass({
 
 exports['default'] = Motion;
 module.exports = exports['default'];
-},{"./mapToZero":60,"./shouldStopAnimation":65,"./stepper":67,"./stripStyle":68,"performance-now":53,"raf":55,"react":208}],58:[function(require,module,exports){
+},{"./mapToZero":47,"./shouldStopAnimation":52,"./stepper":54,"./stripStyle":55,"performance-now":40,"raf":42,"react":195}],45:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -10201,7 +9023,7 @@ var StaggeredMotion = _react2['default'].createClass({
 
 exports['default'] = StaggeredMotion;
 module.exports = exports['default'];
-},{"./mapToZero":60,"./shouldStopAnimation":65,"./stepper":67,"./stripStyle":68,"performance-now":53,"raf":55,"react":208}],59:[function(require,module,exports){
+},{"./mapToZero":47,"./shouldStopAnimation":52,"./stepper":54,"./stripStyle":55,"performance-now":40,"raf":42,"react":195}],46:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -10690,7 +9512,7 @@ module.exports = exports['default'];
 
 // the array that keeps track of currently rendered stuff! Including stuff
 // that you've unmounted but that's still animating. This is where it lives
-},{"./mapToZero":60,"./mergeDiff":61,"./shouldStopAnimation":65,"./stepper":67,"./stripStyle":68,"performance-now":53,"raf":55,"react":208}],60:[function(require,module,exports){
+},{"./mapToZero":47,"./mergeDiff":48,"./shouldStopAnimation":52,"./stepper":54,"./stripStyle":55,"performance-now":40,"raf":42,"react":195}],47:[function(require,module,exports){
 
 
 // currently used to initiate the velocity style object to 0
@@ -10710,7 +9532,7 @@ function mapToZero(obj) {
 }
 
 module.exports = exports['default'];
-},{}],61:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 
 
 // core keys merging algorithm. If previous render's keys are [a, b], and the
@@ -10819,7 +9641,7 @@ function mergeDiff(prev, next, onRemove) {
 
 module.exports = exports['default'];
 // to loop through and find a key's index each time), but I no longer care
-},{}],62:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 "use strict";
 
 exports.__esModule = true;
@@ -10830,7 +9652,7 @@ exports["default"] = {
   stiff: { stiffness: 210, damping: 20 }
 };
 module.exports = exports["default"];
-},{}],63:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -10862,7 +9684,7 @@ exports.presets = _interopRequire(_presets);
 var _reorderKeys = require('./reorderKeys');
 
 exports.reorderKeys = _interopRequire(_reorderKeys);
-},{"./Motion":57,"./StaggeredMotion":58,"./TransitionMotion":59,"./presets":62,"./reorderKeys":64,"./spring":66}],64:[function(require,module,exports){
+},{"./Motion":44,"./StaggeredMotion":45,"./TransitionMotion":46,"./presets":49,"./reorderKeys":51,"./spring":53}],51:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -10882,7 +9704,7 @@ function reorderKeys() {
 
 module.exports = exports['default'];
 }).call(this,require('_process'))
-},{"_process":54}],65:[function(require,module,exports){
+},{"_process":41}],52:[function(require,module,exports){
 
 
 // usage assumption: currentStyle values have already been rendered but it says
@@ -10914,7 +9736,7 @@ function shouldStopAnimation(currentStyle, style, currentVelocity) {
 }
 
 module.exports = exports['default'];
-},{}],66:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -10938,7 +9760,7 @@ function spring(val, config) {
 }
 
 module.exports = exports['default'];
-},{"./presets":62}],67:[function(require,module,exports){
+},{"./presets":49}],54:[function(require,module,exports){
 
 
 // stepper is used a lot. Saves allocation to return the same array wrapper.
@@ -10982,7 +9804,7 @@ function stepper(secondPerFrame, x, v, destX, k, b, precision) {
 
 module.exports = exports["default"];
 // array reference around.
-},{}],68:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 
 // turn {x: {val: 1, stiffness: 1, damping: 2}, y: 2} generated by
 // `{x: spring(1, {stiffness: 1, damping: 2}), y: 2}` into {x: 1, y: 2}
@@ -11004,7 +9826,7 @@ function stripStyle(style) {
 }
 
 module.exports = exports['default'];
-},{}],69:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -11029,7 +9851,7 @@ var AutoFocusUtils = {
 };
 
 module.exports = AutoFocusUtils;
-},{"./ReactDOMComponentTree":109,"fbjs/lib/focusNode":35}],70:[function(require,module,exports){
+},{"./ReactDOMComponentTree":96,"fbjs/lib/focusNode":22}],57:[function(require,module,exports){
 /**
  * Copyright 2013-present Facebook, Inc.
  * All rights reserved.
@@ -11418,7 +10240,7 @@ var BeforeInputEventPlugin = {
 };
 
 module.exports = BeforeInputEventPlugin;
-},{"./EventConstants":84,"./EventPropagators":88,"./FallbackCompositionState":89,"./SyntheticCompositionEvent":164,"./SyntheticInputEvent":168,"fbjs/lib/ExecutionEnvironment":27,"fbjs/lib/keyOf":45}],71:[function(require,module,exports){
+},{"./EventConstants":71,"./EventPropagators":75,"./FallbackCompositionState":76,"./SyntheticCompositionEvent":151,"./SyntheticInputEvent":155,"fbjs/lib/ExecutionEnvironment":14,"fbjs/lib/keyOf":32}],58:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -11567,7 +10389,7 @@ var CSSProperty = {
 };
 
 module.exports = CSSProperty;
-},{}],72:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -11775,7 +10597,7 @@ var CSSPropertyOperations = {
 
 module.exports = CSSPropertyOperations;
 }).call(this,require('_process'))
-},{"./CSSProperty":71,"./ReactInstrumentation":140,"./dangerousStyleValue":182,"_process":54,"fbjs/lib/ExecutionEnvironment":27,"fbjs/lib/camelizeStyleName":29,"fbjs/lib/hyphenateStyleName":40,"fbjs/lib/memoizeStringOnly":47,"fbjs/lib/warning":51}],73:[function(require,module,exports){
+},{"./CSSProperty":58,"./ReactInstrumentation":127,"./dangerousStyleValue":169,"_process":41,"fbjs/lib/ExecutionEnvironment":14,"fbjs/lib/camelizeStyleName":16,"fbjs/lib/hyphenateStyleName":27,"fbjs/lib/memoizeStringOnly":34,"fbjs/lib/warning":38}],60:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -11884,7 +10706,7 @@ PooledClass.addPoolingTo(CallbackQueue);
 
 module.exports = CallbackQueue;
 }).call(this,require('_process'))
-},{"./PooledClass":93,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41,"object-assign":52}],74:[function(require,module,exports){
+},{"./PooledClass":80,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28,"object-assign":39}],61:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -12210,7 +11032,7 @@ var ChangeEventPlugin = {
 };
 
 module.exports = ChangeEventPlugin;
-},{"./EventConstants":84,"./EventPluginHub":85,"./EventPropagators":88,"./ReactDOMComponentTree":109,"./ReactUpdates":157,"./SyntheticEvent":166,"./getEventTarget":190,"./isEventSupported":197,"./isTextInputElement":198,"fbjs/lib/ExecutionEnvironment":27,"fbjs/lib/keyOf":45}],75:[function(require,module,exports){
+},{"./EventConstants":71,"./EventPluginHub":72,"./EventPropagators":75,"./ReactDOMComponentTree":96,"./ReactUpdates":144,"./SyntheticEvent":153,"./getEventTarget":177,"./isEventSupported":184,"./isTextInputElement":185,"fbjs/lib/ExecutionEnvironment":14,"fbjs/lib/keyOf":32}],62:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -12407,7 +11229,7 @@ var DOMChildrenOperations = {
 
 module.exports = DOMChildrenOperations;
 }).call(this,require('_process'))
-},{"./DOMLazyTree":76,"./Danger":80,"./ReactDOMComponentTree":109,"./ReactInstrumentation":140,"./ReactMultiChildUpdateTypes":145,"./createMicrosoftUnsafeLocalFunction":181,"./setInnerHTML":203,"./setTextContent":204,"_process":54}],76:[function(require,module,exports){
+},{"./DOMLazyTree":63,"./Danger":67,"./ReactDOMComponentTree":96,"./ReactInstrumentation":127,"./ReactMultiChildUpdateTypes":132,"./createMicrosoftUnsafeLocalFunction":168,"./setInnerHTML":190,"./setTextContent":191,"_process":41}],63:[function(require,module,exports){
 /**
  * Copyright 2015-present, Facebook, Inc.
  * All rights reserved.
@@ -12526,7 +11348,7 @@ DOMLazyTree.queueHTML = queueHTML;
 DOMLazyTree.queueText = queueText;
 
 module.exports = DOMLazyTree;
-},{"./DOMNamespaces":77,"./createMicrosoftUnsafeLocalFunction":181,"./setInnerHTML":203,"./setTextContent":204}],77:[function(require,module,exports){
+},{"./DOMNamespaces":64,"./createMicrosoftUnsafeLocalFunction":168,"./setInnerHTML":190,"./setTextContent":191}],64:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -12547,7 +11369,7 @@ var DOMNamespaces = {
 };
 
 module.exports = DOMNamespaces;
-},{}],78:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -12765,7 +11587,7 @@ var DOMProperty = {
 
 module.exports = DOMProperty;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41}],79:[function(require,module,exports){
+},{"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28}],66:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -13004,7 +11826,7 @@ var DOMPropertyOperations = {
 
 module.exports = DOMPropertyOperations;
 }).call(this,require('_process'))
-},{"./DOMProperty":78,"./ReactDOMComponentTree":109,"./ReactDOMInstrumentation":117,"./ReactInstrumentation":140,"./quoteAttributeValueForBrowser":200,"_process":54,"fbjs/lib/warning":51}],80:[function(require,module,exports){
+},{"./DOMProperty":65,"./ReactDOMComponentTree":96,"./ReactDOMInstrumentation":104,"./ReactInstrumentation":127,"./quoteAttributeValueForBrowser":187,"_process":41,"fbjs/lib/warning":38}],67:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -13153,7 +11975,7 @@ var Danger = {
 
 module.exports = Danger;
 }).call(this,require('_process'))
-},{"./DOMLazyTree":76,"./reactProdInvariant":201,"_process":54,"fbjs/lib/ExecutionEnvironment":27,"fbjs/lib/createNodesFromMarkup":32,"fbjs/lib/emptyFunction":33,"fbjs/lib/getMarkupWrap":37,"fbjs/lib/invariant":41}],81:[function(require,module,exports){
+},{"./DOMLazyTree":63,"./reactProdInvariant":188,"_process":41,"fbjs/lib/ExecutionEnvironment":14,"fbjs/lib/createNodesFromMarkup":19,"fbjs/lib/emptyFunction":20,"fbjs/lib/getMarkupWrap":24,"fbjs/lib/invariant":28}],68:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -13181,7 +12003,7 @@ var keyOf = require('fbjs/lib/keyOf');
 var DefaultEventPluginOrder = [keyOf({ ResponderEventPlugin: null }), keyOf({ SimpleEventPlugin: null }), keyOf({ TapEventPlugin: null }), keyOf({ EnterLeaveEventPlugin: null }), keyOf({ ChangeEventPlugin: null }), keyOf({ SelectEventPlugin: null }), keyOf({ BeforeInputEventPlugin: null })];
 
 module.exports = DefaultEventPluginOrder;
-},{"fbjs/lib/keyOf":45}],82:[function(require,module,exports){
+},{"fbjs/lib/keyOf":32}],69:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -13232,7 +12054,7 @@ var DisabledInputUtils = {
 };
 
 module.exports = DisabledInputUtils;
-},{}],83:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -13338,7 +12160,7 @@ var EnterLeaveEventPlugin = {
 };
 
 module.exports = EnterLeaveEventPlugin;
-},{"./EventConstants":84,"./EventPropagators":88,"./ReactDOMComponentTree":109,"./SyntheticMouseEvent":170,"fbjs/lib/keyOf":45}],84:[function(require,module,exports){
+},{"./EventConstants":71,"./EventPropagators":75,"./ReactDOMComponentTree":96,"./SyntheticMouseEvent":157,"fbjs/lib/keyOf":32}],71:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -13436,7 +12258,7 @@ var EventConstants = {
 };
 
 module.exports = EventConstants;
-},{"fbjs/lib/keyMirror":44}],85:[function(require,module,exports){
+},{"fbjs/lib/keyMirror":31}],72:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -13680,7 +12502,7 @@ var EventPluginHub = {
 
 module.exports = EventPluginHub;
 }).call(this,require('_process'))
-},{"./EventPluginRegistry":86,"./EventPluginUtils":87,"./ReactErrorUtils":131,"./accumulateInto":177,"./forEachAccumulated":186,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41}],86:[function(require,module,exports){
+},{"./EventPluginRegistry":73,"./EventPluginUtils":74,"./ReactErrorUtils":118,"./accumulateInto":164,"./forEachAccumulated":173,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28}],73:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -13930,7 +12752,7 @@ var EventPluginRegistry = {
 
 module.exports = EventPluginRegistry;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41}],87:[function(require,module,exports){
+},{"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28}],74:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -14162,7 +12984,7 @@ var EventPluginUtils = {
 
 module.exports = EventPluginUtils;
 }).call(this,require('_process'))
-},{"./EventConstants":84,"./ReactErrorUtils":131,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41,"fbjs/lib/warning":51}],88:[function(require,module,exports){
+},{"./EventConstants":71,"./ReactErrorUtils":118,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28,"fbjs/lib/warning":38}],75:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -14302,7 +13124,7 @@ var EventPropagators = {
 
 module.exports = EventPropagators;
 }).call(this,require('_process'))
-},{"./EventConstants":84,"./EventPluginHub":85,"./EventPluginUtils":87,"./accumulateInto":177,"./forEachAccumulated":186,"_process":54,"fbjs/lib/warning":51}],89:[function(require,module,exports){
+},{"./EventConstants":71,"./EventPluginHub":72,"./EventPluginUtils":74,"./accumulateInto":164,"./forEachAccumulated":173,"_process":41,"fbjs/lib/warning":38}],76:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -14398,7 +13220,7 @@ _assign(FallbackCompositionState.prototype, {
 PooledClass.addPoolingTo(FallbackCompositionState);
 
 module.exports = FallbackCompositionState;
-},{"./PooledClass":93,"./getTextContentAccessor":194,"object-assign":52}],90:[function(require,module,exports){
+},{"./PooledClass":80,"./getTextContentAccessor":181,"object-assign":39}],77:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -14607,7 +13429,7 @@ var HTMLDOMPropertyConfig = {
 };
 
 module.exports = HTMLDOMPropertyConfig;
-},{"./DOMProperty":78}],91:[function(require,module,exports){
+},{"./DOMProperty":65}],78:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -14666,7 +13488,7 @@ var KeyEscapeUtils = {
 };
 
 module.exports = KeyEscapeUtils;
-},{}],92:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -14804,7 +13626,7 @@ var LinkedValueUtils = {
 
 module.exports = LinkedValueUtils;
 }).call(this,require('_process'))
-},{"./ReactPropTypeLocations":150,"./ReactPropTypes":151,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41,"fbjs/lib/warning":51}],93:[function(require,module,exports){
+},{"./ReactPropTypeLocations":137,"./ReactPropTypes":138,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28,"fbjs/lib/warning":38}],80:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -14928,7 +13750,7 @@ var PooledClass = {
 
 module.exports = PooledClass;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41}],94:[function(require,module,exports){
+},{"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28}],81:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -15018,7 +13840,7 @@ var React = {
 
 module.exports = React;
 }).call(this,require('_process'))
-},{"./ReactChildren":97,"./ReactClass":98,"./ReactComponent":99,"./ReactDOMFactories":113,"./ReactElement":128,"./ReactElementValidator":129,"./ReactPropTypes":151,"./ReactVersion":158,"./onlyChild":199,"_process":54,"fbjs/lib/warning":51,"object-assign":52}],95:[function(require,module,exports){
+},{"./ReactChildren":84,"./ReactClass":85,"./ReactComponent":86,"./ReactDOMFactories":100,"./ReactElement":115,"./ReactElementValidator":116,"./ReactPropTypes":138,"./ReactVersion":145,"./onlyChild":186,"_process":41,"fbjs/lib/warning":38,"object-assign":39}],82:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -15336,7 +14158,7 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
 });
 
 module.exports = ReactBrowserEventEmitter;
-},{"./EventConstants":84,"./EventPluginRegistry":86,"./ReactEventEmitterMixin":132,"./ViewportMetrics":176,"./getVendorPrefixedEventName":195,"./isEventSupported":197,"object-assign":52}],96:[function(require,module,exports){
+},{"./EventConstants":71,"./EventPluginRegistry":73,"./ReactEventEmitterMixin":119,"./ViewportMetrics":163,"./getVendorPrefixedEventName":182,"./isEventSupported":184,"object-assign":39}],83:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -15473,7 +14295,7 @@ var ReactChildReconciler = {
 
 module.exports = ReactChildReconciler;
 }).call(this,require('_process'))
-},{"./KeyEscapeUtils":91,"./ReactComponentTreeDevtool":102,"./ReactReconciler":153,"./instantiateReactComponent":196,"./shouldUpdateReactComponent":205,"./traverseAllChildren":206,"_process":54,"fbjs/lib/warning":51}],97:[function(require,module,exports){
+},{"./KeyEscapeUtils":78,"./ReactComponentTreeDevtool":89,"./ReactReconciler":140,"./instantiateReactComponent":183,"./shouldUpdateReactComponent":192,"./traverseAllChildren":193,"_process":41,"fbjs/lib/warning":38}],84:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -15665,7 +14487,7 @@ var ReactChildren = {
 };
 
 module.exports = ReactChildren;
-},{"./PooledClass":93,"./ReactElement":128,"./traverseAllChildren":206,"fbjs/lib/emptyFunction":33}],98:[function(require,module,exports){
+},{"./PooledClass":80,"./ReactElement":115,"./traverseAllChildren":193,"fbjs/lib/emptyFunction":20}],85:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -16393,7 +15215,7 @@ var ReactClass = {
 
 module.exports = ReactClass;
 }).call(this,require('_process'))
-},{"./ReactComponent":99,"./ReactElement":128,"./ReactNoopUpdateQueue":147,"./ReactPropTypeLocationNames":149,"./ReactPropTypeLocations":150,"./reactProdInvariant":201,"_process":54,"fbjs/lib/emptyObject":34,"fbjs/lib/invariant":41,"fbjs/lib/keyMirror":44,"fbjs/lib/keyOf":45,"fbjs/lib/warning":51,"object-assign":52}],99:[function(require,module,exports){
+},{"./ReactComponent":86,"./ReactElement":115,"./ReactNoopUpdateQueue":134,"./ReactPropTypeLocationNames":136,"./ReactPropTypeLocations":137,"./reactProdInvariant":188,"_process":41,"fbjs/lib/emptyObject":21,"fbjs/lib/invariant":28,"fbjs/lib/keyMirror":31,"fbjs/lib/keyOf":32,"fbjs/lib/warning":38,"object-assign":39}],86:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -16514,7 +15336,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactComponent;
 }).call(this,require('_process'))
-},{"./ReactNoopUpdateQueue":147,"./canDefineProperty":179,"./reactProdInvariant":201,"_process":54,"fbjs/lib/emptyObject":34,"fbjs/lib/invariant":41,"fbjs/lib/warning":51}],100:[function(require,module,exports){
+},{"./ReactNoopUpdateQueue":134,"./canDefineProperty":166,"./reactProdInvariant":188,"_process":41,"fbjs/lib/emptyObject":21,"fbjs/lib/invariant":28,"fbjs/lib/warning":38}],87:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -16554,7 +15376,7 @@ var ReactComponentBrowserEnvironment = {
 };
 
 module.exports = ReactComponentBrowserEnvironment;
-},{"./DOMChildrenOperations":75,"./ReactDOMIDOperations":115}],101:[function(require,module,exports){
+},{"./DOMChildrenOperations":62,"./ReactDOMIDOperations":102}],88:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -16610,7 +15432,7 @@ var ReactComponentEnvironment = {
 
 module.exports = ReactComponentEnvironment;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41}],102:[function(require,module,exports){
+},{"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28}],89:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2016-present, Facebook, Inc.
@@ -16836,7 +15658,7 @@ var ReactComponentTreeDevtool = {
 
 module.exports = ReactComponentTreeDevtool;
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":104,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41,"fbjs/lib/warning":51}],103:[function(require,module,exports){
+},{"./ReactCurrentOwner":91,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28,"fbjs/lib/warning":38}],90:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -17722,7 +16544,7 @@ var ReactCompositeComponent = {
 
 module.exports = ReactCompositeComponent;
 }).call(this,require('_process'))
-},{"./ReactComponentEnvironment":101,"./ReactCurrentOwner":104,"./ReactElement":128,"./ReactErrorUtils":131,"./ReactInstanceMap":139,"./ReactInstrumentation":140,"./ReactNodeTypes":146,"./ReactPropTypeLocations":150,"./ReactReconciler":153,"./ReactUpdateQueue":156,"./checkReactTypeSpec":180,"./reactProdInvariant":201,"./shouldUpdateReactComponent":205,"_process":54,"fbjs/lib/emptyObject":34,"fbjs/lib/invariant":41,"fbjs/lib/warning":51,"object-assign":52}],104:[function(require,module,exports){
+},{"./ReactComponentEnvironment":88,"./ReactCurrentOwner":91,"./ReactElement":115,"./ReactErrorUtils":118,"./ReactInstanceMap":126,"./ReactInstrumentation":127,"./ReactNodeTypes":133,"./ReactPropTypeLocations":137,"./ReactReconciler":140,"./ReactUpdateQueue":143,"./checkReactTypeSpec":167,"./reactProdInvariant":188,"./shouldUpdateReactComponent":192,"_process":41,"fbjs/lib/emptyObject":21,"fbjs/lib/invariant":28,"fbjs/lib/warning":38,"object-assign":39}],91:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -17754,7 +16576,7 @@ var ReactCurrentOwner = {
 };
 
 module.exports = ReactCurrentOwner;
-},{}],105:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -17858,7 +16680,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = React;
 }).call(this,require('_process'))
-},{"./ReactDOMComponentTree":109,"./ReactDefaultInjection":127,"./ReactMount":143,"./ReactReconciler":153,"./ReactUpdates":157,"./ReactVersion":158,"./findDOMNode":184,"./getHostComponentFromComposite":191,"./renderSubtreeIntoContainer":202,"_process":54,"fbjs/lib/ExecutionEnvironment":27,"fbjs/lib/warning":51}],106:[function(require,module,exports){
+},{"./ReactDOMComponentTree":96,"./ReactDefaultInjection":114,"./ReactMount":130,"./ReactReconciler":140,"./ReactUpdates":144,"./ReactVersion":145,"./findDOMNode":171,"./getHostComponentFromComposite":178,"./renderSubtreeIntoContainer":189,"_process":41,"fbjs/lib/ExecutionEnvironment":14,"fbjs/lib/warning":38}],93:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -17883,7 +16705,7 @@ var ReactDOMButton = {
 };
 
 module.exports = ReactDOMButton;
-},{"./DisabledInputUtils":82}],107:[function(require,module,exports){
+},{"./DisabledInputUtils":69}],94:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -18889,7 +17711,7 @@ _assign(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, ReactMultiChild.Mi
 
 module.exports = ReactDOMComponent;
 }).call(this,require('_process'))
-},{"./AutoFocusUtils":69,"./CSSPropertyOperations":72,"./DOMLazyTree":76,"./DOMNamespaces":77,"./DOMProperty":78,"./DOMPropertyOperations":79,"./EventConstants":84,"./EventPluginHub":85,"./EventPluginRegistry":86,"./ReactBrowserEventEmitter":95,"./ReactComponentBrowserEnvironment":100,"./ReactDOMButton":106,"./ReactDOMComponentFlags":108,"./ReactDOMComponentTree":109,"./ReactDOMInput":116,"./ReactDOMOption":118,"./ReactDOMSelect":119,"./ReactDOMTextarea":122,"./ReactInstrumentation":140,"./ReactMultiChild":144,"./ReactServerRenderingTransaction":155,"./escapeTextContentForBrowser":183,"./isEventSupported":197,"./reactProdInvariant":201,"./validateDOMNesting":207,"_process":54,"fbjs/lib/emptyFunction":33,"fbjs/lib/invariant":41,"fbjs/lib/keyOf":45,"fbjs/lib/shallowEqual":50,"fbjs/lib/warning":51,"object-assign":52}],108:[function(require,module,exports){
+},{"./AutoFocusUtils":56,"./CSSPropertyOperations":59,"./DOMLazyTree":63,"./DOMNamespaces":64,"./DOMProperty":65,"./DOMPropertyOperations":66,"./EventConstants":71,"./EventPluginHub":72,"./EventPluginRegistry":73,"./ReactBrowserEventEmitter":82,"./ReactComponentBrowserEnvironment":87,"./ReactDOMButton":93,"./ReactDOMComponentFlags":95,"./ReactDOMComponentTree":96,"./ReactDOMInput":103,"./ReactDOMOption":105,"./ReactDOMSelect":106,"./ReactDOMTextarea":109,"./ReactInstrumentation":127,"./ReactMultiChild":131,"./ReactServerRenderingTransaction":142,"./escapeTextContentForBrowser":170,"./isEventSupported":184,"./reactProdInvariant":188,"./validateDOMNesting":194,"_process":41,"fbjs/lib/emptyFunction":20,"fbjs/lib/invariant":28,"fbjs/lib/keyOf":32,"fbjs/lib/shallowEqual":37,"fbjs/lib/warning":38,"object-assign":39}],95:[function(require,module,exports){
 /**
  * Copyright 2015-present, Facebook, Inc.
  * All rights reserved.
@@ -18908,7 +17730,7 @@ var ReactDOMComponentFlags = {
 };
 
 module.exports = ReactDOMComponentFlags;
-},{}],109:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -19099,7 +17921,7 @@ var ReactDOMComponentTree = {
 
 module.exports = ReactDOMComponentTree;
 }).call(this,require('_process'))
-},{"./DOMProperty":78,"./ReactDOMComponentFlags":108,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41}],110:[function(require,module,exports){
+},{"./DOMProperty":65,"./ReactDOMComponentFlags":95,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28}],97:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -19135,7 +17957,7 @@ function ReactDOMContainerInfo(topLevelWrapper, node) {
 
 module.exports = ReactDOMContainerInfo;
 }).call(this,require('_process'))
-},{"./validateDOMNesting":207,"_process":54}],111:[function(require,module,exports){
+},{"./validateDOMNesting":194,"_process":41}],98:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -19205,7 +18027,7 @@ ReactDOMDebugTool.addDevtool(ReactDOMUnknownPropertyDevtool);
 
 module.exports = ReactDOMDebugTool;
 }).call(this,require('_process'))
-},{"./ReactDOMUnknownPropertyDevtool":124,"./ReactDebugTool":125,"_process":54,"fbjs/lib/warning":51}],112:[function(require,module,exports){
+},{"./ReactDOMUnknownPropertyDevtool":111,"./ReactDebugTool":112,"_process":41,"fbjs/lib/warning":38}],99:[function(require,module,exports){
 /**
  * Copyright 2014-present, Facebook, Inc.
  * All rights reserved.
@@ -19266,7 +18088,7 @@ _assign(ReactDOMEmptyComponent.prototype, {
 });
 
 module.exports = ReactDOMEmptyComponent;
-},{"./DOMLazyTree":76,"./ReactDOMComponentTree":109,"object-assign":52}],113:[function(require,module,exports){
+},{"./DOMLazyTree":63,"./ReactDOMComponentTree":96,"object-assign":39}],100:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -19445,7 +18267,7 @@ var ReactDOMFactories = mapObject({
 
 module.exports = ReactDOMFactories;
 }).call(this,require('_process'))
-},{"./ReactElement":128,"./ReactElementValidator":129,"_process":54,"fbjs/lib/mapObject":46}],114:[function(require,module,exports){
+},{"./ReactElement":115,"./ReactElementValidator":116,"_process":41,"fbjs/lib/mapObject":33}],101:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -19464,7 +18286,7 @@ var ReactDOMFeatureFlags = {
 };
 
 module.exports = ReactDOMFeatureFlags;
-},{}],115:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -19499,7 +18321,7 @@ var ReactDOMIDOperations = {
 };
 
 module.exports = ReactDOMIDOperations;
-},{"./DOMChildrenOperations":75,"./ReactDOMComponentTree":109}],116:[function(require,module,exports){
+},{"./DOMChildrenOperations":62,"./ReactDOMComponentTree":96}],103:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -19744,7 +18566,7 @@ function _handleChange(event) {
 
 module.exports = ReactDOMInput;
 }).call(this,require('_process'))
-},{"./DOMPropertyOperations":79,"./DisabledInputUtils":82,"./LinkedValueUtils":92,"./ReactDOMComponentTree":109,"./ReactUpdates":157,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41,"fbjs/lib/warning":51,"object-assign":52}],117:[function(require,module,exports){
+},{"./DOMPropertyOperations":66,"./DisabledInputUtils":69,"./LinkedValueUtils":79,"./ReactDOMComponentTree":96,"./ReactUpdates":144,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28,"fbjs/lib/warning":38,"object-assign":39}],104:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -19761,7 +18583,7 @@ module.exports = ReactDOMInput;
 var ReactDOMDebugTool = require('./ReactDOMDebugTool');
 
 module.exports = { debugTool: ReactDOMDebugTool };
-},{"./ReactDOMDebugTool":111}],118:[function(require,module,exports){
+},{"./ReactDOMDebugTool":98}],105:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -19887,7 +18709,7 @@ var ReactDOMOption = {
 
 module.exports = ReactDOMOption;
 }).call(this,require('_process'))
-},{"./ReactChildren":97,"./ReactDOMComponentTree":109,"./ReactDOMSelect":119,"_process":54,"fbjs/lib/warning":51,"object-assign":52}],119:[function(require,module,exports){
+},{"./ReactChildren":84,"./ReactDOMComponentTree":96,"./ReactDOMSelect":106,"_process":41,"fbjs/lib/warning":38,"object-assign":39}],106:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -20103,7 +18925,7 @@ function _handleChange(event) {
 
 module.exports = ReactDOMSelect;
 }).call(this,require('_process'))
-},{"./DisabledInputUtils":82,"./LinkedValueUtils":92,"./ReactDOMComponentTree":109,"./ReactUpdates":157,"_process":54,"fbjs/lib/warning":51,"object-assign":52}],120:[function(require,module,exports){
+},{"./DisabledInputUtils":69,"./LinkedValueUtils":79,"./ReactDOMComponentTree":96,"./ReactUpdates":144,"_process":41,"fbjs/lib/warning":38,"object-assign":39}],107:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -20316,7 +19138,7 @@ var ReactDOMSelection = {
 };
 
 module.exports = ReactDOMSelection;
-},{"./getNodeForCharacterOffset":193,"./getTextContentAccessor":194,"fbjs/lib/ExecutionEnvironment":27}],121:[function(require,module,exports){
+},{"./getNodeForCharacterOffset":180,"./getTextContentAccessor":181,"fbjs/lib/ExecutionEnvironment":14}],108:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -20490,7 +19312,7 @@ _assign(ReactDOMTextComponent.prototype, {
 
 module.exports = ReactDOMTextComponent;
 }).call(this,require('_process'))
-},{"./DOMChildrenOperations":75,"./DOMLazyTree":76,"./ReactDOMComponentTree":109,"./ReactInstrumentation":140,"./escapeTextContentForBrowser":183,"./reactProdInvariant":201,"./validateDOMNesting":207,"_process":54,"fbjs/lib/invariant":41,"object-assign":52}],122:[function(require,module,exports){
+},{"./DOMChildrenOperations":62,"./DOMLazyTree":63,"./ReactDOMComponentTree":96,"./ReactInstrumentation":127,"./escapeTextContentForBrowser":170,"./reactProdInvariant":188,"./validateDOMNesting":194,"_process":41,"fbjs/lib/invariant":28,"object-assign":39}],109:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -20662,7 +19484,7 @@ function _handleChange(event) {
 
 module.exports = ReactDOMTextarea;
 }).call(this,require('_process'))
-},{"./DisabledInputUtils":82,"./LinkedValueUtils":92,"./ReactDOMComponentTree":109,"./ReactUpdates":157,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41,"fbjs/lib/warning":51,"object-assign":52}],123:[function(require,module,exports){
+},{"./DisabledInputUtils":69,"./LinkedValueUtils":79,"./ReactDOMComponentTree":96,"./ReactUpdates":144,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28,"fbjs/lib/warning":38,"object-assign":39}],110:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -20801,7 +19623,7 @@ module.exports = {
   traverseEnterLeave: traverseEnterLeave
 };
 }).call(this,require('_process'))
-},{"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41}],124:[function(require,module,exports){
+},{"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28}],111:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -20916,7 +19738,7 @@ var ReactDOMUnknownPropertyDevtool = {
 
 module.exports = ReactDOMUnknownPropertyDevtool;
 }).call(this,require('_process'))
-},{"./DOMProperty":78,"./EventPluginRegistry":86,"./ReactComponentTreeDevtool":102,"_process":54,"fbjs/lib/warning":51}],125:[function(require,module,exports){
+},{"./DOMProperty":65,"./EventPluginRegistry":73,"./ReactComponentTreeDevtool":89,"_process":41,"fbjs/lib/warning":38}],112:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2016-present, Facebook, Inc.
@@ -21230,7 +20052,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactDebugTool;
 }).call(this,require('_process'))
-},{"./ReactComponentTreeDevtool":102,"./ReactHostOperationHistoryDevtool":136,"./ReactInvalidSetStateWarningDevTool":141,"_process":54,"fbjs/lib/ExecutionEnvironment":27,"fbjs/lib/performanceNow":49,"fbjs/lib/warning":51}],126:[function(require,module,exports){
+},{"./ReactComponentTreeDevtool":89,"./ReactHostOperationHistoryDevtool":123,"./ReactInvalidSetStateWarningDevTool":128,"_process":41,"fbjs/lib/ExecutionEnvironment":14,"fbjs/lib/performanceNow":36,"fbjs/lib/warning":38}],113:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -21299,7 +20121,7 @@ var ReactDefaultBatchingStrategy = {
 };
 
 module.exports = ReactDefaultBatchingStrategy;
-},{"./ReactUpdates":157,"./Transaction":175,"fbjs/lib/emptyFunction":33,"object-assign":52}],127:[function(require,module,exports){
+},{"./ReactUpdates":144,"./Transaction":162,"fbjs/lib/emptyFunction":20,"object-assign":39}],114:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -21384,7 +20206,7 @@ function inject() {
 module.exports = {
   inject: inject
 };
-},{"./BeforeInputEventPlugin":70,"./ChangeEventPlugin":74,"./DefaultEventPluginOrder":81,"./EnterLeaveEventPlugin":83,"./HTMLDOMPropertyConfig":90,"./ReactComponentBrowserEnvironment":100,"./ReactDOMComponent":107,"./ReactDOMComponentTree":109,"./ReactDOMEmptyComponent":112,"./ReactDOMTextComponent":121,"./ReactDOMTreeTraversal":123,"./ReactDefaultBatchingStrategy":126,"./ReactEventListener":133,"./ReactInjection":137,"./ReactReconcileTransaction":152,"./SVGDOMPropertyConfig":159,"./SelectEventPlugin":160,"./SimpleEventPlugin":161}],128:[function(require,module,exports){
+},{"./BeforeInputEventPlugin":57,"./ChangeEventPlugin":61,"./DefaultEventPluginOrder":68,"./EnterLeaveEventPlugin":70,"./HTMLDOMPropertyConfig":77,"./ReactComponentBrowserEnvironment":87,"./ReactDOMComponent":94,"./ReactDOMComponentTree":96,"./ReactDOMEmptyComponent":99,"./ReactDOMTextComponent":108,"./ReactDOMTreeTraversal":110,"./ReactDefaultBatchingStrategy":113,"./ReactEventListener":120,"./ReactInjection":124,"./ReactReconcileTransaction":139,"./SVGDOMPropertyConfig":146,"./SelectEventPlugin":147,"./SimpleEventPlugin":148}],115:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -21739,7 +20561,7 @@ ReactElement.REACT_ELEMENT_TYPE = REACT_ELEMENT_TYPE;
 
 module.exports = ReactElement;
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":104,"./canDefineProperty":179,"_process":54,"fbjs/lib/warning":51,"object-assign":52}],129:[function(require,module,exports){
+},{"./ReactCurrentOwner":91,"./canDefineProperty":166,"_process":41,"fbjs/lib/warning":38,"object-assign":39}],116:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -21968,7 +20790,7 @@ var ReactElementValidator = {
 
 module.exports = ReactElementValidator;
 }).call(this,require('_process'))
-},{"./ReactComponentTreeDevtool":102,"./ReactCurrentOwner":104,"./ReactElement":128,"./ReactPropTypeLocations":150,"./canDefineProperty":179,"./checkReactTypeSpec":180,"./getIteratorFn":192,"_process":54,"fbjs/lib/warning":51}],130:[function(require,module,exports){
+},{"./ReactComponentTreeDevtool":89,"./ReactCurrentOwner":91,"./ReactElement":115,"./ReactPropTypeLocations":137,"./canDefineProperty":166,"./checkReactTypeSpec":167,"./getIteratorFn":179,"_process":41,"fbjs/lib/warning":38}],117:[function(require,module,exports){
 /**
  * Copyright 2014-present, Facebook, Inc.
  * All rights reserved.
@@ -21999,7 +20821,7 @@ var ReactEmptyComponent = {
 ReactEmptyComponent.injection = ReactEmptyComponentInjection;
 
 module.exports = ReactEmptyComponent;
-},{}],131:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -22078,7 +20900,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactErrorUtils;
 }).call(this,require('_process'))
-},{"_process":54}],132:[function(require,module,exports){
+},{"_process":41}],119:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -22112,7 +20934,7 @@ var ReactEventEmitterMixin = {
 };
 
 module.exports = ReactEventEmitterMixin;
-},{"./EventPluginHub":85}],133:[function(require,module,exports){
+},{"./EventPluginHub":72}],120:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -22270,7 +21092,7 @@ var ReactEventListener = {
 };
 
 module.exports = ReactEventListener;
-},{"./PooledClass":93,"./ReactDOMComponentTree":109,"./ReactUpdates":157,"./getEventTarget":190,"fbjs/lib/EventListener":26,"fbjs/lib/ExecutionEnvironment":27,"fbjs/lib/getUnboundedScrollPosition":38,"object-assign":52}],134:[function(require,module,exports){
+},{"./PooledClass":80,"./ReactDOMComponentTree":96,"./ReactUpdates":144,"./getEventTarget":177,"fbjs/lib/EventListener":13,"fbjs/lib/ExecutionEnvironment":14,"fbjs/lib/getUnboundedScrollPosition":25,"object-assign":39}],121:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -22292,7 +21114,7 @@ var ReactFeatureFlags = {
 };
 
 module.exports = ReactFeatureFlags;
-},{}],135:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -22371,7 +21193,7 @@ var ReactHostComponent = {
 
 module.exports = ReactHostComponent;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41,"object-assign":52}],136:[function(require,module,exports){
+},{"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28,"object-assign":39}],123:[function(require,module,exports){
 /**
  * Copyright 2016-present, Facebook, Inc.
  * All rights reserved.
@@ -22409,7 +21231,7 @@ var ReactHostOperationHistoryDevtool = {
 };
 
 module.exports = ReactHostOperationHistoryDevtool;
-},{}],137:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -22446,7 +21268,7 @@ var ReactInjection = {
 };
 
 module.exports = ReactInjection;
-},{"./DOMProperty":78,"./EventPluginHub":85,"./EventPluginUtils":87,"./ReactBrowserEventEmitter":95,"./ReactClass":98,"./ReactComponentEnvironment":101,"./ReactEmptyComponent":130,"./ReactHostComponent":135,"./ReactUpdates":157}],138:[function(require,module,exports){
+},{"./DOMProperty":65,"./EventPluginHub":72,"./EventPluginUtils":74,"./ReactBrowserEventEmitter":82,"./ReactClass":85,"./ReactComponentEnvironment":88,"./ReactEmptyComponent":117,"./ReactHostComponent":122,"./ReactUpdates":144}],125:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -22571,7 +21393,7 @@ var ReactInputSelection = {
 };
 
 module.exports = ReactInputSelection;
-},{"./ReactDOMSelection":120,"fbjs/lib/containsNode":30,"fbjs/lib/focusNode":35,"fbjs/lib/getActiveElement":36}],139:[function(require,module,exports){
+},{"./ReactDOMSelection":107,"fbjs/lib/containsNode":17,"fbjs/lib/focusNode":22,"fbjs/lib/getActiveElement":23}],126:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -22620,7 +21442,7 @@ var ReactInstanceMap = {
 };
 
 module.exports = ReactInstanceMap;
-},{}],140:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 /**
  * Copyright 2016-present, Facebook, Inc.
  * All rights reserved.
@@ -22637,7 +21459,7 @@ module.exports = ReactInstanceMap;
 var ReactDebugTool = require('./ReactDebugTool');
 
 module.exports = { debugTool: ReactDebugTool };
-},{"./ReactDebugTool":125}],141:[function(require,module,exports){
+},{"./ReactDebugTool":112}],128:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2016-present, Facebook, Inc.
@@ -22676,7 +21498,7 @@ var ReactInvalidSetStateWarningDevTool = {
 
 module.exports = ReactInvalidSetStateWarningDevTool;
 }).call(this,require('_process'))
-},{"_process":54,"fbjs/lib/warning":51}],142:[function(require,module,exports){
+},{"_process":41,"fbjs/lib/warning":38}],129:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -22727,7 +21549,7 @@ var ReactMarkupChecksum = {
 };
 
 module.exports = ReactMarkupChecksum;
-},{"./adler32":178}],143:[function(require,module,exports){
+},{"./adler32":165}],130:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -23231,7 +22053,7 @@ var ReactMount = {
 
 module.exports = ReactMount;
 }).call(this,require('_process'))
-},{"./DOMLazyTree":76,"./DOMProperty":78,"./ReactBrowserEventEmitter":95,"./ReactCurrentOwner":104,"./ReactDOMComponentTree":109,"./ReactDOMContainerInfo":110,"./ReactDOMFeatureFlags":114,"./ReactElement":128,"./ReactFeatureFlags":134,"./ReactInstrumentation":140,"./ReactMarkupChecksum":142,"./ReactReconciler":153,"./ReactUpdateQueue":156,"./ReactUpdates":157,"./instantiateReactComponent":196,"./reactProdInvariant":201,"./setInnerHTML":203,"./shouldUpdateReactComponent":205,"_process":54,"fbjs/lib/emptyObject":34,"fbjs/lib/invariant":41,"fbjs/lib/warning":51}],144:[function(require,module,exports){
+},{"./DOMLazyTree":63,"./DOMProperty":65,"./ReactBrowserEventEmitter":82,"./ReactCurrentOwner":91,"./ReactDOMComponentTree":96,"./ReactDOMContainerInfo":97,"./ReactDOMFeatureFlags":101,"./ReactElement":115,"./ReactFeatureFlags":121,"./ReactInstrumentation":127,"./ReactMarkupChecksum":129,"./ReactReconciler":140,"./ReactUpdateQueue":143,"./ReactUpdates":144,"./instantiateReactComponent":183,"./reactProdInvariant":188,"./setInnerHTML":190,"./shouldUpdateReactComponent":192,"_process":41,"fbjs/lib/emptyObject":21,"fbjs/lib/invariant":28,"fbjs/lib/warning":38}],131:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -23679,7 +22501,7 @@ var ReactMultiChild = {
 
 module.exports = ReactMultiChild;
 }).call(this,require('_process'))
-},{"./ReactChildReconciler":96,"./ReactComponentEnvironment":101,"./ReactCurrentOwner":104,"./ReactInstanceMap":139,"./ReactInstrumentation":140,"./ReactMultiChildUpdateTypes":145,"./ReactReconciler":153,"./flattenChildren":185,"./reactProdInvariant":201,"_process":54,"fbjs/lib/emptyFunction":33,"fbjs/lib/invariant":41}],145:[function(require,module,exports){
+},{"./ReactChildReconciler":83,"./ReactComponentEnvironment":88,"./ReactCurrentOwner":91,"./ReactInstanceMap":126,"./ReactInstrumentation":127,"./ReactMultiChildUpdateTypes":132,"./ReactReconciler":140,"./flattenChildren":172,"./reactProdInvariant":188,"_process":41,"fbjs/lib/emptyFunction":20,"fbjs/lib/invariant":28}],132:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -23712,7 +22534,7 @@ var ReactMultiChildUpdateTypes = keyMirror({
 });
 
 module.exports = ReactMultiChildUpdateTypes;
-},{"fbjs/lib/keyMirror":44}],146:[function(require,module,exports){
+},{"fbjs/lib/keyMirror":31}],133:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -23754,7 +22576,7 @@ var ReactNodeTypes = {
 
 module.exports = ReactNodeTypes;
 }).call(this,require('_process'))
-},{"./ReactElement":128,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41}],147:[function(require,module,exports){
+},{"./ReactElement":115,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28}],134:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -23852,7 +22674,7 @@ var ReactNoopUpdateQueue = {
 
 module.exports = ReactNoopUpdateQueue;
 }).call(this,require('_process'))
-},{"_process":54,"fbjs/lib/warning":51}],148:[function(require,module,exports){
+},{"_process":41,"fbjs/lib/warning":38}],135:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -23949,7 +22771,7 @@ var ReactOwner = {
 
 module.exports = ReactOwner;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41}],149:[function(require,module,exports){
+},{"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28}],136:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -23976,7 +22798,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactPropTypeLocationNames;
 }).call(this,require('_process'))
-},{"_process":54}],150:[function(require,module,exports){
+},{"_process":41}],137:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -23999,7 +22821,7 @@ var ReactPropTypeLocations = keyMirror({
 });
 
 module.exports = ReactPropTypeLocations;
-},{"fbjs/lib/keyMirror":44}],151:[function(require,module,exports){
+},{"fbjs/lib/keyMirror":31}],138:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -24403,7 +23225,7 @@ function getClassName(propValue) {
 }
 
 module.exports = ReactPropTypes;
-},{"./ReactElement":128,"./ReactPropTypeLocationNames":149,"./getIteratorFn":192,"fbjs/lib/emptyFunction":33}],152:[function(require,module,exports){
+},{"./ReactElement":115,"./ReactPropTypeLocationNames":136,"./getIteratorFn":179,"fbjs/lib/emptyFunction":20}],139:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -24566,7 +23388,7 @@ _assign(ReactReconcileTransaction.prototype, Transaction.Mixin, Mixin);
 PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
-},{"./CallbackQueue":73,"./PooledClass":93,"./ReactBrowserEventEmitter":95,"./ReactInputSelection":138,"./Transaction":175,"object-assign":52}],153:[function(require,module,exports){
+},{"./CallbackQueue":60,"./PooledClass":80,"./ReactBrowserEventEmitter":82,"./ReactInputSelection":125,"./Transaction":162,"object-assign":39}],140:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -24745,7 +23567,7 @@ var ReactReconciler = {
 
 module.exports = ReactReconciler;
 }).call(this,require('_process'))
-},{"./ReactInstrumentation":140,"./ReactRef":154,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41}],154:[function(require,module,exports){
+},{"./ReactInstrumentation":127,"./ReactRef":141,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28}],141:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -24824,7 +23646,7 @@ ReactRef.detachRefs = function (instance, element) {
 };
 
 module.exports = ReactRef;
-},{"./ReactOwner":148}],155:[function(require,module,exports){
+},{"./ReactOwner":135}],142:[function(require,module,exports){
 /**
  * Copyright 2014-present, Facebook, Inc.
  * All rights reserved.
@@ -24898,7 +23720,7 @@ _assign(ReactServerRenderingTransaction.prototype, Transaction.Mixin, Mixin);
 PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
-},{"./PooledClass":93,"./Transaction":175,"object-assign":52}],156:[function(require,module,exports){
+},{"./PooledClass":80,"./Transaction":162,"object-assign":39}],143:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -25124,7 +23946,7 @@ var ReactUpdateQueue = {
 
 module.exports = ReactUpdateQueue;
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":104,"./ReactInstanceMap":139,"./ReactInstrumentation":140,"./ReactUpdates":157,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41,"fbjs/lib/warning":51}],157:[function(require,module,exports){
+},{"./ReactCurrentOwner":91,"./ReactInstanceMap":126,"./ReactInstrumentation":127,"./ReactUpdates":144,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28,"fbjs/lib/warning":38}],144:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -25387,7 +24209,7 @@ var ReactUpdates = {
 
 module.exports = ReactUpdates;
 }).call(this,require('_process'))
-},{"./CallbackQueue":73,"./PooledClass":93,"./ReactFeatureFlags":134,"./ReactInstrumentation":140,"./ReactReconciler":153,"./Transaction":175,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41,"object-assign":52}],158:[function(require,module,exports){
+},{"./CallbackQueue":60,"./PooledClass":80,"./ReactFeatureFlags":121,"./ReactInstrumentation":127,"./ReactReconciler":140,"./Transaction":162,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28,"object-assign":39}],145:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -25402,7 +24224,7 @@ module.exports = ReactUpdates;
 'use strict';
 
 module.exports = '15.2.0';
-},{}],159:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -25703,7 +24525,7 @@ Object.keys(ATTRS).forEach(function (key) {
 });
 
 module.exports = SVGDOMPropertyConfig;
-},{}],160:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -25900,7 +24722,7 @@ var SelectEventPlugin = {
 };
 
 module.exports = SelectEventPlugin;
-},{"./EventConstants":84,"./EventPropagators":88,"./ReactDOMComponentTree":109,"./ReactInputSelection":138,"./SyntheticEvent":166,"./isTextInputElement":198,"fbjs/lib/ExecutionEnvironment":27,"fbjs/lib/getActiveElement":36,"fbjs/lib/keyOf":45,"fbjs/lib/shallowEqual":50}],161:[function(require,module,exports){
+},{"./EventConstants":71,"./EventPropagators":75,"./ReactDOMComponentTree":96,"./ReactInputSelection":125,"./SyntheticEvent":153,"./isTextInputElement":185,"fbjs/lib/ExecutionEnvironment":14,"fbjs/lib/getActiveElement":23,"fbjs/lib/keyOf":32,"fbjs/lib/shallowEqual":37}],148:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -26532,7 +25354,7 @@ var SimpleEventPlugin = {
 
 module.exports = SimpleEventPlugin;
 }).call(this,require('_process'))
-},{"./EventConstants":84,"./EventPropagators":88,"./ReactDOMComponentTree":109,"./SyntheticAnimationEvent":162,"./SyntheticClipboardEvent":163,"./SyntheticDragEvent":165,"./SyntheticEvent":166,"./SyntheticFocusEvent":167,"./SyntheticKeyboardEvent":169,"./SyntheticMouseEvent":170,"./SyntheticTouchEvent":171,"./SyntheticTransitionEvent":172,"./SyntheticUIEvent":173,"./SyntheticWheelEvent":174,"./getEventCharCode":187,"./reactProdInvariant":201,"_process":54,"fbjs/lib/EventListener":26,"fbjs/lib/emptyFunction":33,"fbjs/lib/invariant":41,"fbjs/lib/keyOf":45}],162:[function(require,module,exports){
+},{"./EventConstants":71,"./EventPropagators":75,"./ReactDOMComponentTree":96,"./SyntheticAnimationEvent":149,"./SyntheticClipboardEvent":150,"./SyntheticDragEvent":152,"./SyntheticEvent":153,"./SyntheticFocusEvent":154,"./SyntheticKeyboardEvent":156,"./SyntheticMouseEvent":157,"./SyntheticTouchEvent":158,"./SyntheticTransitionEvent":159,"./SyntheticUIEvent":160,"./SyntheticWheelEvent":161,"./getEventCharCode":174,"./reactProdInvariant":188,"_process":41,"fbjs/lib/EventListener":13,"fbjs/lib/emptyFunction":20,"fbjs/lib/invariant":28,"fbjs/lib/keyOf":32}],149:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -26572,7 +25394,7 @@ function SyntheticAnimationEvent(dispatchConfig, dispatchMarker, nativeEvent, na
 SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 
 module.exports = SyntheticAnimationEvent;
-},{"./SyntheticEvent":166}],163:[function(require,module,exports){
+},{"./SyntheticEvent":153}],150:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -26611,7 +25433,7 @@ function SyntheticClipboardEvent(dispatchConfig, dispatchMarker, nativeEvent, na
 SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 
 module.exports = SyntheticClipboardEvent;
-},{"./SyntheticEvent":166}],164:[function(require,module,exports){
+},{"./SyntheticEvent":153}],151:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -26648,7 +25470,7 @@ function SyntheticCompositionEvent(dispatchConfig, dispatchMarker, nativeEvent, 
 SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface);
 
 module.exports = SyntheticCompositionEvent;
-},{"./SyntheticEvent":166}],165:[function(require,module,exports){
+},{"./SyntheticEvent":153}],152:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -26685,7 +25507,7 @@ function SyntheticDragEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeE
 SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 
 module.exports = SyntheticDragEvent;
-},{"./SyntheticMouseEvent":170}],166:[function(require,module,exports){
+},{"./SyntheticMouseEvent":157}],153:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -26948,7 +25770,7 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
   }
 }
 }).call(this,require('_process'))
-},{"./PooledClass":93,"_process":54,"fbjs/lib/emptyFunction":33,"fbjs/lib/warning":51,"object-assign":52}],167:[function(require,module,exports){
+},{"./PooledClass":80,"_process":41,"fbjs/lib/emptyFunction":20,"fbjs/lib/warning":38,"object-assign":39}],154:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -26985,7 +25807,7 @@ function SyntheticFocusEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 
 module.exports = SyntheticFocusEvent;
-},{"./SyntheticUIEvent":173}],168:[function(require,module,exports){
+},{"./SyntheticUIEvent":160}],155:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -27023,7 +25845,7 @@ function SyntheticInputEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 
 module.exports = SyntheticInputEvent;
-},{"./SyntheticEvent":166}],169:[function(require,module,exports){
+},{"./SyntheticEvent":153}],156:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -27108,7 +25930,7 @@ function SyntheticKeyboardEvent(dispatchConfig, dispatchMarker, nativeEvent, nat
 SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 
 module.exports = SyntheticKeyboardEvent;
-},{"./SyntheticUIEvent":173,"./getEventCharCode":187,"./getEventKey":188,"./getEventModifierState":189}],170:[function(require,module,exports){
+},{"./SyntheticUIEvent":160,"./getEventCharCode":174,"./getEventKey":175,"./getEventModifierState":176}],157:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -27181,7 +26003,7 @@ function SyntheticMouseEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 
 module.exports = SyntheticMouseEvent;
-},{"./SyntheticUIEvent":173,"./ViewportMetrics":176,"./getEventModifierState":189}],171:[function(require,module,exports){
+},{"./SyntheticUIEvent":160,"./ViewportMetrics":163,"./getEventModifierState":176}],158:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -27227,7 +26049,7 @@ function SyntheticTouchEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 
 module.exports = SyntheticTouchEvent;
-},{"./SyntheticUIEvent":173,"./getEventModifierState":189}],172:[function(require,module,exports){
+},{"./SyntheticUIEvent":160,"./getEventModifierState":176}],159:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -27267,7 +26089,7 @@ function SyntheticTransitionEvent(dispatchConfig, dispatchMarker, nativeEvent, n
 SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 
 module.exports = SyntheticTransitionEvent;
-},{"./SyntheticEvent":166}],173:[function(require,module,exports){
+},{"./SyntheticEvent":153}],160:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -27327,7 +26149,7 @@ function SyntheticUIEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEve
 SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
-},{"./SyntheticEvent":166,"./getEventTarget":190}],174:[function(require,module,exports){
+},{"./SyntheticEvent":153,"./getEventTarget":177}],161:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -27382,7 +26204,7 @@ function SyntheticWheelEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 
 module.exports = SyntheticWheelEvent;
-},{"./SyntheticMouseEvent":170}],175:[function(require,module,exports){
+},{"./SyntheticMouseEvent":157}],162:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -27618,7 +26440,7 @@ var Transaction = {
 
 module.exports = Transaction;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41}],176:[function(require,module,exports){
+},{"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28}],163:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -27646,7 +26468,7 @@ var ViewportMetrics = {
 };
 
 module.exports = ViewportMetrics;
-},{}],177:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-present, Facebook, Inc.
@@ -27710,7 +26532,7 @@ function accumulateInto(current, next) {
 
 module.exports = accumulateInto;
 }).call(this,require('_process'))
-},{"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41}],178:[function(require,module,exports){
+},{"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28}],165:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -27754,7 +26576,7 @@ function adler32(data) {
 }
 
 module.exports = adler32;
-},{}],179:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -27781,7 +26603,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = canDefineProperty;
 }).call(this,require('_process'))
-},{"_process":54}],180:[function(require,module,exports){
+},{"_process":41}],167:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -27855,7 +26677,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
 module.exports = checkReactTypeSpec;
 }).call(this,require('_process'))
-},{"./ReactComponentTreeDevtool":102,"./ReactPropTypeLocationNames":149,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41,"fbjs/lib/warning":51}],181:[function(require,module,exports){
+},{"./ReactComponentTreeDevtool":89,"./ReactPropTypeLocationNames":136,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28,"fbjs/lib/warning":38}],168:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -27888,7 +26710,7 @@ var createMicrosoftUnsafeLocalFunction = function (func) {
 };
 
 module.exports = createMicrosoftUnsafeLocalFunction;
-},{}],182:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -27970,7 +26792,7 @@ function dangerousStyleValue(name, value, component) {
 
 module.exports = dangerousStyleValue;
 }).call(this,require('_process'))
-},{"./CSSProperty":71,"_process":54,"fbjs/lib/warning":51}],183:[function(require,module,exports){
+},{"./CSSProperty":58,"_process":41,"fbjs/lib/warning":38}],170:[function(require,module,exports){
 /**
  * Copyright 2016-present, Facebook, Inc.
  * All rights reserved.
@@ -28093,7 +26915,7 @@ function escapeTextContentForBrowser(text) {
 }
 
 module.exports = escapeTextContentForBrowser;
-},{}],184:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -28156,7 +26978,7 @@ function findDOMNode(componentOrElement) {
 
 module.exports = findDOMNode;
 }).call(this,require('_process'))
-},{"./ReactCurrentOwner":104,"./ReactDOMComponentTree":109,"./ReactInstanceMap":139,"./getHostComponentFromComposite":191,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41,"fbjs/lib/warning":51}],185:[function(require,module,exports){
+},{"./ReactCurrentOwner":91,"./ReactDOMComponentTree":96,"./ReactInstanceMap":126,"./getHostComponentFromComposite":178,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28,"fbjs/lib/warning":38}],172:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -28217,7 +27039,7 @@ function flattenChildren(children, selfDebugID) {
 
 module.exports = flattenChildren;
 }).call(this,require('_process'))
-},{"./KeyEscapeUtils":91,"./ReactComponentTreeDevtool":102,"./traverseAllChildren":206,"_process":54,"fbjs/lib/warning":51}],186:[function(require,module,exports){
+},{"./KeyEscapeUtils":78,"./ReactComponentTreeDevtool":89,"./traverseAllChildren":193,"_process":41,"fbjs/lib/warning":38}],173:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -28248,7 +27070,7 @@ var forEachAccumulated = function (arr, cb, scope) {
 };
 
 module.exports = forEachAccumulated;
-},{}],187:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -28299,7 +27121,7 @@ function getEventCharCode(nativeEvent) {
 }
 
 module.exports = getEventCharCode;
-},{}],188:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -28402,7 +27224,7 @@ function getEventKey(nativeEvent) {
 }
 
 module.exports = getEventKey;
-},{"./getEventCharCode":187}],189:[function(require,module,exports){
+},{"./getEventCharCode":174}],176:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -28446,7 +27268,7 @@ function getEventModifierState(nativeEvent) {
 }
 
 module.exports = getEventModifierState;
-},{}],190:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -28482,7 +27304,7 @@ function getEventTarget(nativeEvent) {
 }
 
 module.exports = getEventTarget;
-},{}],191:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -28513,7 +27335,7 @@ function getHostComponentFromComposite(inst) {
 }
 
 module.exports = getHostComponentFromComposite;
-},{"./ReactNodeTypes":146}],192:[function(require,module,exports){
+},{"./ReactNodeTypes":133}],179:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -28554,7 +27376,7 @@ function getIteratorFn(maybeIterable) {
 }
 
 module.exports = getIteratorFn;
-},{}],193:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -28629,7 +27451,7 @@ function getNodeForCharacterOffset(root, offset) {
 }
 
 module.exports = getNodeForCharacterOffset;
-},{}],194:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -28663,7 +27485,7 @@ function getTextContentAccessor() {
 }
 
 module.exports = getTextContentAccessor;
-},{"fbjs/lib/ExecutionEnvironment":27}],195:[function(require,module,exports){
+},{"fbjs/lib/ExecutionEnvironment":14}],182:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -28765,7 +27587,7 @@ function getVendorPrefixedEventName(eventName) {
 }
 
 module.exports = getVendorPrefixedEventName;
-},{"fbjs/lib/ExecutionEnvironment":27}],196:[function(require,module,exports){
+},{"fbjs/lib/ExecutionEnvironment":14}],183:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -28913,7 +27735,7 @@ function instantiateReactComponent(node) {
 
 module.exports = instantiateReactComponent;
 }).call(this,require('_process'))
-},{"./ReactCompositeComponent":103,"./ReactEmptyComponent":130,"./ReactHostComponent":135,"./ReactInstrumentation":140,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41,"fbjs/lib/warning":51,"object-assign":52}],197:[function(require,module,exports){
+},{"./ReactCompositeComponent":90,"./ReactEmptyComponent":117,"./ReactHostComponent":122,"./ReactInstrumentation":127,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28,"fbjs/lib/warning":38,"object-assign":39}],184:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -28974,7 +27796,7 @@ function isEventSupported(eventNameSuffix, capture) {
 }
 
 module.exports = isEventSupported;
-},{"fbjs/lib/ExecutionEnvironment":27}],198:[function(require,module,exports){
+},{"fbjs/lib/ExecutionEnvironment":14}],185:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -29016,7 +27838,7 @@ function isTextInputElement(elem) {
 }
 
 module.exports = isTextInputElement;
-},{}],199:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -29057,7 +27879,7 @@ function onlyChild(children) {
 
 module.exports = onlyChild;
 }).call(this,require('_process'))
-},{"./ReactElement":128,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41}],200:[function(require,module,exports){
+},{"./ReactElement":115,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28}],187:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -29084,7 +27906,7 @@ function quoteAttributeValueForBrowser(value) {
 }
 
 module.exports = quoteAttributeValueForBrowser;
-},{"./escapeTextContentForBrowser":183}],201:[function(require,module,exports){
+},{"./escapeTextContentForBrowser":170}],188:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -29123,7 +27945,7 @@ function reactProdInvariant(code) {
 }
 
 module.exports = reactProdInvariant;
-},{}],202:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -29140,7 +27962,7 @@ module.exports = reactProdInvariant;
 var ReactMount = require('./ReactMount');
 
 module.exports = ReactMount.renderSubtreeIntoContainer;
-},{"./ReactMount":143}],203:[function(require,module,exports){
+},{"./ReactMount":130}],190:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -29239,7 +28061,7 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 module.exports = setInnerHTML;
-},{"./DOMNamespaces":77,"./createMicrosoftUnsafeLocalFunction":181,"fbjs/lib/ExecutionEnvironment":27}],204:[function(require,module,exports){
+},{"./DOMNamespaces":64,"./createMicrosoftUnsafeLocalFunction":168,"fbjs/lib/ExecutionEnvironment":14}],191:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -29288,7 +28110,7 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 module.exports = setTextContent;
-},{"./escapeTextContentForBrowser":183,"./setInnerHTML":203,"fbjs/lib/ExecutionEnvironment":27}],205:[function(require,module,exports){
+},{"./escapeTextContentForBrowser":170,"./setInnerHTML":190,"fbjs/lib/ExecutionEnvironment":14}],192:[function(require,module,exports){
 /**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -29331,7 +28153,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 }
 
 module.exports = shouldUpdateReactComponent;
-},{}],206:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-present, Facebook, Inc.
@@ -29494,7 +28316,7 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 }).call(this,require('_process'))
-},{"./KeyEscapeUtils":91,"./ReactCurrentOwner":104,"./ReactElement":128,"./getIteratorFn":192,"./reactProdInvariant":201,"_process":54,"fbjs/lib/invariant":41,"fbjs/lib/warning":51}],207:[function(require,module,exports){
+},{"./KeyEscapeUtils":78,"./ReactCurrentOwner":91,"./ReactElement":115,"./getIteratorFn":179,"./reactProdInvariant":188,"_process":41,"fbjs/lib/invariant":28,"fbjs/lib/warning":38}],194:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2015-present, Facebook, Inc.
@@ -29866,9 +28688,1208 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = validateDOMNesting;
 }).call(this,require('_process'))
-},{"_process":54,"fbjs/lib/emptyFunction":33,"fbjs/lib/warning":51,"object-assign":52}],208:[function(require,module,exports){
+},{"_process":41,"fbjs/lib/emptyFunction":20,"fbjs/lib/warning":38,"object-assign":39}],195:[function(require,module,exports){
 'use strict';
 
 module.exports = require('./lib/React');
 
-},{"./lib/React":94}]},{},[14]);
+},{"./lib/React":81}],196:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactMotion = require('react-motion');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Arc = function (_React$Component) {
+  _inherits(Arc, _React$Component);
+
+  function Arc() {
+    _classCallCheck(this, Arc);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Arc).apply(this, arguments));
+  }
+
+  _createClass(Arc, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props;
+      var descriptor = _props.descriptor;
+      var fill = _props.fill;
+      var arc = _props.arc;
+      var text = _props.text;
+      var outerRadius = _props.outerRadius;
+      var active = _props.active;
+
+
+      var inline = {
+        textAnchor: 'middle',
+        alignmentBaseline: 'middle'
+      };
+
+      return _react2.default.createElement(
+        _reactMotion.Motion,
+        { style: { val: active ? (0, _reactMotion.spring)(outerRadius) : (0, _reactMotion.spring)(outerRadius - 20) } },
+        function (style) {
+          descriptor.outerRadius = style.val;
+          return _react2.default.createElement(
+            'g',
+            { onMouseOver: _this2.props.onMouseOver, onMouseOut: _this2.props.onMouseOut },
+            _react2.default.createElement('path', { d: arc(descriptor), fill: fill }),
+            _react2.default.createElement(
+              'text',
+              {
+                dy: '0.35em',
+                style: inline,
+                transform: 'translate(' + arc.centroid(descriptor) + ')'
+              },
+              text
+            )
+          );
+        }
+      );
+    }
+  }]);
+
+  return Arc;
+}(_react2.default.Component);
+
+Arc.propTypes = {
+  value: _react2.default.PropTypes.number,
+  fill: _react2.default.PropTypes.string,
+  text: _react2.default.PropTypes.string,
+  arc: _react2.default.PropTypes.func,
+  descriptor: _react2.default.PropTypes.shape({
+    value: _react2.default.PropTypes.number,
+    startAngle: _react2.default.PropTypes.number,
+    endAngle: _react2.default.PropTypes.number,
+    padAngle: _react2.default.PropTypes.number,
+    data: _react2.default.PropTypes.number
+  }),
+  onMouseOver: _react2.default.PropTypes.func,
+  onMouseOut: _react2.default.PropTypes.func
+};
+exports.default = Arc;
+
+},{"react":195,"react-motion":50}],197:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _d3Shape = require('d3-shape');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Area = function (_React$Component) {
+  _inherits(Area, _React$Component);
+
+  function Area() {
+    _classCallCheck(this, Area);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Area).apply(this, arguments));
+  }
+
+  _createClass(Area, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var style = {
+        fill: 'steelblue',
+        opacity: 0.25
+      };
+
+      var area = (0, _d3Shape.area)().x(function (d, i) {
+        return _this2.props.xScale(i);
+      }).y0(this.props.height).y1(function (d) {
+        return _this2.props.yScale(d);
+      });
+
+      return _react2.default.createElement('path', {
+        style: style,
+        d: area(this.props.data)
+      });
+    }
+  }]);
+
+  return Area;
+}(_react2.default.Component);
+
+exports.default = Area;
+
+},{"d3-shape":10,"react":195}],198:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _d3Scale = require('d3-scale');
+
+var _d3Array = require('d3-array');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Chart = function (_React$Component) {
+  _inherits(Chart, _React$Component);
+
+  function Chart() {
+    _classCallCheck(this, Chart);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Chart).apply(this, arguments));
+  }
+
+  _createClass(Chart, [{
+    key: 'render',
+    value: function render() {
+      // get highest value from all data arrays
+      var currentMax = 0;
+      _react2.default.Children.forEach(this.props.children, function (child) {
+        var m = (0, _d3Array.max)(child.props.data || []);
+        if (m > currentMax) {
+          currentMax = m;
+        }
+      });
+
+      var margin = this.props.margin;
+      var width = this.props.width - margin.left - margin.right;
+      var height = this.props.height - margin.top - margin.bottom;
+      var data = this.props.data;
+
+      // x scale
+      var xScale = (0, _d3Scale.scaleLinear)().domain([0, data.length - 1]).range([0, width]);
+
+      // y scale
+      var yScale = (0, _d3Scale.scaleLinear)().domain([0, currentMax]).range([height, 0]);
+
+      var children = _react2.default.Children.map(this.props.children, function (child) {
+        return _react2.default.cloneElement(child, {
+          width: width,
+          height: height,
+          margin: margin,
+          data: child.props.data || data,
+          xScale: xScale,
+          yScale: yScale
+        });
+      });
+
+      return _react2.default.createElement(
+        'svg',
+        {
+          width: this.props.width,
+          height: this.props.height
+        },
+        _react2.default.createElement(
+          'g',
+          { transform: 'translate(' + margin.left + ', ' + margin.top + ')' },
+          children
+        )
+      );
+    }
+  }]);
+
+  return Chart;
+}(_react2.default.Component);
+
+Chart.propTypes = {
+  width: _react2.default.PropTypes.number,
+  height: _react2.default.PropTypes.number,
+  margin: _react2.default.PropTypes.object
+};
+Chart.defaultProps = {
+  width: 960,
+  height: 500,
+  margin: {
+    top: 20,
+    right: 10,
+    bottom: 20,
+    left: 10
+  }
+};
+exports.default = Chart;
+
+},{"d3-array":2,"d3-scale":8,"react":195}],199:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Circles = function (_React$Component) {
+  _inherits(Circles, _React$Component);
+
+  function Circles() {
+    var _Object$getPrototypeO;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Circles);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Circles)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.onMouseOver = function (event) {
+      _this.props.onMouseOver(event);
+    }, _this.onMouseOut = function (event) {
+      _this.props.onMouseOut(event);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Circles, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props;
+      var data = _props.data;
+      var xScale = _props.xScale;
+      var yScale = _props.yScale;
+
+
+      var circles = data.map(function (d, i) {
+        return _react2.default.createElement('circle', {
+          key: i,
+          r: _this2.props.radius,
+          cx: xScale(i),
+          cy: yScale(d),
+          fill: _this2.props.fill,
+          stroke: _this2.props.stroke,
+          strokeWidth: _this2.props.strokeWidth,
+          onMouseOver: _this2.onMouseOver,
+          onMouseOut: _this2.onMouseOut
+        });
+      });
+
+      return _react2.default.createElement(
+        'g',
+        null,
+        circles
+      );
+    }
+  }]);
+
+  return Circles;
+}(_react2.default.Component);
+
+Circles.defaultProps = {
+  radius: 5,
+  fill: '#000',
+  stroke: '#000',
+  strokeWidth: 0
+};
+exports.default = Circles;
+
+},{"react":195}],200:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Crosshair = function (_React$Component) {
+  _inherits(Crosshair, _React$Component);
+
+  function Crosshair() {
+    _classCallCheck(this, Crosshair);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Crosshair).apply(this, arguments));
+  }
+
+  _createClass(Crosshair, [{
+    key: 'render',
+    value: function render() {
+      var style = {
+        shapeRendering: 'crispEdges',
+        stroke: '#000',
+        fill: 'none',
+        strokeWidth: '1'
+      };
+
+      var horizontal;
+      if (this.props.horizontal) {
+        horizontal = _react2.default.createElement('line', {
+          x1: 0,
+          y1: this.props.y,
+          x2: this.props.width,
+          y2: this.props.y,
+          style: style
+        });
+      }
+
+      var vertical;
+      if (this.props.vertical) {
+        vertical = _react2.default.createElement('line', {
+          x1: this.props.x,
+          y1: 0,
+          x2: this.props.x,
+          y2: this.props.height,
+          style: style
+        });
+      }
+
+      return _react2.default.createElement(
+        'g',
+        null,
+        horizontal,
+        vertical
+      );
+    }
+  }]);
+
+  return Crosshair;
+}(_react2.default.Component);
+
+Crosshair.propTypes = {
+  x: _react2.default.PropTypes.number,
+  y: _react2.default.PropTypes.number,
+  horizontal: _react2.default.PropTypes.bool,
+  vertical: _react2.default.PropTypes.bool
+};
+exports.default = Crosshair;
+
+},{"react":195}],201:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _d3Shape = require('d3-shape');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Line = function (_React$Component) {
+  _inherits(Line, _React$Component);
+
+  function Line() {
+    _classCallCheck(this, Line);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Line).apply(this, arguments));
+  }
+
+  _createClass(Line, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      // line is not yet done
+      // https://github.com/mbostock/d3/issues/2461
+      var line = (0, _d3Shape.line)().x(function (d, i) {
+        return _this2.props.xScale(i);
+      }).y(function (d) {
+        return _this2.props.yScale(d);
+      });
+
+      return _react2.default.createElement('path', {
+        d: line(this.props.data),
+        fill: this.props.fill,
+        strokeWidth: this.props.strokeWidth,
+        stroke: this.props.stroke
+      });
+    }
+  }]);
+
+  return Line;
+}(_react2.default.Component);
+
+Line.defaultProps = {
+  fill: 'none',
+  strokeWidth: 1,
+  stroke: 'steelblue'
+};
+exports.default = Line;
+
+},{"d3-shape":10,"react":195}],202:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _d3Selection = require('d3-selection');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Overlay = function (_React$Component) {
+  _inherits(Overlay, _React$Component);
+
+  function Overlay() {
+    var _Object$getPrototypeO;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Overlay);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Overlay)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.onMouseMove = function (event) {
+      var _mouse = (0, _d3Selection.mouse)(_this.rect);
+
+      var _mouse2 = _slicedToArray(_mouse, 2);
+
+      var x = _mouse2[0];
+      var y = _mouse2[1];
+
+      var x0 = _this.props.xScale.invert(x);
+      var y0 = _this.props.yScale.invert(y);
+      _this.props.onMouseMove({
+        mouse: [x, y],
+        data: [x0, y0]
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Overlay, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props;
+      var width = _props.width;
+      var height = _props.height;
+
+
+      var style = {
+        fill: 'none',
+        pointerEvents: 'all'
+      };
+
+      return _react2.default.createElement('rect', {
+        ref: function ref(c) {
+          _this2.rect = c;
+        },
+        width: width,
+        height: height,
+        style: style,
+        onMouseMove: function onMouseMove(event) {
+          (0, _d3Selection.customEvent)(event.nativeEvent, _this2.onMouseMove);
+        }
+      });
+    }
+  }]);
+
+  return Overlay;
+}(_react2.default.Component);
+
+exports.default = Overlay;
+
+},{"d3-selection":9,"react":195}],203:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _d3Shape = require('d3-shape');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Piechart = function (_React$Component) {
+  _inherits(Piechart, _React$Component);
+
+  function Piechart() {
+    _classCallCheck(this, Piechart);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(Piechart).apply(this, arguments));
+  }
+
+  _createClass(Piechart, [{
+    key: 'render',
+    value: function render() {
+      // var radius = Math.min(this.props.width, this.props.height) / 2
+      var _props = this.props;
+      var width = _props.width;
+      var height = _props.height;
+      var innerRadius = _props.innerRadius;
+      var outerRadius = _props.outerRadius;
+
+      // construct new arc generator
+      // https://github.com/mbostock/d3/wiki/SVG-Shapes#arc
+
+      var arc = (0, _d3Shape.arc)().padRadius(outerRadius).innerRadius(innerRadius);
+
+      // get values from Arc components
+      var values = [];
+      _react2.default.Children.forEach(this.props.children, function (c) {
+        values.push(c.props.value);
+      });
+
+      // construct new pie function
+      // return function
+      // https://github.com/mbostock/d3/wiki/Pie-Layout#_pie
+      var pie = (0, _d3Shape.pie)().padAngle(0.02).sort(null);
+
+      // evaluate pie function on array of values
+      // return array of arc descriptors
+      var descriptors = pie(values);
+
+      var children = _react2.default.Children.map(this.props.children, function (child, index) {
+        return _react2.default.cloneElement(child, {
+          descriptor: descriptors[index],
+          arc: arc,
+          outerRadius: outerRadius
+        });
+      });
+
+      return _react2.default.createElement(
+        'svg',
+        { width: width, height: height },
+        _react2.default.createElement(
+          'g',
+          { transform: 'translate(' + width / 2 + ',' + height / 2 + ')' },
+          children
+        )
+      );
+    }
+  }]);
+
+  return Piechart;
+}(_react2.default.Component);
+
+Piechart.propTypes = {
+  width: _react2.default.PropTypes.number,
+  height: _react2.default.PropTypes.number
+};
+Piechart.defaultProps = {
+  width: 960,
+  height: 500
+};
+exports.default = Piechart;
+
+},{"d3-shape":10,"react":195}],204:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var styles = {
+  d: {
+    shapeRendering: 'crispEdges',
+    stroke: '#000',
+    fill: 'none',
+    strokeWidth: '1'
+  }
+};
+
+var XAxis = function (_React$Component) {
+  _inherits(XAxis, _React$Component);
+
+  function XAxis() {
+    _classCallCheck(this, XAxis);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(XAxis).apply(this, arguments));
+  }
+
+  _createClass(XAxis, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props;
+      var data = _props.data;
+      var width = _props.width;
+      var height = _props.height;
+      var outerTickSize = _props.outerTickSize;
+      var xScale = _props.xScale;
+
+
+      var children = _react2.default.Children.map(this.props.children, function (child) {
+        return _react2.default.cloneElement(child, { data: data, xScale: xScale });
+      });
+
+      return _react2.default.createElement(
+        'g',
+        { transform: 'translate(0, ' + height + ')' },
+        children,
+        _react2.default.createElement('path', {
+          d: 'M0,' + outerTickSize + 'V0H' + width + 'V' + outerTickSize,
+          style: styles.d
+        })
+      );
+    }
+  }]);
+
+  return XAxis;
+}(_react2.default.Component);
+
+XAxis.propTypes = {
+  width: _react2.default.PropTypes.number,
+  height: _react2.default.PropTypes.number,
+  outerTickSize: _react2.default.PropTypes.number
+};
+XAxis.defaultProps = {
+  outerTickSize: 6
+};
+exports.default = XAxis;
+
+},{"react":195}],205:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var style = {
+  shapeRendering: 'crispEdges'
+};
+
+var XGrid = function (_React$Component) {
+  _inherits(XGrid, _React$Component);
+
+  function XGrid() {
+    _classCallCheck(this, XGrid);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(XGrid).apply(this, arguments));
+  }
+
+  _createClass(XGrid, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props;
+      var width = _props.width;
+      var yScale = _props.yScale;
+
+
+      var lines = yScale.ticks(this.props.ticks).map(function (d, i) {
+        return _react2.default.createElement('line', {
+          key: i,
+          x1: '0',
+          y1: yScale(d),
+          x2: width,
+          y2: yScale(d),
+          fill: 'none',
+          stroke: 'lightgrey',
+          strokeWidth: '1',
+          style: style
+        });
+      });
+
+      return _react2.default.createElement(
+        'g',
+        null,
+        lines
+      );
+    }
+  }]);
+
+  return XGrid;
+}(_react2.default.Component);
+
+XGrid.defaultProps = {
+  ticks: 10
+};
+exports.default = XGrid;
+
+},{"react":195}],206:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var styles = {
+  line: {
+    shapeRendering: 'crispEdges',
+    stroke: '#000',
+    fill: 'none',
+    strokeWidth: '1'
+  },
+  text: {
+    textAnchor: 'middle'
+  }
+};
+
+var XTicks = function (_React$Component) {
+  _inherits(XTicks, _React$Component);
+
+  function XTicks() {
+    _classCallCheck(this, XTicks);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(XTicks).apply(this, arguments));
+  }
+
+  _createClass(XTicks, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props;
+      var xScale = _props.xScale;
+      var innerTickSize = _props.innerTickSize;
+      var tickPadding = _props.tickPadding;
+
+      var tickSpacing = Math.max(innerTickSize, 0) + tickPadding;
+
+      var ticks = this.props.data.map(function (d, i) {
+        return _react2.default.createElement(
+          'g',
+          { key: i, transform: 'translate(' + xScale(i) + ',0)' },
+          _react2.default.createElement('line', { y2: innerTickSize, x2: '0', style: styles.line }),
+          _react2.default.createElement(
+            'text',
+            { dy: '.71em', y: tickSpacing, x: '0', style: styles.text },
+            i
+          )
+        );
+      });
+
+      return _react2.default.createElement(
+        'g',
+        null,
+        ticks
+      );
+    }
+  }]);
+
+  return XTicks;
+}(_react2.default.Component);
+
+XTicks.propTypes = {
+  data: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.array, _react2.default.PropTypes.object]),
+  xScale: _react2.default.PropTypes.func,
+  innerTickSize: _react2.default.PropTypes.number,
+  tickPadding: _react2.default.PropTypes.number
+};
+XTicks.defaultProps = {
+  innerTickSize: 6,
+  tickPadding: 3
+};
+exports.default = XTicks;
+
+},{"react":195}],207:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var style = {
+  shapeRendering: 'crispEdges'
+};
+
+var YAxis = function (_React$Component) {
+  _inherits(YAxis, _React$Component);
+
+  function YAxis() {
+    _classCallCheck(this, YAxis);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(YAxis).apply(this, arguments));
+  }
+
+  _createClass(YAxis, [{
+    key: 'render',
+    value: function render() {
+      var _props = this.props;
+      var height = _props.height;
+      var outerTickSize = _props.outerTickSize;
+
+
+      return _react2.default.createElement(
+        'g',
+        null,
+        _react2.default.createElement('path', {
+          d: 'M' + -outerTickSize + ',0H0V' + height + 'H' + -outerTickSize,
+          stroke: this.props.stroke,
+          fill: this.props.fill,
+          strokeWidth: this.props.strokeWidth,
+          style: style
+        })
+      );
+    }
+  }]);
+
+  return YAxis;
+}(_react2.default.Component);
+
+YAxis.defaultProps = {
+  outerTickSize: 6,
+  stroke: '#000',
+  fill: 'none',
+  strokeWidth: '1'
+};
+exports.default = YAxis;
+
+},{"react":195}],208:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var style = {
+  shapeRendering: 'crispEdges'
+};
+
+var YGrid = function (_React$Component) {
+  _inherits(YGrid, _React$Component);
+
+  function YGrid() {
+    _classCallCheck(this, YGrid);
+
+    return _possibleConstructorReturn(this, Object.getPrototypeOf(YGrid).apply(this, arguments));
+  }
+
+  _createClass(YGrid, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props;
+      var height = _props.height;
+      var xScale = _props.xScale;
+      var ticks = _props.ticks;
+
+
+      var lines = xScale.ticks(ticks).map(function (d, i) {
+        return _react2.default.createElement('line', {
+          key: i,
+          x1: xScale(d),
+          y1: '0',
+          x2: xScale(d),
+          y2: height,
+          fill: _this2.props.fill,
+          stroke: _this2.props.stroke,
+          strokeWidth: _this2.props.strokeWidth,
+          style: style
+        });
+      });
+
+      return _react2.default.createElement(
+        'g',
+        null,
+        lines
+      );
+    }
+  }]);
+
+  return YGrid;
+}(_react2.default.Component);
+
+YGrid.defaultProps = {
+  ticks: 10,
+  fill: 'none',
+  stroke: 'lightgrey',
+  strokeWidth: '1'
+};
+exports.default = YGrid;
+
+},{"react":195}],209:[function(require,module,exports){
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _ = require('../');
+
+var _d3Scale = require('d3-scale');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var data = [10, 5, 20, 16, 30, 51, 40, 19, 50];
+
+var App = function (_React$Component) {
+  _inherits(App, _React$Component);
+
+  function App(props) {
+    _classCallCheck(this, App);
+
+    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+
+    _this.onMouseOver = function (event) {
+      event.target.setAttribute('r', 12);
+    };
+
+    _this.onMouseOut = function (event) {
+      event.target.setAttribute('r', 10);
+    };
+
+    _this.onMouseMove = function (coords) {
+      _this.setState({
+        mouse: coords.mouse
+      });
+    };
+
+    _this.onMouseOverArc = function () {
+      _this.setState({
+        active: true
+      });
+    };
+
+    _this.onMouseOutArc = function () {
+      _this.setState({
+        active: false
+      });
+    };
+
+    _this.state = {
+      mouse: [0, 0],
+      active: false
+    };
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      var color = (0, _d3Scale.scaleOrdinal)(_d3Scale.schemeCategory10);
+
+      var width = 960;
+      var height = 500;
+      var outerRadius = height / 2 - 20;
+      var innerRadius = outerRadius / 3;
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          _.Piechart,
+          { width: width, height: height, innerRadius: innerRadius, outerRadius: outerRadius },
+          _react2.default.createElement(_.Arc, {
+            value: 20,
+            fill: color(0),
+            text: 'London',
+            onMouseOver: this.onMouseOverArc,
+            onMouseOut: this.onMouseOutArc,
+            active: this.state.active
+          }),
+          _react2.default.createElement(_.Arc, { value: 10, fill: color(1), text: 'Berlin' }),
+          _react2.default.createElement(_.Arc, { value: 50, fill: color(2), text: 'Munich' })
+        ),
+        _react2.default.createElement(
+          _.Chart,
+          { data: data },
+          _react2.default.createElement(_.XGrid, { ticks: '10' }),
+          _react2.default.createElement(_.YGrid, { ticks: '15' }),
+          _react2.default.createElement(
+            _.XAxis,
+            null,
+            _react2.default.createElement(_.XTicks, null)
+          ),
+          _react2.default.createElement(_.YAxis, null),
+          _react2.default.createElement(_.Line, {
+            strokeWidth: '2'
+          }),
+          _react2.default.createElement(_.Area, null),
+          _react2.default.createElement(_.Overlay, {
+            onMouseMove: this.onMouseMove
+          }),
+          _react2.default.createElement(_.Circles, {
+            radius: '10',
+            fill: 'orange',
+            onMouseOver: this.onMouseOver,
+            onMouseOut: this.onMouseOut
+          }),
+          _react2.default.createElement(_.Line, {
+            data: [1, 10, 7, 30, 20, 60, 35],
+            stroke: 'red',
+            strokeWidth: '2'
+          }),
+          _react2.default.createElement(_.Crosshair, {
+            x: this.state.mouse[0],
+            y: this.state.mouse[1],
+            horizontal: true,
+            vertical: true
+          })
+        )
+      );
+    }
+  }]);
+
+  return App;
+}(_react2.default.Component);
+
+_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('react'));
+
+},{"../":1,"d3-scale":8,"react":195,"react-dom":43}]},{},[209]);

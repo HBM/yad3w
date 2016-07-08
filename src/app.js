@@ -1,19 +1,21 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Chart from './Chart'
-import Line from './Line'
-import Circles from './Circles'
-import XAxis from './XAxis'
-import XTicks from './XTicks'
-import YAxis from './YAxis'
-import XGrid from './XGrid'
-import YGrid from './YGrid'
-import Overlay from './Overlay'
-import Crosshair from './Crosshair'
-import Area from './Area'
-import Piechart from './Piechart'
-import Arc from './Arc'
+import {
+  Chart,
+  Line,
+  Circles,
+  XAxis,
+  XTicks,
+  YAxis,
+  XGrid,
+  YGrid,
+  Overlay,
+  Crosshair,
+  Area,
+  Piechart,
+  Arc
+} from '../'
 import {scaleOrdinal, schemeCategory10} from 'd3-scale'
 
 var data = [10, 5, 20, 16, 30, 51, 40, 19, 50]

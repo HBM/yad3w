@@ -1,17 +1,17 @@
 
 BIN = ./node_modules/.bin
 BROWSERIFY = $(BIN)/browserify
-ESLINT = $(BIN)/eslint
+STANDARD = $(BIN)/standard
 
-all: js/app.bundle.js
+all: standard js/app.bundle.js
+
+.PHONY: standard
+standard:
+	$(STANDARD)
 
 %.bundle.js: %.js
-	$(BROWSERIFY) $< -t [ babelify --stage 0 ] -o $@
+	$(BROWSERIFY) $< -t [ babelify --presets [es2015 stage-0 react] ] -o $@
 
-lint: ./js/*.js
-	$(ESLINT) $^
-
+.PHONY: clean
 clean:
-	rm ./js/app.bundle.js
-
-.PHONY: lint clean
+	rm -rf ./js/app.bundle.js

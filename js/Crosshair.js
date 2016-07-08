@@ -1,41 +1,24 @@
-'use strict';
 
-var React = require('react');
+import React from 'react'
 
+export default class Crosshair extends React.Component {
 
-
-/**
- * Crosshair component
- */
-class Crosshair extends React.Component {
-
-
-
-  /**
-   * Property types
-   */
   static propTypes = {
     x: React.PropTypes.number,
     y: React.PropTypes.number,
     horizontal: React.PropTypes.bool,
     vertical: React.PropTypes.bool
-  };
+  }
 
-
-
-  /**
-   * Render component
-   */
-  render() {
-
-    var style = {
+  render () {
+    const style = {
       shapeRendering: 'crispEdges',
       stroke: '#000',
       fill: 'none',
       strokeWidth: '1'
-    };
+    }
 
-    var horizontal;
+    var horizontal
     if (this.props.horizontal) {
       horizontal = (
         <line
@@ -45,10 +28,10 @@ class Crosshair extends React.Component {
           y2={this.props.y}
           style={style}
         />
-      );
+      )
     }
 
-    var vertical;
+    var vertical
     if (this.props.vertical) {
       vertical = (
         <line
@@ -58,7 +41,7 @@ class Crosshair extends React.Component {
           y2={this.props.height}
           style={style}
         />
-      );
+      )
     }
 
     return (
@@ -66,14 +49,8 @@ class Crosshair extends React.Component {
         {horizontal}
         {vertical}
       </g>
-    );
+    )
   }
 
 }
 
-
-
-/**
- * Export component
- */
-module.exports = Crosshair;

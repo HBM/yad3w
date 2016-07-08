@@ -1,20 +1,9 @@
-'use strict';
 
-var React = require('react');
-var {Spring} = require('react-motion');
+import React from 'react'
+import {Motion, spring} from 'react-motion'
 
+export default class Arc extends React.Component {
 
-
-/**
- * Arc component
- */
-class Arc extends React.Component {
-
-
-
-  /**
-   * Property types
-   */
   static propTypes = {
     value: React.PropTypes.number,
     fill: React.PropTypes.string,
@@ -29,49 +18,36 @@ class Arc extends React.Component {
     }),
     onMouseOver: React.PropTypes.func,
     onMouseOut: React.PropTypes.func
-  };
+  }
 
+  render () {
+    let {descriptor, fill, arc, text, outerRadius, active} = this.props
 
-
-  /**
-   * Render component
-   */
-  render() {
-
-    let {descriptor, fill, arc, text, outerRadius, active} = this.props;
-
-    var style = {
+    const inline = {
       textAnchor: 'middle',
       alignmentBaseline: 'middle'
-    };
+    }
 
     return (
-      <Spring endValue={{val: active ? outerRadius : outerRadius - 20}}>
-        {interpolated => {
-          descriptor.outerRadius = interpolated.val;
+      <Motion style={{val: active ? spring(outerRadius) : spring(outerRadius - 20)}}>
+        {style => {
+          descriptor.outerRadius = style.val
           return (
             <g onMouseOver={this.props.onMouseOver} onMouseOut={this.props.onMouseOut}>
               <path d={arc(descriptor)} fill={fill} />
               <text
-                dy="0.35em"
-                style={style}
+                dy='0.35em'
+                style={inline}
                 transform={`translate(${arc.centroid(descriptor)})`}
               >
                 {text}
               </text>
             </g>
-          );
+          )
         }}
-      </Spring>
+      </Motion>
 
-    );
+    )
   }
 
 }
-
-
-
-/**
- * Export component
- */
-module.exports = Arc;

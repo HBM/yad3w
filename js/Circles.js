@@ -1,61 +1,25 @@
-'use strict';
 
-var React = require('react');
+import React from 'react'
 
+export default class Circles extends React.Component {
 
-
-/**
- * Circle component
- */
-class Circles extends React.Component {
-
-
-
-  /**
-   * Default properties
-   */
   static defaultProps = {
     radius: 5,
     fill: '#000',
     stroke: '#000',
     strokeWidth: 0
-  };
-
-
-
-  /**
-   * Constructor function
-   */
-  constructor(props) {
-    super(props);
   }
 
-
-
-  /**
-   * Handle mouse over event
-   */
   onMouseOver = (event) => {
-    this.props.onMouseOver(event);
+    this.props.onMouseOver(event)
   }
 
-
-
-  /**
-   * Handle mouse out event
-   */
   onMouseOut = (event) => {
-    this.props.onMouseOut(event);
+    this.props.onMouseOut(event)
   }
 
-
-
-  /**
-   * Render component
-   */
-  render() {
-
-    var {data, xScale, yScale} = this.props;
+  render () {
+    var {data, xScale, yScale} = this.props
 
     var circles = data.map((d, i) =>
       <circle
@@ -69,20 +33,13 @@ class Circles extends React.Component {
         onMouseOver={this.onMouseOver}
         onMouseOut={this.onMouseOut}
       />
-    );
+    )
 
     return (
       <g>
         {circles}
       </g>
-    );
+    )
   }
 
 }
-
-
-
-/**
- * Export component
- */
-module.exports = Circles;

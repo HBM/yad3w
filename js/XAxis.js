@@ -1,66 +1,33 @@
-'use strict';
 
-var React = require('react');
+import React from 'react'
 
-
-
-var styles = {
+const styles = {
   d: {
     shapeRendering: 'crispEdges',
     stroke: '#000',
     fill: 'none',
     strokeWidth: '1'
   }
-};
+}
 
+export default class XAxis extends React.Component {
 
-
-/**
- * Axis component
- */
-class XAxis extends React.Component {
-
-
-
-  /**
-   * Property types
-   */
   static propTypes = {
     width: React.PropTypes.number,
     height: React.PropTypes.number,
     outerTickSize: React.PropTypes.number
-  };
-
-
-
-  /**
-   * Default properties
-   */
-  static defaultProps = {
-    outerTickSize: 6
-  };
-
-
-
-  /**
-   * Constructor function
-   */
-  constructor(props) {
-    super(props);
   }
 
+  static defaultProps = {
+    outerTickSize: 6
+  }
 
-
-  /**
-   * Render component
-   */
-  render() {
-
-    var {data, width, height, outerTickSize, xScale} = this.props;
+  render () {
+    var {data, width, height, outerTickSize, xScale} = this.props
 
     var children = React.Children.map(this.props.children, child =>
-      React.addons.cloneWithProps(child, {data, xScale})
-    );
+      React.cloneElement(child, {data, xScale})
+    )
 
     return (
       <g transform={'translate(0, ' + height + ')'}>
@@ -70,11 +37,7 @@ class XAxis extends React.Component {
           style={styles.d}
         />
       </g>
-    );
+    )
   }
 
 }
-
-
-
-module.exports = XAxis;

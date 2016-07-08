@@ -1,52 +1,21 @@
-'use strict';
 
-var React = require('react');
+import React from 'react'
 
-
-
-/**
- * CSS
- */
-var style = {
+const style = {
   shapeRendering: 'crispEdges'
-};
+}
 
+export default class YAxis extends React.Component {
 
-
-/**
- * YAxis component
- */
-class YAxis extends React.Component {
-
-
-
-  /**
-   * Default properties
-   */
   static defaultProps = {
     outerTickSize: 6,
     stroke: '#000',
     fill: 'none',
     strokeWidth: '1'
-  };
-
-
-
-  /**
-   * Constructor function
-   */
-  constructor(props) {
-    super(props);
   }
 
-
-
-  /**
-   * Render component
-   */
-  render() {
-
-    var {height, outerTickSize} = this.props;
+  render () {
+    var {height, outerTickSize} = this.props
 
     return (
       <g>
@@ -58,15 +27,7 @@ class YAxis extends React.Component {
           style={style}
         />
       </g>
-    );
-
+    )
   }
 
 }
-
-
-
-/**
- * Export component
- */
-module.exports = YAxis;

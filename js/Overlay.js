@@ -1,59 +1,38 @@
-'use strict';
 
-var React = require('react');
-var {mouse} = require('d3-selection');
+import React from 'react'
+import {mouse, customEvent} from 'd3-selection'
 
+export default class Overlay extends React.Component {
 
-
-/**
- * Overlay component
- */
-class Overlay extends React.Component {
-
-
-
-  /**
-   * Handle mouse move event
-   */
   onMouseMove = (event) => {
-    var [x, y] = mouse(React.findDOMNode(this), event);
-    var x0 = this.props.xScale.invert(x);
-    var y0 = this.props.yScale.invert(y);
+    var [x, y] = mouse(this.rect)
+    var x0 = this.props.xScale.invert(x)
+    var y0 = this.props.yScale.invert(y)
     this.props.onMouseMove({
       mouse: [x, y],
       data: [x0, y0]
-    });
+    })
   }
 
-
-
-  /**
-   * Render component
-   */
-  render() {
-
-    var {width, height} = this.props;
+  render () {
+    var {width, height} = this.props
 
     var style = {
       fill: 'none',
       pointerEvents: 'all'
-    };
+    }
 
     return (
       <rect
+        ref={c => { this.rect = c }}
         width={width}
         height={height}
         style={style}
-        onMouseMove={this.onMouseMove}
+        onMouseMove={(event) => {
+          customEvent(event.nativeEvent, this.onMouseMove)
+        }}
       />
-    );
+    )
   }
 
 }
-
-
-
-/**
- * Export component
- */
-module.exports = Overlay;

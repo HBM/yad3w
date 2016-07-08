@@ -1,40 +1,26 @@
-'use strict';
 
-var React = require('react');
-var d3 = require('d3');
+import React from 'react'
+import {area as d3area} from 'd3-shape'
 
+export default class Area extends React.Component {
 
-
-/**
- * Area component
- */
-class Area extends React.Component {
-
-  render() {
-
-    var style = {
+  render () {
+    const style = {
       fill: 'steelblue',
       opacity: 0.25
-    };
+    }
 
-    var area = d3.svg.area()
+    var area = d3area()
       .x((d, i) => this.props.xScale(i))
       .y0(this.props.height)
-      .y1(d => this.props.yScale(d));
+      .y1(d => this.props.yScale(d))
 
     return (
       <path
         style={style}
         d={area(this.props.data)}
       />
-    );
+    )
   }
 
 }
-
-
-
-/**
- * Export component
- */
-module.exports = Area;

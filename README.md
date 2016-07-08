@@ -1,7 +1,7 @@
 
 # yad3w
 
-Yet Another D3 Wrapper
+Yet Another D3 Wrapper. Using latest D3 v4 modules.
 
 ## Usage
 

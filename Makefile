@@ -3,7 +3,7 @@ BIN = ./node_modules/.bin
 BROWSERIFY = $(BIN)/browserify
 STANDARD = $(BIN)/standard
 
-all: standard example/app.bundle.js
+all: standard examples/app.bundle.js
 
 .PHONY: standard
 standard:
@@ -14,4 +14,4 @@ standard:
 
 .PHONY: clean
 clean:
-	rm -rf ./example/app.bundle.js
+	rm -rf ./examples/app.bundle.js

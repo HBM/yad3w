@@ -13,9 +13,11 @@
   ],
   "dependencies": {
     "d3-array": "^1.0.0",
+    "d3-axis": "^1.0.3",
     "d3-scale": "^1.0.0",
     "d3-selection": "^1.0.0",
     "d3-shape": "^1.0.0",
+    "d3-transition": "^1.0.1",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
     "react-motion": "^0.4.4"
@@ -48,5 +50,10 @@
   "license": "MIT",
   "standard": {
     "parser": "babel-eslint"
+  },
+  "browserify": {
+    "transform": [["babelify", {
+      "presets": ["es2015", "react", "stage-0"]
+    }]]
   }
 }

@@ -1,10 +1,11 @@
 
-import {select} from 'd3-selection'
-import {scaleLinear, scaleTime} from 'd3-scale'
+import {select, mouse} from 'd3-selection'
+import {scaleLinear} from 'd3-scale'
 import {axisBottom, axisLeft} from 'd3-axis'
-import {line, curveBasis} from 'd3-shape'
-import {extent} from 'd3-array'
+import {line, curveLinear} from 'd3-shape'
+// import {extent} from 'd3-array'
 import {transition} from 'd3-transition'
+import {drag} from 'd3-drag'
 
 /**
  * Default config.
@@ -29,7 +30,7 @@ const defaults = {
   },
 
   // axis padding
-  axisPadding: 5,
+  axisPadding: 0,
 
   // axis tick size
   tickSize: 0,
@@ -41,7 +42,7 @@ const defaults = {
   yTicks: 3,
 
   // line interpolation
-  curve: curveBasis
+  curve: curveLinear
 }
 
 /**
@@ -72,10 +73,12 @@ export default class LineChart {
       .append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
-    this.x = scaleTime()
+    this.x = scaleLinear()
+      .domain([0, 1])
       .range([0, w])
 
     this.y = scaleLinear()
+      .domain([0, 1])
       .range([h, 0])
 
     this.xAxis = axisBottom(this.x)
@@ -99,8 +102,8 @@ export default class LineChart {
       .call(this.yAxis)
 
     this.line = line()
-      .x(d => this.x(d.time))
-      .y(d => this.y(d.value))
+      .x(d => this.x(d.x))
+      .y(d => this.y(d.y))
       .curve(curve)
 
     this.chart.append('path')
@@ -111,10 +114,7 @@ export default class LineChart {
    * Render axis.
    */
   renderAxis (data, options) {
-    const {chart, x, y, xAxis, yAxis} = this
-
-    x.domain(extent(data, d => d.time))
-    y.domain(extent(data, d => d.value))
+    const {chart, xAxis, yAxis} = this
 
     const t = transition().duration(1000)
 
@@ -124,6 +124,53 @@ export default class LineChart {
 
     c.select('.x.axis').call(xAxis)
     c.select('.y.axis').call(yAxis)
+  }
+
+  /**
+   * Render dots.
+   */
+  renderDots (data) {
+    const dots = this.chart
+      .selectAll('.dot')
+      .data(data)
+
+    const that = this
+
+    // new dots
+    dots
+      .enter()
+      .append('circle')
+      .attr('class', 'dot')
+      .attr('cx', d => this.x(d.x))
+      .attr('cy', d => this.y(d.y))
+      .attr('r', 5)
+      .call(drag().on('drag', function (d, i) {
+        const xData = that.x.invert(mouse(this)[0])
+        const yData = that.y.invert(mouse(this)[1])
+
+        // update data
+        data[i].x = xData
+        data[i].y = yData
+
+        // update current dot
+        select(this)
+          .attr('cx', that.x(xData))
+          .attr('cy', that.y(yData))
+
+        // render line
+        that.chart.select('.line')
+          .attr('d', that.line(data))
+
+        // notify parent about changes
+        that.onChange(data)
+      }))
+
+    // existing dots to new position
+    const t = transition().duration(1000)
+    dots
+      .transition(t)
+      .attr('cx', d => this.x(d.x))
+      .attr('cy', d => this.y(d.y))
   }
 
   /**
@@ -144,6 +191,7 @@ export default class LineChart {
   render (data, options = {}) {
     this.renderAxis(data, options)
     this.renderLine(data, options)
+    this.renderDots(data, options)
   }
 
   /**

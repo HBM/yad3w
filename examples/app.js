@@ -2,155 +2,51 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {LineChart} from '../'
-// import {
-//   Chart,
-//   Line,
-//   Circles,
-//   XAxis,
-//   XTicks,
-//   YAxis,
-//   XGrid,
-//   YGrid,
-//   Overlay,
-//   Crosshair,
-//   Area,
-//   Piechart,
-//   Arc
-// } from '../'
-// import {scaleOrdinal, schemeCategory10} from 'd3-scale'
-
-// const data = [10, 5, 20, 16, 30, 51, 40, 19, 50]
-// var newData = [9, 4, 19, 15, 29, 50, 39, 18, 49]
-
-const gen = n => {
-  const data = []
-
-  for (var i = 0; i < n; i++) {
-    data.push({
-      time: new Date(Date.now() - (i * 3600000)),
-      value: Math.max(250, Math.random() * 3000 | 0)
-    })
-  }
-
-  return data
-}
 
 class App extends React.Component {
 
+  state = {
+    data: [{x: 0, y: 0}, {x: 1, y: 1}]
+  }
+
   componentDidMount () {
     this.a = new LineChart({
-      target: this.a
+      target: this.a,
+      onChange: (data) => {
+        this.setState({data})
+      }
     })
 
-    this.a.render(gen(12))
+    this.a.render(this.state.data)
   }
 
   changeData = () => {
-    this.a.update(gen(12))
+    const data = [{x: 0, y: 1}, {x: 1, y: 0}]
+    this.a.update(data)
+    this.setState({data})
   }
 
   render () {
+    const x1 = this.state.data[0].x
+    const y1 = this.state.data[0].y
+    const x2 = this.state.data[1].x
+    const y2 = this.state.data[1].y
+    const m = (y2 - y1) / (x2 - x1)
+    const n = (x2 * y1 - x1 * y2) / x2 - x1
     return (
       <div>
         <svg ref={c => { this.a = c }} />
         <button onClick={this.changeData}>
           Animate
         </button>
+        <p>
+          2 Punkt Skalierung: {`y=${m}*x + ${n}`}
+        </p>
       </div>
     )
   }
 
 }
-
-// class App extends React.Component {
-//   constructor (props) {
-//     super(props)
-//     this.state = {
-//       mouse: [0, 0],
-//       active: false
-//     }
-//   }
-//   onCircleMouseOver = (event) => {
-//     event.target.setAttribute('r', 12)
-//   }
-//   onCircleMouseOut = (event) => {
-//     event.target.setAttribute('r', 10)
-//   }
-//   onCircleDrag = () => {
-//     console.log('drag')
-//   }
-//   onMouseMove = (coords) => {
-//     this.setState({
-//       mouse: coords.mouse
-//     })
-//   }
-//   onMouseOverArc = () => {
-//     this.setState({
-//       active: true
-//     })
-//   }
-//   onMouseOutArc = () => {
-//     this.setState({
-//       active: false
-//     })
-//   }
-//   render () {
-//     var color = scaleOrdinal(schemeCategory10)
-//     var width = 960
-//     var height = 500
-//     var outerRadius = height / 2 - 20
-//     var innerRadius = outerRadius / 3
-//     return (
-//       <div>
-//         <Piechart width={width} height={height} innerRadius={innerRadius} outerRadius={outerRadius}>
-//           <Arc
-//             value={20}
-//             fill={color(0)}
-//             text='London'
-//             onMouseOver={this.onMouseOverArc}
-//             onMouseOut={this.onMouseOutArc}
-//             active={this.state.active}
-//           />
-//           <Arc value={10} fill={color(1)} text='Berlin' />
-//           <Arc value={50} fill={color(2)} text='Munich' />
-//         </Piechart>
-//         <Chart data={data}>
-//           <XGrid ticks='10' />
-//           <YGrid ticks='15' />
-//           <XAxis>
-//             <XTicks />
-//           </XAxis>
-//           <YAxis />
-//           <Line
-//             strokeWidth='2'
-//           />
-//           <Area />
-//           <Overlay
-//             onMouseMove={this.onMouseMove}
-//           />
-//           <Circles
-//             radius='10'
-//             fill='orange'
-//             onMouseOver={this.onCircleMouseOver}
-//             onMouseOut={this.onCircleMouseOut}
-//             onDrag={this.onCircleDrag}
-//           />
-//           <Line
-//             data={[1, 10, 7, 30, 20, 60, 35]}
-//             stroke='red'
-//             strokeWidth='2'
-//           />
-//           <Crosshair
-//             x={this.state.mouse[0]}
-//             y={this.state.mouse[1]}
-//             horizontal
-//             vertical
-//           />
-//         </Chart>
-//       </div>
-//     )
-//   }
-// }
 
 ReactDOM.render(
   <App />,

@@ -1,11 +1,13 @@
 
 import {select, mouse} from 'd3-selection'
-import {scaleLinear} from 'd3-scale'
+import {scaleLinear, scaleTime} from 'd3-scale'
 import {axisBottom, axisLeft} from 'd3-axis'
-import {line, curveLinear} from 'd3-shape'
-// import {extent} from 'd3-array'
-import {transition} from 'd3-transition'
-import {drag} from 'd3-drag'
+import {line, curveBasis} from 'd3-shape'
+import {transition, active} from 'd3-transition'
+import {extent, range} from 'd3-array'
+import {easeLinear} from 'd3-ease'
+import {max} from 'd3-array'
+import {randomNormal} from 'd3-random'
 
 /**
  * Default config.
@@ -42,7 +44,7 @@ const defaults = {
   yTicks: 3,
 
   // line interpolation
-  curve: curveLinear
+  curve: curveBasis
 }
 
 /**
@@ -67,18 +69,29 @@ export default class LineChart {
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
 
+    var n = 40
+    var random = randomNormal(0, .2)
+    var data = range(n).map(random)
+
     this.chart = select(target)
       .attr('width', width)
       .attr('height', height)
       .append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
+    this.chart
+      .append('defs').append('clipPath')
+      .attr('id', 'clip')
+      .append('rect')
+      .attr('width', width)
+      .attr('height', height)
+
     this.x = scaleLinear()
-      .domain([0, 1])
+      .domain([1, n - 2])
       .range([0, w])
 
     this.y = scaleLinear()
-      .domain([0, 1])
+      .domain([-1, 1])
       .range([h, 0])
 
     this.xAxis = axisBottom(this.x)
@@ -102,105 +115,39 @@ export default class LineChart {
       .call(this.yAxis)
 
     this.line = line()
-      .x(d => this.x(d.x))
-      .y(d => this.y(d.y))
-      .curve(curve)
+      .x((d, i) => this.x(i))
+      .y(d => this.y(d))
+      .curve(curveBasis)
 
-    this.chart.append('path')
-      .attr('class', 'line')
-  }
-
-  /**
-   * Render axis.
-   */
-  renderAxis (data, options) {
-    const {chart, xAxis, yAxis} = this
-
-    const t = transition().duration(1000)
-
-    const c = options.animate
-      ? chart.transition(t)
-      : chart
-
-    c.select('.x.axis').call(xAxis)
-    c.select('.y.axis').call(yAxis)
-  }
-
-  /**
-   * Render dots.
-   */
-  renderDots (data) {
-    const dots = this.chart
-      .selectAll('.dot')
-      .data(data)
+    const t = transition()
+      .duration(250)
+      .ease(easeLinear)
 
     const that = this
+    function tick () {
+      data.push(random())
 
-    // new dots
-    dots
-      .enter()
-      .append('circle')
-      .attr('class', 'dot')
-      .attr('cx', d => this.x(d.x))
-      .attr('cy', d => this.y(d.y))
-      .attr('r', 5)
-      .call(drag().on('drag', function (d, i) {
-        const xData = that.x.invert(mouse(this)[0])
-        const yData = that.y.invert(mouse(this)[1])
+      // redraw line
+      select(this)
+        .attr('d', that.line)
+        .attr('transform', null)
 
-        // update data
-        data[i].x = xData
-        data[i].y = yData
+      // slide to the left
+      active(this)
+        .attr('transform', `translate(${that.x(0)}, 0)`)
+        .transition(t)
+        .on('start', tick)
 
-        // update current dot
-        select(this)
-          .attr('cx', that.x(xData))
-          .attr('cy', that.y(yData))
+      data.shift()
+    }
 
-        // render line
-        that.chart.select('.line')
-          .attr('d', that.line(data))
-
-        // notify parent about changes
-        that.onChange(data)
-      }))
-
-    // existing dots to new position
-    const t = transition().duration(1000)
-    dots
+    this.chart.append('g')
+      .attr('clip-path', 'url(#clip)')
+      .append('path')
+      .datum(data)
+      .attr('class', 'line')
       .transition(t)
-      .attr('cx', d => this.x(d.x))
-      .attr('cy', d => this.y(d.y))
-  }
-
-  /**
-   * Render line.
-   */
-  renderLine (data) {
-    const t = transition().duration(1000)
-    const chart = this.chart.transition(t)
-    const {line} = this
-
-    chart.select('.line')
-      .attr('d', line(data))
-  }
-
-  /**
-   * Render the chart with given `data`.
-   */
-  render (data, options = {}) {
-    this.renderAxis(data, options)
-    this.renderLine(data, options)
-    this.renderDots(data, options)
-  }
-
-  /**
-   * Update the chart with given `data`.
-   */
-  update (data) {
-    this.render(data, {
-      animate: true
-    })
+      .on('start', tick)
   }
 
 }

@@ -1,7 +1,8 @@
 
-BIN = ./node_modules/.bin
-BROWSERIFY = $(BIN)/browserify
-STANDARD = $(BIN)/standard
+BIN_DIR = ./node_modules/.bin
+BROWSERIFY = $(BIN_DIR)/browserify
+STANDARD = $(BIN_DIR)/standard
+WATCHIFY = $(BIN_DIR)/watchify
 
 all: standard examples/app.bundle.js
 
@@ -11,6 +12,13 @@ standard:
 
 %.bundle.js: %.js
 	$(BROWSERIFY) $< -o $@
+
+.PHONY: watch
+watch:
+	$(WATCHIFY) examples/app.js \
+		--outfile examples/app.bundle.js \
+		--debug \
+		--verbose \
 
 .PHONY: clean
 clean:

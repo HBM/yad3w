@@ -1,12 +1,11 @@
 
-import {select, mouse} from 'd3-selection'
-import {scaleLinear, scaleTime} from 'd3-scale'
+import {select} from 'd3-selection'
+import {scaleLinear} from 'd3-scale'
 import {axisBottom, axisLeft} from 'd3-axis'
 import {line, curveBasis} from 'd3-shape'
 import {transition, active} from 'd3-transition'
-import {extent, range} from 'd3-array'
+import {range} from 'd3-array'
 import {easeLinear} from 'd3-ease'
-import {max} from 'd3-array'
 import {randomNormal} from 'd3-random'
 
 /**
@@ -64,13 +63,13 @@ export default class LineChart {
    * Initialize the chart.
    */
   init () {
-    const {target, width, height, margin, axisPadding, curve} = this
+    const {target, width, height, margin, axisPadding} = this
     const {tickSize, xTicks, yTicks} = this
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
 
     var n = 40
-    var random = randomNormal(0, .2)
+    var random = randomNormal(0, 0.2)
     var data = range(n).map(random)
 
     this.chart = select(target)

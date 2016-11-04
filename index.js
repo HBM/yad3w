@@ -13,3 +13,4 @@
 // export YAxis from './src/YAxis'
 // export YGrid from './src/YGrid'
 export LineChart from './src/line'
+export Sparkline from './src/Sparkline'

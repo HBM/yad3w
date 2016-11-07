@@ -1,31 +1,36 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {LineChart, Sparkline} from '../'
+import {LineChart, Sparkline, Sparkbar, Barchart} from '../'
 
 const goldenRatio = 1.61803398875
 const height = 25
 const width = height * goldenRatio * 3
 
-let data1 = []
-for (let i = 0; i < 50; i++) {
-  data1.push(random)
-}
-
-let data2 = []
-for (let i = 0; i < 50; i++) {
-  data2.push(random)
-}
-
-let data3 = []
-for (let i = 0; i < 50; i++) {
-  data3.push(random)
-}
-
 const random = () => {
   const min = 0
   const max = 10
   return window.Math.floor(window.Math.random() * (max - min + 1)) + min
+}
+
+let data1 = []
+for (let i = 0; i < 50; i++) {
+  data1.push(random())
+}
+
+let data2 = []
+for (let i = 0; i < 50; i++) {
+  data2.push(random())
+}
+
+let data3 = []
+for (let i = 0; i < 50; i++) {
+  data3.push(random())
+}
+
+let bar = []
+for (let i = 0; i < 20; i++) {
+  bar.push(random())
 }
 
 let then
@@ -52,6 +57,17 @@ class App extends React.Component {
       canvas: this.refs.bus3
     })
     this.bus3.render(data3)
+    // sparkbar
+    this.sparkbar = new Sparkbar({
+      canvas: this.refs.sparkbar
+    })
+    this.sparkbar.render(bar)
+
+    // svg barchart
+    this.barchart = new Barchart({
+      target: this.refs.barchart
+    })
+    this.barchart.render([0, 1, 2, 3, 5, 3, 4, 2, 1])
 
     then = window.performance.now()
     this.tick()
@@ -82,6 +98,10 @@ class App extends React.Component {
       data3.shift()
       data3.push(random())
       this.bus3.render(data3)
+
+      bar.shift()
+      bar.push(random())
+      this.sparkbar.render(bar)
     }
   }
 
@@ -100,6 +120,14 @@ class App extends React.Component {
         <div style={{display: 'flex', alignItems: 'center', margin: 20}}>
           <span style={{width: 80}}>dax</span>
           <canvas height={height} width={width} ref='bus3' />
+        </div>
+        <div style={{display: 'flex', alignItems: 'center', margin: 20}}>
+          <span style={{width: 80}}>dax</span>
+          <canvas height={height} width={width} ref='sparkbar' />
+        </div>
+        <div style={{display: 'flex', alignItems: 'center', margin: 20}}>
+          <span style={{width: 80}}>bar chart svg</span>
+          <svg height={height} width={width} ref='barchart' />
         </div>
       </div>
     )

@@ -22,7 +22,7 @@ const defaults = {
 
 export default class Barchart {
 
-  constructor(config) {
+  constructor (config) {
     Object.assign(this, defaults, config)
 
     const {target, width, height, margin} = this

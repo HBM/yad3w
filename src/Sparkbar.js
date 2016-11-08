@@ -1,6 +1,7 @@
 
 import {scaleBand, scaleLinear} from 'd3-scale'
 import {max} from 'd3-array'
+import retinafy from './retinafy'
 
 const defaults = {
 
@@ -22,10 +23,12 @@ export default class Sparkbar {
   constructor (config) {
     Object.assign(this, defaults, config)
 
-    this.context = this.canvas.getContext('2d')
-
+    // get width and height for d3 before applying retina fix
     this.width = this.canvas.width - this.margin.left - this.margin.right
     this.height = this.canvas.height - this.margin.top - this.margin.bottom
+
+    // make canvas look nice on retina displays
+    this.canvas = retinafy(this.canvas)
 
     this.x = scaleBand()
       .rangeRound([0, this.width])
@@ -34,17 +37,19 @@ export default class Sparkbar {
     this.y = scaleLinear()
       .rangeRound([this.height, 0])
 
+    this.context = this.canvas.getContext('2d')
     this.context.translate(this.margin.left, this.margin.top)
   }
 
   render (data) {
-    this.x.domain(data.map((d, i) => i))
-    this.y.domain([0, max(data)])
+    const {x, y, height, canvas, context, fillStyle} = this
+    x.domain(data.map((d, i) => i))
+    y.domain([0, max(data)])
 
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
-    this.context.fillStyle = this.fillStyle
+    context.clearRect(0, 0, canvas.width, canvas.height)
+    context.fillStyle = fillStyle
     data.forEach((d, i) => {
-      this.context.fillRect(this.x(i), this.y(d), this.x.bandwidth(), this.height - this.y(d))
+      context.fillRect(x(i), y(d), x.bandwidth(), height - y(d))
     })
   }
 

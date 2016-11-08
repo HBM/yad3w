@@ -2,6 +2,7 @@
 import {scaleLinear} from 'd3-scale'
 import {line, curveBasis} from 'd3-shape'
 import {min, max} from 'd3-array'
+import retinafy from './retinafy'
 
 const defaults = {
 
@@ -27,6 +28,9 @@ export default class Sparkline {
 
     const width = this.canvas.width - this.margin.left - this.margin.right
     const height = this.canvas.height - this.margin.top - this.margin.bottom
+
+    // make canvas look nice on retina displays
+    this.canvas = retinafy(this.canvas)
 
     this.x = scaleLinear()
       .range([0, width])

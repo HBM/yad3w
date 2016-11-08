@@ -23,3 +23,7 @@ watch:
 .PHONY: clean
 clean:
 	rm -rf ./examples/app.bundle.js
+
+.PHONY: serve
+serve:
+	cd examples && python -m SimpleHTTPServer 5000

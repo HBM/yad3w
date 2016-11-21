@@ -19,3 +19,23 @@ body {
 .axis line {
 	stroke: RGB(230, 237, 244);
 }
+
+.TwoPointScaling.line {
+	stroke: steelblue;
+	stroke-width: 2px;
+	fill: none;
+}
+
+.TwoPointScaling.dot {
+	fill: steelblue;
+	stroke-width: 2px;
+	stroke: #fff;
+}
+
+.TwoPointScaling.crosshair {
+	stroke: lightgrey;
+	stroke-width: 1px;
+	fill: none;
+	shape-rendering: crispEdges;
+	stroke-dasharray: 3, 3;
+}

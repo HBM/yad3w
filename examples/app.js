@@ -1,7 +1,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {LineChart, Sparkline, Sparkbar, Barchart} from '../'
+import {LineChart, Sparkline, Sparkbar, Barchart, TwoPointScaling} from '../'
 
 const goldenRatio = 1.61803398875
 const height = 25
@@ -39,6 +39,10 @@ const fpsInterval = 1000 / fps
 
 class App extends React.Component {
 
+  state = {
+    twoPointScaling: [{x: 0.1, y: 0.2}, {x: 0.5, y: 0.7}]
+  }
+
   componentDidMount () {
     this.a = new LineChart({
       target: this.refs.a
@@ -68,6 +72,13 @@ class App extends React.Component {
       target: this.refs.barchart
     })
     this.barchart.render([0, 1, 2, 3, 5, 3, 4, 2, 1])
+
+    // two point scaling
+    this.twoPointScaling = new TwoPointScaling({
+      target: this.refs.twoPointScaling
+    })
+    const data = [{x: 0.1, y: 0.2}, {x: 0.5, y: 0.7}]
+    this.twoPointScaling.render(data)
 
     then = window.performance.now()
     this.tick()
@@ -105,7 +116,19 @@ class App extends React.Component {
     }
   }
 
+  onChangeTwoPointScaling = (event, index, key) => {
+    const {twoPointScaling} = this.state
+    twoPointScaling[index][key] = event.target.value
+    this.setState({twoPointScaling})
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault()
+    this.twoPointScaling.render(this.state.twoPointScaling)
+  }
+
   render () {
+    const {twoPointScaling} = this.state
     return (
       <div>
         <svg ref='a' />
@@ -129,6 +152,47 @@ class App extends React.Component {
           <span style={{width: 80}}>bar chart svg</span>
           <svg height={height} width={width} ref='barchart' />
         </div>
+        <div style={{display: 'flex', alignItems: 'center', margin: 20}}>
+          <span style={{width: 80}}>two point scaling</span>
+          <svg height={height} width={width} ref='twoPointScaling' />
+        </div>
+        <form style={{margin: 50}} onSubmit={this.onSubmit}>
+          <div>
+            <b>P </b><span>- x1</span>
+            <input
+              placeholder='x1'
+              value={twoPointScaling[0].x}
+              onChange={(e) => this.onChangeTwoPointScaling(e, 0, 'x')}
+            />
+            <span>
+              y1
+            </span>
+            <input
+              placeholder='y1'
+              value={twoPointScaling[0].y}
+              onChange={(e) => this.onChangeTwoPointScaling(e, 0, 'y')}
+            />
+          </div>
+          <div>
+            <b>Q </b><span>- x2</span>
+            <input
+              placeholder='x2'
+              value={twoPointScaling[1].x}
+              onChange={(e) => this.onChangeTwoPointScaling(e, 1, 'x')}
+            />
+            <span>
+              y2
+            </span>
+            <input
+              placeholder='y2'
+              value={twoPointScaling[1].y}
+              onChange={(e) => this.onChangeTwoPointScaling(e, 1, 'y')}
+            />
+          </div>
+          <button type='submit' onClick={this.onSubmit}>
+            submit
+          </button>
+        </form>
       </div>
     )
   }

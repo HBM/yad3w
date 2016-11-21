@@ -39,3 +39,8 @@ body {
 	shape-rendering: crispEdges;
 	stroke-dasharray: 3, 3;
 }
+
+.TwoPointScaling.crosshair.is-focused {
+	stroke: steelblue;
+	stroke-dasharray: none;
+}

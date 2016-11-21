@@ -123,7 +123,7 @@ export default class TwoPointScaling {
     // render line on first call
     crosshairX.enter()
       .append('line')
-      .attr('class', 'TwoPointScaling crosshair x')
+      .attr('class', (d, i) => `TwoPointScaling crosshair x x${i + 1}`)
       .attr('x1', d => this.x(d.x))
       .attr('y1', this.y(0))
       .attr('x2', d => this.x(d.x))
@@ -143,7 +143,7 @@ export default class TwoPointScaling {
     // render crosshair lines from y axis to line
     crosshairY.enter()
       .append('line')
-      .attr('class', 'TwoPointScaling crosshair y')
+      .attr('class', (d, i) => `TwoPointScaling crosshair y y${i + 1}`)
       .attr('x1', this.x(0))
       .attr('y1', d => this.y(d.y))
       .attr('x2', d => this.x(d.x))
@@ -171,6 +171,16 @@ export default class TwoPointScaling {
     this.renderLine(lineData)
     this.renderHelperLines(data)
     this.renderDots(data)
+  }
+
+  focus (point) {
+    this.chart.select(`.TwoPointScaling.crosshair.${point}`)
+      .classed('is-focused', true)
+  }
+
+  blur (point) {
+    this.chart.select(`.TwoPointScaling.crosshair.${point}`)
+      .classed('is-focused', false)
   }
 
 }

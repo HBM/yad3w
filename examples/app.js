@@ -127,6 +127,14 @@ class App extends React.Component {
     this.twoPointScaling.render(this.state.twoPointScaling)
   }
 
+  onFocusTwoPointScaling = (event, point) => {
+    this.twoPointScaling.focus(point)
+  }
+
+  onBlurTwoPointScaling = (event, point) => {
+    this.twoPointScaling.blur(point)
+  }
+
   render () {
     const {twoPointScaling} = this.state
     return (
@@ -163,6 +171,8 @@ class App extends React.Component {
               placeholder='x1'
               value={twoPointScaling[0].x}
               onChange={(e) => this.onChangeTwoPointScaling(e, 0, 'x')}
+              onFocus={(e) => this.onFocusTwoPointScaling(e, 'x1')}
+              onBlur={(e) => this.onBlurTwoPointScaling(e, 'x1')}
             />
             <span>
               y1
@@ -171,6 +181,8 @@ class App extends React.Component {
               placeholder='y1'
               value={twoPointScaling[0].y}
               onChange={(e) => this.onChangeTwoPointScaling(e, 0, 'y')}
+              onFocus={(e) => this.onFocusTwoPointScaling(e, 'y1')}
+              onBlur={(e) => this.onBlurTwoPointScaling(e, 'y1')}
             />
           </div>
           <div>
@@ -179,6 +191,8 @@ class App extends React.Component {
               placeholder='x2'
               value={twoPointScaling[1].x}
               onChange={(e) => this.onChangeTwoPointScaling(e, 1, 'x')}
+              onFocus={(e) => this.onFocusTwoPointScaling(e, 'x2')}
+              onBlur={(e) => this.onBlurTwoPointScaling(e, 'x2')}
             />
             <span>
               y2
@@ -187,6 +201,8 @@ class App extends React.Component {
               placeholder='y2'
               value={twoPointScaling[1].y}
               onChange={(e) => this.onChangeTwoPointScaling(e, 1, 'y')}
+              onFocus={(e) => this.onFocusTwoPointScaling(e, 'y2')}
+              onBlur={(e) => this.onBlurTwoPointScaling(e, 'y2')}
             />
           </div>
           <button type='submit' onClick={this.onSubmit}>

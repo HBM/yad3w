@@ -85,7 +85,7 @@ export default class TwoPointScaling {
     this.chart.append('text')
       .attr('text-anchor', 'middle')
       .attr('x', this.x(0))
-      .attr('y', - 10)
+      .attr('y', -10)
       .text('rpm')
   }
 

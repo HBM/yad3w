@@ -8,10 +8,11 @@ const defaults = {
   width: 400,
   height: 400,
   margin: {
-    top: 10,
-    right: 10,
+    top: 20,
+    // add some space for x axis label
+    right: 60,
     bottom: 20,
-    left: 10
+    left: 20
   },
   // axis tick size
   tickSize: 5,
@@ -71,6 +72,21 @@ export default class TwoPointScaling {
 
     this.chart.append('path')
       .attr('class', 'TwoPointScaling line')
+
+    // add x axis label
+    this.chart.append('text')
+      .attr('text-anchor', 'start')
+      .attr('alignment-baseline', 'central')
+      .attr('x', w + 10)
+      .attr('y', this.y(0))
+      .text('V')
+
+    // add y axis label
+    this.chart.append('text')
+      .attr('text-anchor', 'middle')
+      .attr('x', this.x(0))
+      .attr('y', - 10)
+      .text('rpm')
   }
 
   renderAxis (data) {

@@ -160,11 +160,11 @@ class App extends React.Component {
           <span style={{width: 80}}>bar chart svg</span>
           <svg height={height} width={width} ref='barchart' />
         </div>
-        <div style={{display: 'flex', alignItems: 'center', margin: 20}}>
+        <div style={{display: 'flex', alignItems: 'center', margin: 100}}>
           <span style={{width: 80}}>two point scaling</span>
           <svg height={height} width={width} ref='twoPointScaling' />
         </div>
-        <form style={{margin: 50}} onSubmit={this.onSubmit}>
+        <form style={{marginLeft: 100}} onSubmit={this.onSubmit}>
           <div>
             <b>P </b><span>- x1</span>
             <input

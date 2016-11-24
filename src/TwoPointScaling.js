@@ -132,7 +132,7 @@ export default class TwoPointScaling {
       .attr('dy', '-10px')
       .attr('dx', '-10px')
 
-    const nodesTransition = nodes.transition()
+    nodes.transition()
       .attr('transform', d => `translate(${this.x(d.x)}, ${this.y(d.y)})`)
   }
 

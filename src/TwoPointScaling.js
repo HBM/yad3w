@@ -114,23 +114,30 @@ export default class TwoPointScaling {
   }
 
   renderDots (data) {
-    // get dots selection
-    const dots = this.chart
-      .selectAll('.dot')
+    const nodes = this.chart
+      .selectAll('g.node')
       .data(data)
 
-    // new dots
-    dots.enter()
+    const nodesEnter = nodes.enter()
+      .append('g')
+      .attr('transform', d => `translate(${this.x(d.x)}, ${this.y(d.y)})`)
+      .attr('class', 'node')
+
+    nodesEnter
       .append('circle')
       .attr('class', 'TwoPointScaling dot')
-      .attr('cx', d => this.x(d.x))
-      .attr('cy', d => this.y(d.y))
       .attr('r', 5)
 
-    // move existing dots
-    dots.transition()
-      .attr('cx', d => this.x(d.x))
-      .attr('cy', d => this.y(d.y))
+    nodesEnter
+      .append('text')
+      .text((d, i) => i === 0 ? 'P' : 'Q')
+      .attr('alignment-baseline', 'central')
+      .attr('text-anchor', 'middle')
+      .attr('dy', '-10px')
+      .attr('dx', '-10px')
+
+    nodes.transition()
+      .attr('transform', d => `translate(${this.x(d.x)}, ${this.y(d.y)})`)
   }
 
   renderHelperLines (data) {

@@ -34,13 +34,16 @@ body {
 
 .TwoPointScaling.crosshair {
 	stroke: lightgrey;
-	stroke-width: 1px;
+	stroke-width: 2px;
 	fill: none;
 	shape-rendering: crispEdges;
-	stroke-dasharray: 3, 3;
+	cursor: pointer;
+}
+
+.TwoPointScaling.crosshair.is-hovered {
+	stroke: darkblue;
 }
 
 .TwoPointScaling.crosshair.is-focused {
 	stroke: steelblue;
-	stroke-dasharray: none;
 }

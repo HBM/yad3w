@@ -19,7 +19,11 @@ const defaults = {
   // number of x-axis ticks
   xTicks: 3,
   // number of y-axis ticks
-  yTicks: 5
+  yTicks: 5,
+
+  // on click event for crosshair lines
+  clickX: () => {},
+  clickY: () => {}
 }
 
 export default class TwoPointScaling {
@@ -130,6 +134,8 @@ export default class TwoPointScaling {
   }
 
   renderHelperLines (data) {
+    const {clickX, clickY} = this
+
     // draw line from point to x and y axis
     const crosshairX = this.chart
       .selectAll('.crosshair.x')
@@ -144,6 +150,13 @@ export default class TwoPointScaling {
       .attr('y1', this.y(0))
       .attr('x2', d => this.x(d.x))
       .attr('y2', d => this.y(d.y))
+      .on('click', clickX)
+      .on('mouseover', function () {
+        select(this).classed('is-hovered', true)
+      })
+      .on('mouseout', function () {
+        select(this).classed('is-hovered', false)
+      })
 
     // update line on second call
     crosshairX.transition()
@@ -164,6 +177,13 @@ export default class TwoPointScaling {
       .attr('y1', d => this.y(d.y))
       .attr('x2', d => this.x(d.x))
       .attr('y2', d => this.y(d.y))
+      .on('click', clickY)
+      .on('mouseover', function () {
+        select(this).classed('is-hovered', true)
+      })
+      .on('mouseout', function () {
+        select(this).classed('is-hovered', false)
+      })
 
     crosshairY.transition()
       .attr('x1', this.x(0))

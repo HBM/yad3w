@@ -34,16 +34,27 @@ body {
 
 .TwoPointScaling.crosshair {
 	stroke: lightgrey;
-	stroke-width: 2px;
+	stroke-width: 1px;
 	fill: none;
 	shape-rendering: crispEdges;
+}
+
+.TwoPointScaling.crosshair.is-hovered,
+.TwoPointScaling.crosshair.is-focused {
+	stroke: steelblue;
+}
+
+.TwoPointScaling.hint {
+	font-size: 9px;
 	cursor: pointer;
 }
 
-.TwoPointScaling.crosshair.is-hovered {
-	stroke: darkblue;
+.TwoPointScaling.hint rect {
+	fill: #fff;
+	stroke: #ddd;
 }
 
-.TwoPointScaling.crosshair.is-focused {
+.TwoPointScaling.hint.is-hovered rect,
+.TwoPointScaling.hint.is-focused rect {
 	stroke: steelblue;
 }

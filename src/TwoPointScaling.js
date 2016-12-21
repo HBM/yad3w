@@ -141,8 +141,6 @@ export default class TwoPointScaling {
   }
 
   renderHelperLines (data) {
-    const {clickX, clickY} = this
-
     // draw line from point to x and y axis
     const crosshairX = this.chart
       .selectAll('.crosshair.x')
@@ -157,13 +155,6 @@ export default class TwoPointScaling {
       .attr('y1', this.y(0))
       .attr('x2', d => this.x(d.x))
       .attr('y2', d => this.y(d.y))
-      .on('click', clickX)
-      .on('mouseover', function () {
-        select(this).classed('is-hovered', true)
-      })
-      .on('mouseout', function () {
-        select(this).classed('is-hovered', false)
-      })
 
     // update line on second call
     crosshairX.transition()
@@ -184,19 +175,111 @@ export default class TwoPointScaling {
       .attr('y1', d => this.y(d.y))
       .attr('x2', d => this.x(d.x))
       .attr('y2', d => this.y(d.y))
-      .on('click', clickY)
-      .on('mouseover', function () {
-        select(this).classed('is-hovered', true)
-      })
-      .on('mouseout', function () {
-        select(this).classed('is-hovered', false)
-      })
 
     crosshairY.transition()
       .attr('x1', this.x(0))
       .attr('y1', d => this.y(d.y))
       .attr('x2', d => this.x(d.x))
       .attr('y2', d => this.y(d.y))
+  }
+
+  renderHints (data) {
+    const {clickX, clickY} = this
+    // add rects
+    const rectWidth = 24
+    const rectAxisPadding = 5
+    const rectYAxisPadding = 7
+
+    // x axis
+    const hintX = this.chart
+      .selectAll('.hint.x')
+      .data(data)
+
+    const that = this
+
+    const group = hintX
+      .enter()
+      .append('g')
+      .attr('class', (d, i) => `TwoPointScaling hint x x${i + 1}`)
+      .attr('transform', d => `translate(${this.x(d.x) - (rectWidth / 2)}, ${this.y(0) + rectAxisPadding})`)
+      .on('click', clickX)
+      .on('mouseover', function (d, i) {
+        // select line
+        that.chart.select(`.TwoPointScaling.crosshair.x${i + 1}`)
+          .classed('is-hovered', true)
+        // select hint
+        select(this).classed('is-hovered', true)
+      })
+      .on('mouseout', function (d, i) {
+        that.chart.select(`.TwoPointScaling.crosshair.x${i + 1}`)
+          .classed('is-hovered', false)
+        select(this).classed('is-hovered', false)
+      })
+
+    group.append('rect')
+      .attr('rx', 2)
+      .attr('width', rectWidth)
+      .attr('height', rectWidth)
+
+    group.append('text')
+      .attr('text-anchor', 'middle')
+      .attr('alignment-baseline', 'middle')
+      .attr('x', rectWidth / 2)
+      .attr('y', rectWidth / 2)
+      .text(d => d.x)
+
+    // transition
+    const transitionSelection = hintX.transition()
+      .attr('transform', d => `translate(${this.x(d.x) - (rectWidth / 2)}, ${this.y(0) + rectAxisPadding})`)
+
+    transitionSelection.select('text')
+      .text(d => d.x)
+
+    // y axis
+    const hintY = this.chart
+      .selectAll('.hint.y')
+      .data(data)
+
+    const groupY = hintY
+      .enter()
+      .append('g')
+      .attr('class', (d, i) => `TwoPointScaling hint y y${i + 1}`)
+      .attr('transform', d => (
+        `translate(${this.x(0) - rectWidth - rectYAxisPadding}, ${this.y(d.y) - (rectWidth / 2)})`)
+      )
+      .on('click', clickY)
+      .on('mouseover', function (d, i) {
+        // select line
+        that.chart.select(`.TwoPointScaling.crosshair.y${i + 1}`)
+          .classed('is-hovered', true)
+        select(this).classed('is-hovered', true)
+      })
+      .on('mouseout', function (d, i) {
+        that.chart.select(`.TwoPointScaling.crosshair.y${i + 1}`)
+          .classed('is-hovered', false)
+        select(this).classed('is-hovered', false)
+      })
+
+    groupY.append('rect')
+      .attr('rx', 2)
+      .attr('width', rectWidth)
+      .attr('height', rectWidth)
+
+    groupY.append('text')
+      .attr('text-anchor', 'middle')
+      .attr('alignment-baseline', 'middle')
+      .attr('x', rectWidth / 2)
+      .attr('y', rectWidth / 2)
+      .text(d => d.y)
+
+    // transition
+    const transitionSelectionY = hintY.transition()
+      .attr('transform', d => (
+        `translate(${this.x(0) - rectWidth - rectYAxisPadding}, ${this.y(d.y) - (rectWidth / 2)})`)
+      )
+
+    transitionSelectionY.select('text')
+      .text(d => d.y)
   }
 
   render (data) {
@@ -214,15 +297,20 @@ export default class TwoPointScaling {
     this.renderLine(lineData)
     this.renderHelperLines(data)
     this.renderDots(data)
+    this.renderHints(data)
   }
 
   focus (point) {
     this.chart.select(`.TwoPointScaling.crosshair.${point}`)
       .classed('is-focused', true)
+    this.chart.select(`.TwoPointScaling.hint.${point}`)
+      .classed('is-focused', true)
   }
 
   blur (point) {
     this.chart.select(`.TwoPointScaling.crosshair.${point}`)
+      .classed('is-focused', false)
+    this.chart.select(`.TwoPointScaling.hint.${point}`)
       .classed('is-focused', false)
   }
 

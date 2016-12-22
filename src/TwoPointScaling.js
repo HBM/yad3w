@@ -12,7 +12,7 @@ const defaults = {
     // add some space for x axis label
     right: 60,
     bottom: 20,
-    left: 20
+    left: 40
   },
   // axis tick size
   tickSize: 5,
@@ -47,11 +47,9 @@ export default class TwoPointScaling {
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
     this.x = scaleLinear()
-      .domain([-1, 1])
       .range([0, w])
 
     this.y = scaleLinear()
-      .domain([-1, 1])
       .range([h, 0])
 
     this.xAxis = axisBottom(this.x)
@@ -81,6 +79,7 @@ export default class TwoPointScaling {
     this.chart.append('text')
       .attr('text-anchor', 'start')
       .attr('alignment-baseline', 'central')
+      .attr('class', 'label x')
       .attr('x', w + 10)
       .attr('y', this.y(0))
       .text('V')
@@ -88,6 +87,7 @@ export default class TwoPointScaling {
     // add y axis label
     this.chart.append('text')
       .attr('text-anchor', 'middle')
+      .attr('class', 'label y')
       .attr('x', this.x(0))
       .attr('y', -10)
       .text('rpm')
@@ -104,6 +104,14 @@ export default class TwoPointScaling {
       // move axis right into origin
       .attr('transform', `translate(${this.x(0)}, 0)`)
       .call(yAxis)
+
+    // add x axis label
+    this.chart.select('.label.x')
+      .attr('y', this.y(0))
+
+    // add y axis label
+    this.chart.select('.label.y')
+      .attr('x', this.x(0))
   }
 
   renderLine (data) {
@@ -201,7 +209,15 @@ export default class TwoPointScaling {
       .enter()
       .append('g')
       .attr('class', (d, i) => `TwoPointScaling hint x x${i + 1}`)
-      .attr('transform', d => `translate(${this.x(d.x) - (rectWidth / 2)}, ${this.y(0) + rectAxisPadding})`)
+      //.attr('transform', d => `translate(${this.x(d.x) - (rectWidth / 2)}, ${this.y(0) + rectAxisPadding})`)
+      .attr('transform', d => {
+        // flip hint above x axis when y value is negative
+        if (d.y < 0) {
+          return `translate(${this.x(d.x) - (rectWidth / 2)}, ${this.y(0) - rectAxisPadding - rectWidth})`
+        }
+        // show hint below x axis
+        return `translate(${this.x(d.x) - (rectWidth / 2)}, ${this.y(0) + rectAxisPadding})`
+      })
       .on('click', clickX)
       .on('mouseover', function (d, i) {
         // select line
@@ -230,7 +246,14 @@ export default class TwoPointScaling {
 
     // transition
     const transitionSelection = hintX.transition()
-      .attr('transform', d => `translate(${this.x(d.x) - (rectWidth / 2)}, ${this.y(0) + rectAxisPadding})`)
+      .attr('transform', d => {
+        // flip hint above x axis when y value is negative
+        if (d.y < 0) {
+          return `translate(${this.x(d.x) - (rectWidth / 2)}, ${this.y(0) - rectAxisPadding - rectWidth})`
+        }
+        // show hint below x axis
+        return `translate(${this.x(d.x) - (rectWidth / 2)}, ${this.y(0) + rectAxisPadding})`
+      })
 
     transitionSelection.select('text')
       .text(d => d.x)
@@ -244,9 +267,14 @@ export default class TwoPointScaling {
       .enter()
       .append('g')
       .attr('class', (d, i) => `TwoPointScaling hint y y${i + 1}`)
-      .attr('transform', d => (
-        `translate(${this.x(0) - rectWidth - rectYAxisPadding}, ${this.y(d.y) - (rectWidth / 2)})`)
-      )
+      .attr('transform', d => {
+        // flip hint to the right of y axis when x value is negative
+        if (d.x < 0) {
+          return `translate(${this.x(0) + rectYAxisPadding}, ${this.y(d.y) - (rectWidth / 2)})`
+        }
+        // show hint left of y axis
+        return `translate(${this.x(0) - rectWidth - rectYAxisPadding}, ${this.y(d.y) - (rectWidth / 2)})`
+      })
       .on('click', clickY)
       .on('mouseover', function (d, i) {
         // select line
@@ -274,9 +302,14 @@ export default class TwoPointScaling {
 
     // transition
     const transitionSelectionY = hintY.transition()
-      .attr('transform', d => (
-        `translate(${this.x(0) - rectWidth - rectYAxisPadding}, ${this.y(d.y) - (rectWidth / 2)})`)
-      )
+      .attr('transform', d => {
+        // flip hint to the right of y axis when x value is negative
+        if (d.x < 0) {
+          return `translate(${this.x(0) + rectYAxisPadding}, ${this.y(d.y) - (rectWidth / 2)})`
+        }
+        // show hint left of y axis
+        return `translate(${this.x(0) - rectWidth - rectYAxisPadding}, ${this.y(d.y) - (rectWidth / 2)})`
+      })
 
     transitionSelectionY.select('text')
       .text(d => d.y)
@@ -292,7 +325,35 @@ export default class TwoPointScaling {
     // http://keisan.casio.com/exec/system/1223508685
     const m = (y2 - y1) / (x2 - x1)
     const n = ((x2 * y1) - (x1 * y2)) / (x2 - x1)
-    const lineData = [{x: -1, y: m * -1 + n}, {x: 1, y: m * 1 + n}]
+
+    // get point further left / more negative
+    let left = x1 < x2 ? x1 : x2
+    // make sure axis are always visible
+    left = left < 0 ? left : -(left / 100 * 50)
+    // get point further right / more positive
+    let right = x1 > x2 ? x1 : x2
+    right = right > 0 ? right : (right / 100 * 50)
+    // get point further up / more positive
+    let up = y1 > y2 ? y1 : y2
+    up = up > 0 ? up : (up / 100 * 50)
+    // get point further down / more negative
+    let down = y1 < y2 ? y1 : y2
+    down = down < 0 ? down : -(down / 100 * 50)
+
+    const leftWithPadding = left - (Math.abs(left) / 100 * 10)
+    const rightWithPadding = right + (Math.abs(right) / 100 * 10)
+    const upWithPadding = up + (Math.abs(up) / 100 * 10)
+    const downWithPadding = down - (Math.abs(down) / 100 * 10)
+
+    // update domains
+    // create extra space at both ends
+    this.x.domain([leftWithPadding, rightWithPadding])
+    this.y.domain([downWithPadding, upWithPadding])
+
+    const lineData = [
+      {x: leftWithPadding, y: m * leftWithPadding + n},
+      {x: rightWithPadding, y: m * rightWithPadding + n}
+    ]
     this.renderAxis(data)
     this.renderLine(lineData)
     this.renderHelperLines(data)

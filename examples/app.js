@@ -134,7 +134,18 @@ class App extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault()
-    this.twoPointScaling.render(this.state.twoPointScaling)
+    const old = this.state.twoPointScaling
+    const v = [
+      {
+        x: parseFloat(old[0].x),
+        y: parseFloat(old[0].y)
+      },
+      {
+        x: parseFloat(old[1].x),
+        y: parseFloat(old[1].y)
+      }
+    ]
+    this.twoPointScaling.render(v)
   }
 
   onFocusTwoPointScaling = (event, point) => {

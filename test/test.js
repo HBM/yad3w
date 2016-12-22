@@ -1,4 +1,4 @@
-/* global describe, it, expect */
+/* global describe, it */
 
 // import React from 'react'
 // import {mount} from 'enzyme'
@@ -15,7 +15,7 @@ describe('two point scaling', () => {
     jsdom.env({
       html: '<html><body><svg height="100" width="100" id="app"></svg></body></html>',
       done: (err, window) => {
-        if (err) {throw err}
+        if (err) { throw err }
         const tps = new TwoPointScaling({
           target: '#app'
         })

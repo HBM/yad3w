@@ -209,7 +209,6 @@ export default class TwoPointScaling {
       .enter()
       .append('g')
       .attr('class', (d, i) => `TwoPointScaling hint x x${i + 1}`)
-      //.attr('transform', d => `translate(${this.x(d.x) - (rectWidth / 2)}, ${this.y(0) + rectAxisPadding})`)
       .attr('transform', d => {
         // flip hint above x axis when y value is negative
         if (d.y < 0) {

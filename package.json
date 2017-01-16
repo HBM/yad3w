@@ -70,5 +70,11 @@
   },
   "files": [
     "lib"
-  ]
+  ],
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "lib/"
+    ]
+  }
 }

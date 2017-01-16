@@ -4,7 +4,7 @@ import {scaleLinear} from 'd3-scale'
 import {axisBottom, axisLeft} from 'd3-axis'
 import {line, curveLinear} from 'd3-shape'
 import {transition, active} from 'd3-transition'
-import {extent} from 'd3-array'
+import {max} from 'd3-array'
 import {easeLinear} from 'd3-ease'
 
 /**
@@ -28,9 +28,6 @@ const defaults = {
     bottom: 35,
     left: 60
   },
-
-  // axis tick size
-  tickSize: 4,
 
   // number of x-axis ticks
   xTicks: 5,
@@ -60,7 +57,7 @@ export default class LineChart {
    */
   init () {
     const {target, width, height, margin, curve} = this
-    const {tickSize, xTicks, yTicks} = this
+    const {xTicks, yTicks} = this
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
 
@@ -78,22 +75,16 @@ export default class LineChart {
       .attr('height', h)
 
     this.x = scaleLinear()
-      .domain([0, 8])
       .range([0, w])
 
     this.y = scaleLinear()
-      .domain([-1, 1])
       .range([h, 0])
 
     this.xAxis = axisBottom(this.x)
       .ticks(xTicks)
-      .tickPadding(8)
-      .tickSize(tickSize)
 
     this.yAxis = axisLeft(this.y)
       .ticks(yTicks)
-      .tickPadding(8)
-      .tickSize(tickSize)
 
     this.chart.append('g')
       .attr('class', 'x axis')
@@ -116,12 +107,13 @@ export default class LineChart {
   }
 
   render (data) {
-    const {y, yAxis} = this
+    const {x, y, xAxis, yAxis} = this
 
-    y.domain(extent(data))
+    x.domain([0, data.length - 2])
+    y.domain([0, max(data)])
 
     select('.x.axis')
-      .attr('transform', `translate(0, ${y(0)})`)
+      .call(xAxis)
 
     select('.y.axis')
       .call(yAxis)

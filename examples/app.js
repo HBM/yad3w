@@ -1,9 +1,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {randomUniform} from 'd3-random'
-import {range} from 'd3-array'
-import {LineChart, Sparkline, Sparkbar, Barchart, TwoPointScaling} from '../'
+import {LineChart, Sparkline, Sparkbar, Barchart, TwoPointScaling} from '../src/'
 
 const goldenRatio = 1.61803398875
 const height = 25
@@ -49,9 +47,10 @@ class App extends React.Component {
     this.a = new LineChart({
       target: this.refs.a
     })
-    const n = 10
-    const random = randomUniform(-1, 1)
-    let lineChartData = range(n).map(random)
+    let lineChartData = []
+    for (let i = 0; i < 100; i++) {
+      lineChartData.push(random())
+    }
     this.interval = window.setInterval(() => {
       lineChartData = [
         ...lineChartData.slice(1),

@@ -11,15 +11,6 @@ body {
 	fill: none;
 }
 
-.axis text {
-	font: 9px sans-serif;
-}
-
-.axis path,
-.axis line {
-	stroke: RGB(230, 237, 244);
-}
-
 .TwoPointScaling.line {
 	stroke: steelblue;
 	stroke-width: 2px;

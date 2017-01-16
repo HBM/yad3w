@@ -1,6 +1,6 @@
 {
   "name": "yad3w",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Yet Another D3 Wrapper",
   "main": "lib/index.js",
   "keywords": [
@@ -52,7 +52,10 @@
   "author": "Mirco Zeiss <mirco.zeiss@gmail.com>",
   "license": "MIT",
   "standard": {
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "ignore": [
+      "lib/"
+    ]
   },
   "browserify": {
     "transform": [
@@ -70,11 +73,5 @@
   },
   "files": [
     "lib"
-  ],
-  "standard": {
-    "parser": "babel-eslint",
-    "ignore": [
-      "lib/"
-    ]
-  }
+  ]
 }

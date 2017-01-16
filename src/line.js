@@ -2,11 +2,10 @@
 import {select} from 'd3-selection'
 import {scaleLinear} from 'd3-scale'
 import {axisBottom, axisLeft} from 'd3-axis'
-import {line, curveBasis} from 'd3-shape'
+import {line, curveLinear} from 'd3-shape'
 import {transition, active} from 'd3-transition'
-import {range} from 'd3-array'
+import {extent} from 'd3-array'
 import {easeLinear} from 'd3-ease'
-import {randomNormal} from 'd3-random'
 
 /**
  * Default config.
@@ -25,16 +24,13 @@ const defaults = {
   // margins
   margin: {
     top: 15,
-    right: 0,
+    right: 20,
     bottom: 35,
     left: 60
   },
 
-  // axis padding
-  axisPadding: 0,
-
   // axis tick size
-  tickSize: 0,
+  tickSize: 4,
 
   // number of x-axis ticks
   xTicks: 5,
@@ -43,7 +39,7 @@ const defaults = {
   yTicks: 3,
 
   // line interpolation
-  curve: curveBasis
+  curve: curveLinear
 }
 
 /**
@@ -63,14 +59,10 @@ export default class LineChart {
    * Initialize the chart.
    */
   init () {
-    const {target, width, height, margin, axisPadding} = this
+    const {target, width, height, margin, curve} = this
     const {tickSize, xTicks, yTicks} = this
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
-
-    var n = 40
-    var random = randomNormal(0, 0.2)
-    var data = range(n).map(random)
 
     this.chart = select(target)
       .attr('width', width)
@@ -82,11 +74,11 @@ export default class LineChart {
       .append('defs').append('clipPath')
       .attr('id', 'clip')
       .append('rect')
-      .attr('width', width)
-      .attr('height', height)
+      .attr('width', w)
+      .attr('height', h)
 
     this.x = scaleLinear()
-      .domain([1, n - 2])
+      .domain([0, 8])
       .range([0, w])
 
     this.y = scaleLinear()
@@ -105,48 +97,57 @@ export default class LineChart {
 
     this.chart.append('g')
       .attr('class', 'x axis')
-      .attr('transform', `translate(0, ${h + axisPadding})`)
+      .attr('transform', `translate(0, ${this.y(0)})`)
       .call(this.xAxis)
 
     this.chart.append('g')
       .attr('class', 'y axis')
-      .attr('transform', `translate(${-axisPadding}, 0)`)
       .call(this.yAxis)
 
     this.line = line()
       .x((d, i) => this.x(i))
       .y(d => this.y(d))
-      .curve(curveBasis)
-
-    const t = transition()
-      .duration(250)
-      .ease(easeLinear)
-
-    const that = this
-    function tick () {
-      data.push(random())
-
-      // redraw line
-      select(this)
-        .attr('d', that.line)
-        .attr('transform', null)
-
-      // slide to the left
-      active(this)
-        .attr('transform', `translate(${that.x(0)}, 0)`)
-        .transition(t)
-        .on('start', tick)
-
-      data.shift()
-    }
+      .curve(curve)
 
     this.chart.append('g')
       .attr('clip-path', 'url(#clip)')
       .append('path')
-      .datum(data)
       .attr('class', 'line')
+  }
+
+  render (data) {
+    const {y, yAxis} = this
+
+    y.domain(extent(data))
+
+    select('.x.axis')
+      .attr('transform', `translate(0, ${y(0)})`)
+
+    select('.y.axis')
+      .call(yAxis)
+
+    const t = transition()
+      .ease(easeLinear)
+      .duration(250)
+
+    const that = this
+
+    select('.line')
+      .datum(data)
       .transition(t)
-      .on('start', tick)
+      .on('start', function () {
+        // redraw line
+        select(this)
+          .attr('d', that.line)
+          .attr('transform', null)
+
+        // https://github.com/d3/d3-transition#active
+        // returns the active transition on the specified node
+        // slide to the left
+        active(this)
+          .attr('transform', `translate(${that.x(-1)}, 0)`)
+          .transition(t)
+      })
   }
 
 }

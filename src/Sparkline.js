@@ -1,7 +1,7 @@
 
 import {scaleLinear} from 'd3-scale'
 import {line, curveBasis} from 'd3-shape'
-import {min, max} from 'd3-array'
+import {extent} from 'd3-array'
 import retinafy from './retinafy'
 
 const defaults = {
@@ -51,7 +51,7 @@ export default class Sparkline {
     const {x, y, canvas, context, line} = this
 
     x.domain([0, data.length - 1])
-    y.domain([min(data), max(data)])
+    y.domain(extent(data))
 
     context.clearRect(0, 0, canvas.width, canvas.height)
     context.beginPath()

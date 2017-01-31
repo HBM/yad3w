@@ -1,6 +1,6 @@
 
 import {scaleBand, scaleLinear} from 'd3-scale'
-import {max} from 'd3-array'
+import {extent} from 'd3-array'
 import retinafy from './retinafy'
 
 const defaults = {
@@ -42,14 +42,14 @@ export default class Sparkbar {
   }
 
   render (data) {
-    const {x, y, height, canvas, context, fillStyle} = this
+    const {x, y, canvas, context, fillStyle} = this
     x.domain(data.map((d, i) => i))
-    y.domain([0, max(data)])
+    y.domain(extent(data))
 
     context.clearRect(0, 0, canvas.width, canvas.height)
     context.fillStyle = fillStyle
     data.forEach((d, i) => {
-      context.fillRect(x(i), y(d), x.bandwidth(), height - y(d))
+      context.fillRect(x(i), y(Math.max(0, d)), x.bandwidth(), Math.abs(y(d) - y(0)))
     })
   }
 

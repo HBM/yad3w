@@ -1,7 +1,7 @@
 
 import {select} from 'd3-selection'
 import {scaleBand, scaleLinear} from 'd3-scale'
-import {max} from 'd3-array'
+import {extent} from 'd3-array'
 
 const defaults = {
 
@@ -44,10 +44,10 @@ export default class Barchart {
   }
 
   render (data) {
-    const {x, y, height, chart} = this
+    const {x, y, chart} = this
 
     x.domain(data.map((d, i) => i))
-    y.domain([0, max(data)])
+    y.domain(extent(data))
 
     chart.selectAll('.bar')
       .data(data)
@@ -55,9 +55,9 @@ export default class Barchart {
       .append('rect')
       .attr('class', 'bar')
       .attr('x', (d, i) => x(i))
-      .attr('y', d => y(d))
+      .attr('y', d => y(Math.max(0, d)))
       .attr('width', x.bandwidth())
-      .attr('height', d => height - y(d))
+      .attr('height', d => Math.abs(y(d) - y(0)))
   }
 
 }

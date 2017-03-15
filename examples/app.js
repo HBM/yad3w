@@ -9,7 +9,6 @@ import {
   TwoPointScaling,
   LimitSwitch
 } from '../src/index.js'
-import {range} from 'd3-array'
 
 const goldenRatio = 1.61803398875
 const height = 25

@@ -3,7 +3,6 @@ import {select} from 'd3-selection'
 import {scaleLinear} from 'd3-scale'
 import {axisBottom, axisLeft} from 'd3-axis'
 import {line} from 'd3-shape'
-import {extent} from 'd3-array'
 
 const defaults = {
   width: 640,
@@ -17,7 +16,7 @@ const defaults = {
   // number of x-axis ticks
   xTicks: 3,
   // number of y-axis ticks
-  yTicks: 5,
+  yTicks: 5
 }
 
 export default class LimitSwitch {
@@ -114,12 +113,9 @@ export default class LimitSwitch {
       .attr('y2', y(5))
 
     // test path line intersections
-    const pathEl = this.chart.select('.line').node()
     const svgLine = this.chart.select('.threshold')
     // const points = path_line_intersections(pathEl, svgLine)
     const points = this.data_line_intersections(data, svgLine)
-
-    const first = points[0]
 
     this.draw_intersections(points.pts)
 
@@ -141,23 +137,22 @@ export default class LimitSwitch {
   }
 
   draw_intersections = (pts) => {
-
-    var highlights = this.chart.append("g");
+    var highlights = this.chart.append('g')
 
     pts.forEach(pt => {
-      highlights.append("circle")
-         .attr("cx", pt.x)
-         .attr("cy", pt.y)
-         .attr("r", 8)
-         .attr("fill", "none")
-         .attr("stroke", "steelblue");
+      highlights.append('circle')
+         .attr('cx', pt.x)
+         .attr('cy', pt.y)
+         .attr('r', 8)
+         .attr('fill', 'none')
+         .attr('stroke', 'steelblue')
 
-      highlights.append("circle")
-         .attr("cx", pt.x)
-         .attr("cy", pt.y)
-         .attr("r", 2)
-         .attr("fill", "steelblue")
-         .attr("stroke", "none");
+      highlights.append('circle')
+         .attr('cx', pt.x)
+         .attr('cy', pt.y)
+         .attr('r', 2)
+         .attr('fill', 'steelblue')
+         .attr('stroke', 'none')
 
       // draw line from top graph to bottom graph
       this.chart.append('line')
@@ -166,14 +161,13 @@ export default class LimitSwitch {
         .attr('y1', this.y(5))
         .attr('x2', pt.x)
         .attr('y2', this.height - 2 * this.margin.bottom)
-    });
-
+    })
   }
 
   data_line_intersections = (data, line) => {
     var pts = []
     var onOff = []
-    for (var i=0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
       const pos1 = {
         x: this.x(i),
         y: this.y(data[i])
@@ -194,10 +188,10 @@ export default class LimitSwitch {
         y1: line.attr('y1'),
         y2: line.attr('y2')
       }
-      var pt = line_line_intersect(line1, line2)
+      var pt = lineLineIntersect(line1, line2)
       // check if line is going down \ or up /
       // y is going top to bottom
-      if (typeof(pt) != 'string') {
+      if (typeof (pt) !== 'string') {
         // check for up down
         if (pos1.y > pos2.y) {
           // up
@@ -231,7 +225,7 @@ export default class LimitSwitch {
 
 }
 
-function line_line_intersect(line1, line2) {
+function lineLineIntersect (line1, line2) {
   var x1 = line1.x1
   var x2 = line1.x2
   var x3 = line2.x1
@@ -240,15 +234,15 @@ function line_line_intersect(line1, line2) {
   var y2 = line1.y2
   var y3 = line2.y1
   var y4 = line2.y2
-  var pt_denom = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
-  var pt_x_num = (x1*y2 - y1*x2) * (x3 - x4) - (x1 - x2) * (x3*y4 - y3*x4)
-  var pt_y_num = (x1*y2 - y1*x2) * (y3 - y4) - (y1 - y2) * (x3*y4 - y3*x4)
-  if (pt_denom == 0) {
+  var ptDenom = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
+  var ptXNum = (x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)
+  var ptYNum = (x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)
+  if (ptDenom === 0) {
     return 'parallel'
   }
   var pt = {
-    x: pt_x_num / pt_denom,
-    y: pt_y_num / pt_denom
+    x: ptXNum / ptDenom,
+    y: ptYNum / ptDenom
   }
   if (btwn(pt.x, x1, x2) && btwn(pt.y, y1, y2) && btwn(pt.x, x3, x4) && btwn(pt.y, y3, y4)) {
     return pt
@@ -256,7 +250,7 @@ function line_line_intersect(line1, line2) {
   return 'not in range'
 }
 
-function btwn(a, b1, b2) {
+function btwn (a, b1, b2) {
   if ((a >= b1) && (a <= b2)) { return true }
   if ((a >= b2) && (a <= b1)) { return true }
   return false

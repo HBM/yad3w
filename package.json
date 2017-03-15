@@ -42,7 +42,7 @@
     "webpack-dev-server": "^2.3.0"
   },
   "scripts": {
-    "test": "make test",
+    "test": "standard",
     "build": "babel src --out-dir lib",
     "dev": "webpack-dev-server"
   },

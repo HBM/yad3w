@@ -2,9 +2,9 @@
 const path = require('path')
 
 module.exports = {
-  entry: './examples/app.js',
+  entry: './docs/app.js',
   output: {
-    path: path.join(__dirname, 'examples'),
+    path: path.join(__dirname, 'docs'),
     filename: 'app.bundle.js'
   },
   module: {
@@ -17,6 +17,6 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: path.join(__dirname, 'examples')
+    contentBase: path.join(__dirname, 'docs')
   }
 }

@@ -89,7 +89,7 @@ class App extends React.Component {
     this.barchart = new Barchart({
       target: this.refs.barchart
     })
-    this.barchart.render([0, 1, -2, 3, 5, 3, 4, 2, 1])
+    this.barchart.render([6, 1, -2, 3, 5, 3, 4, 2, 1])
 
     // two point scaling
     this.twoPointScaling = new TwoPointScaling({

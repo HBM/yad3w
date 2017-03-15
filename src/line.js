@@ -43,7 +43,6 @@ const defaults = {
  * LineChart component.
  */
 export default class LineChart {
-
   /**
    * Construct with given `config`.
    */
@@ -141,5 +140,4 @@ export default class LineChart {
           .transition(t)
       })
   }
-
 }

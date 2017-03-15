@@ -45,7 +45,6 @@ const fps = 5
 const fpsInterval = 1000 / fps
 
 class App extends React.Component {
-
   state = {
     twoPointScaling: [{x: 0.1, y: 0.2}, {x: 0.5, y: 0.7}]
   }
@@ -271,7 +270,6 @@ class App extends React.Component {
       </div>
     )
   }
-
 }
 
 ReactDOM.render(

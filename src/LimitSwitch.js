@@ -20,7 +20,6 @@ const defaults = {
 }
 
 export default class LimitSwitch {
-
   constructor (config) {
     Object.assign(this, defaults, config)
     this.init()
@@ -117,7 +116,7 @@ export default class LimitSwitch {
     // const points = path_line_intersections(pathEl, svgLine)
     const points = this.data_line_intersections(data, svgLine)
 
-    this.draw_intersections(points.pts)
+    this.drawIntersections(points.pts)
 
     // add point from left edge to first intersection
     points.onOff.unshift({
@@ -136,7 +135,7 @@ export default class LimitSwitch {
       .attr('points', polylines)
   }
 
-  draw_intersections = (pts) => {
+  drawIntersections = (pts) => {
     var highlights = this.chart.append('g')
 
     pts.forEach(pt => {
@@ -164,7 +163,7 @@ export default class LimitSwitch {
     })
   }
 
-  data_line_intersections = (data, line) => {
+  dataLineIntersections = (data, line) => {
     var pts = []
     var onOff = []
     for (var i = 0; i < data.length; i++) {
@@ -222,7 +221,6 @@ export default class LimitSwitch {
       onOff
     }
   }
-
 }
 
 function lineLineIntersect (line1, line2) {

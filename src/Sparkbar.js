@@ -19,7 +19,6 @@ const defaults = {
 }
 
 export default class Sparkbar {
-
   constructor (config) {
     Object.assign(this, defaults, config)
 
@@ -52,5 +51,4 @@ export default class Sparkbar {
       context.fillRect(x(i), y(Math.max(0, d)), x.bandwidth(), Math.abs(y(d) - y(0)))
     })
   }
-
 }

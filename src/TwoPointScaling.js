@@ -27,7 +27,6 @@ const defaults = {
 }
 
 export default class TwoPointScaling {
-
   constructor (config) {
     Object.assign(this, defaults, config)
     this.init()
@@ -373,5 +372,4 @@ export default class TwoPointScaling {
     this.chart.select(`.TwoPointScaling.hint.${point}`)
       .classed('is-focused', false)
   }
-
 }

@@ -4,7 +4,6 @@ import {scaleLinear} from 'd3-scale'
 import {max} from 'd3-array'
 
 export default class Chart extends React.Component {
-
   static propTypes = {
     width: React.PropTypes.number,
     height: React.PropTypes.number,
@@ -67,5 +66,4 @@ export default class Chart extends React.Component {
       </svg>
     )
   }
-
 }

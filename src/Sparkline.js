@@ -20,7 +20,6 @@ const defaults = {
 }
 
 export default class Sparkline {
-
   constructor (config) {
     Object.assign(this, defaults, config)
 
@@ -60,5 +59,4 @@ export default class Sparkline {
     context.strokeStyle = this.strokeStyle
     context.stroke()
   }
-
 }

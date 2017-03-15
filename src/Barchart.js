@@ -21,7 +21,6 @@ const defaults = {
 }
 
 export default class Barchart {
-
   constructor (config) {
     Object.assign(this, defaults, config)
 
@@ -59,5 +58,4 @@ export default class Barchart {
       .attr('width', x.bandwidth())
       .attr('height', d => Math.abs(y(d) - y(0)))
   }
-
 }

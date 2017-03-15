@@ -3,7 +3,6 @@ import React from 'react'
 import {arc as d3arc, pie as d3pie} from 'd3-shape'
 
 export default class Piechart extends React.Component {
-
   static propTypes = {
     width: React.PropTypes.number,
     height: React.PropTypes.number
@@ -57,5 +56,4 @@ export default class Piechart extends React.Component {
       </svg>
     )
   }
-
 }

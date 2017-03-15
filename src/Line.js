@@ -3,7 +3,6 @@ import React from 'react'
 import {line as d3line} from 'd3-shape'
 
 export default class Line extends React.Component {
-
   static defaultProps = {
     fill: 'none',
     strokeWidth: 1,
@@ -26,5 +25,4 @@ export default class Line extends React.Component {
       />
     )
   }
-
 }

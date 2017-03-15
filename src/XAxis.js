@@ -11,7 +11,6 @@ const styles = {
 }
 
 export default class XAxis extends React.Component {
-
   static propTypes = {
     width: React.PropTypes.number,
     height: React.PropTypes.number,
@@ -39,5 +38,4 @@ export default class XAxis extends React.Component {
       </g>
     )
   }
-
 }

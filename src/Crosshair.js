@@ -2,7 +2,6 @@
 import React from 'react'
 
 export default class Crosshair extends React.Component {
-
   static propTypes = {
     x: React.PropTypes.number,
     y: React.PropTypes.number,
@@ -51,6 +50,4 @@ export default class Crosshair extends React.Component {
       </g>
     )
   }
-
 }
-

@@ -37,7 +37,7 @@
     "jsdom": "^9.9.1",
     "jsdom-global": "^2.1.0",
     "mocha": "^3.2.0",
-    "standard": "^7.1.2",
+    "standard": "^9.0.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
   },

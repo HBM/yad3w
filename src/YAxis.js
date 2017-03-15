@@ -6,7 +6,6 @@ const style = {
 }
 
 export default class YAxis extends React.Component {
-
   static defaultProps = {
     outerTickSize: 6,
     stroke: '#000',
@@ -29,5 +28,4 @@ export default class YAxis extends React.Component {
       </g>
     )
   }
-
 }

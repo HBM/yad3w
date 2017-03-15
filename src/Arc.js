@@ -3,7 +3,6 @@ import React from 'react'
 import {Motion, spring} from 'react-motion'
 
 export default class Arc extends React.Component {
-
   static propTypes = {
     value: React.PropTypes.number,
     fill: React.PropTypes.string,
@@ -49,5 +48,4 @@ export default class Arc extends React.Component {
 
     )
   }
-
 }

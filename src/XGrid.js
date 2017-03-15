@@ -6,7 +6,6 @@ const style = {
 }
 
 export default class XGrid extends React.Component {
-
   static defaultProps = {
     ticks: 10
   }
@@ -34,5 +33,4 @@ export default class XGrid extends React.Component {
       </g>
     )
   }
-
 }

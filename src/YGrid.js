@@ -6,7 +6,6 @@ const style = {
 }
 
 export default class YGrid extends React.Component {
-
   static defaultProps = {
     ticks: 10,
     fill: 'none',

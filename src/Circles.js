@@ -2,7 +2,6 @@
 import React from 'react'
 
 export default class Circles extends React.Component {
-
   static defaultProps = {
     radius: 5,
     fill: '#000',
@@ -41,5 +40,4 @@ export default class Circles extends React.Component {
       </g>
     )
   }
-
 }

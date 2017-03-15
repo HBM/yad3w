@@ -3,7 +3,6 @@ import React from 'react'
 import {mouse, customEvent} from 'd3-selection'
 
 export default class Overlay extends React.Component {
-
   onMouseMove = (event) => {
     var [x, y] = mouse(this.rect)
     var x0 = this.props.xScale.invert(x)
@@ -34,5 +33,4 @@ export default class Overlay extends React.Component {
       />
     )
   }
-
 }

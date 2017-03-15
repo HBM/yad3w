@@ -46,7 +46,8 @@
   "standard": {
     "parser": "babel-eslint",
     "ignore": [
-      "lib/"
+      "lib",
+      "app.bundle.js"
     ]
   },
   "files": [

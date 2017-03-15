@@ -7,7 +7,7 @@ body {
 
 .line {
 	stroke: RGB(243, 42, 100);
-	stroke-width: 2px;
+	stroke-width: 1px;
 	fill: none;
 }
 
@@ -48,4 +48,18 @@ body {
 .TwoPointScaling.hint.is-hovered rect,
 .TwoPointScaling.hint.is-focused rect {
 	stroke: steelblue;
+}
+
+.LimitSwitch.threshold {
+	stroke: lightgrey;
+	stroke-width: 1px;
+	fill: none;
+	shape-rendering: crispEdges;
+}
+
+.LimitSwitch.trigger {
+	stroke: steelblue;
+	stroke-width: 2px;
+	fill: none;
+	shape-rendering: crispEdges;
 }

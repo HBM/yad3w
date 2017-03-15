@@ -1,14 +1,22 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {LineChart, Sparkline, Sparkbar, Barchart, TwoPointScaling} from '../src/'
+import {
+  LineChart,
+  Sparkline,
+  Sparkbar,
+  Barchart,
+  TwoPointScaling,
+  LimitSwitch
+} from '../src/index.js'
+import {range} from 'd3-array'
 
 const goldenRatio = 1.61803398875
 const height = 25
 const width = height * goldenRatio * 3
 
 const random = () => {
-  const min = -10
+  const min = 0
   const max = 10
   return window.Math.floor(window.Math.random() * (max - min + 1)) + min
 }
@@ -93,6 +101,17 @@ class App extends React.Component {
     })
     const data = [{x: 0.1, y: 0.2}, {x: 0.5, y: 0.7}]
     this.twoPointScaling.render(data)
+
+    // limit switch
+    this.limitSwitch = new LimitSwitch({
+      target: this.refs.limitSwitch
+    })
+    // const tmp = range(1000).map(val => Math.sin(val / 100))
+    let tmp = []
+    for (let i = 0; i < 10; i++) {
+      tmp.push(random())
+    }
+    this.limitSwitch.render(tmp)
 
     then = window.performance.now()
     this.tick()
@@ -245,6 +264,10 @@ class App extends React.Component {
           <button type='submit' onClick={this.onSubmit}>
             submit
           </button>
+          <div style={{display: 'flex', alignItems: 'center', margin: 100}}>
+            <span style={{width: 80}}>limit switch</span>
+            <svg height={height} width={width} ref='limitSwitch' />
+          </div>
         </form>
       </div>
     )

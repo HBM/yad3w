@@ -114,7 +114,7 @@ export default class LimitSwitch {
     // test path line intersections
     const svgLine = this.chart.select('.threshold')
     // const points = path_line_intersections(pathEl, svgLine)
-    const points = this.data_line_intersections(data, svgLine)
+    const points = this.dataLineIntersections(data, svgLine)
 
     this.drawIntersections(points.pts)
 

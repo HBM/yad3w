@@ -15,7 +15,7 @@ const height = 25
 const width = height * goldenRatio * 3
 
 const random = () => {
-  const min = 0
+  const min = -10
   const max = 10
   return window.Math.floor(window.Math.random() * (max - min + 1)) + min
 }
@@ -89,7 +89,8 @@ class App extends React.Component {
     this.barchart = new Barchart({
       target: this.refs.barchart
     })
-    this.barchart.render([6, 1, -2, 3, 5, 3, 4, 2, 1])
+    // this.barchart.render([6, 1, -2, 3, 5, 3, 4, 2, 1])
+    this.barchart.render(bar)
 
     // two point scaling
     this.twoPointScaling = new TwoPointScaling({
@@ -152,6 +153,7 @@ class App extends React.Component {
       bar.shift()
       bar.push(random())
       this.sparkbar.render(bar)
+      this.barchart.render(bar)
     }
   }
 

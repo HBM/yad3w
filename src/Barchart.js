@@ -17,7 +17,11 @@ const defaults = {
     right: 20,
     bottom: 30,
     left: 40
-  }
+  },
+
+  xTicks: 0,
+
+  yTicks: 5
 
 }
 
@@ -28,6 +32,8 @@ export default class Barchart {
     const {target, width, height, margin} = this
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
+
+    const {xTicks, yTicks} = this
 
     this.chart = select(target)
       .attr('width', width)
@@ -43,11 +49,13 @@ export default class Barchart {
       .rangeRound([h, 0])
 
     this.xAxis = axisBottom(this.x)
+      .ticks(xTicks)
 
     this.chart.append('g')
       .attr('class', 'x axis')
 
     this.yAxis = axisLeft(this.y)
+      .ticks(yTicks)
 
     this.chart.append('g')
       .attr('class', 'y axis')
@@ -66,14 +74,27 @@ export default class Barchart {
     chart.select('.y.axis')
       .call(yAxis)
 
-    chart.selectAll('.bar')
+    const bars = chart.selectAll('.bar')
       .data(data)
+
+    // no special update selection required
+
+    // enter selection
+    // after merging entered elements with the update selection,
+    // apply operations to both
+    bars
       .enter()
       .append('rect')
       .attr('class', 'bar')
+      .merge(bars)
       .attr('x', (d, i) => x(i))
       .attr('y', d => y(Math.max(0, d)))
       .attr('width', x.bandwidth())
       .attr('height', d => Math.abs(y(d) - y(0)))
+
+    // exit selection
+    bars
+      .exit()
+      .remove()
   }
 }

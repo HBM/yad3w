@@ -21,7 +21,11 @@ const defaults = {
 
   xTicks: 0,
 
-  yTicks: 5
+  yTicks: 5,
+
+  minVal: -10,
+
+  maxVal: 10
 
 }
 
@@ -33,7 +37,7 @@ export default class Barchart {
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
 
-    const {xTicks, yTicks} = this
+    const {minVal, maxVal, xTicks, yTicks} = this
 
     this.chart = select(target)
       .attr('width', width)
@@ -47,6 +51,7 @@ export default class Barchart {
 
     this.y = scaleLinear()
       .rangeRound([h, 0])
+      .domain([minVal, maxVal])
 
     this.xAxis = axisBottom(this.x)
       .ticks(xTicks)
@@ -65,7 +70,6 @@ export default class Barchart {
     const {x, y, xAxis, yAxis, chart} = this
 
     x.domain(data.map((d, i) => i))
-    y.domain(extent(data))
 
     chart.select('.x.axis')
       .attr('transform', `translate(0, ${this.y(0)})`)

@@ -63,12 +63,6 @@ export default class Barchart {
 
     this.chart.append('g')
       .attr('class', 'y axis')
-
-    window.addEventListener('resize', this.resize)
-  }
-
-  destroy () {
-    window.removeEventListener('resize', this.resize)
   }
 
   render (data) {
@@ -107,11 +101,8 @@ export default class Barchart {
       .remove()
   }
 
-  resize = () => {
+  resize = (width) => {
     const {target, chart, margin} = this
-
-    // get width from parent of svg container
-    const width = target.parentNode.getBoundingClientRect().width
 
     // change svg width
     select(target).attr('width', width)

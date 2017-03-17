@@ -116,6 +116,7 @@ class App extends React.Component {
 
     then = window.performance.now()
     this.tick()
+    window.addEventListener('resize', this.resize)
   }
 
   onClickX = (d, i, n) => {
@@ -126,8 +127,16 @@ class App extends React.Component {
     this.refs[`y${i + 1}`].focus()
   }
 
+  resize = () => {
+    const {barchart} = this.refs
+    // get width from parent of svg container
+    const width = barchart.parentNode.getBoundingClientRect().width
+    this.barchart.resize(width)
+  }
+
   componentWillUnmount () {
     window.cancelAnimationFrame(this.raf)
+    window.removeEventListener('resize', this.resize)
   }
 
   // single argument, a DOMHighResTimeStamp, which indicates the current time

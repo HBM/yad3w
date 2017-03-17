@@ -15,8 +15,8 @@ const defaults = {
   margin: {
     top: 20,
     right: 20,
-    bottom: 30,
-    left: 40
+    bottom: 20,
+    left: 20
   },
 
   xTicks: 0,
@@ -64,6 +64,12 @@ export default class Barchart {
 
     this.chart.append('g')
       .attr('class', 'y axis')
+
+    window.addEventListener('resize', this.resize)
+  }
+
+  destroy () {
+    window.removeEventListener('resize', this.resize)
   }
 
   render (data) {
@@ -100,5 +106,30 @@ export default class Barchart {
     bars
       .exit()
       .remove()
+  }
+
+  resize = () => {
+    const {target, chart, margin, xTicks} = this
+
+    // get width from parent of svg container
+    const width = target.parentNode.getBoundingClientRect().width
+
+    // change svg width
+    select(target).attr('width', width)
+
+    // calc new internal width
+    const w = width - margin.left - margin.right
+
+    // adjust horizontal range
+    this.x.rangeRound([0, w])
+
+    // adjust x axis
+    chart.select('.x.axis')
+      .call(this.xAxis)
+
+    // adjust bars
+    const bars = chart.selectAll('.bar')
+      .attr('x', (d, i) => this.x(i))
+      .attr('width', this.x.bandwidth())
   }
 }

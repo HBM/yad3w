@@ -86,10 +86,12 @@ class App extends React.Component {
     this.sparkbar.render(bar)
 
     // svg barchart
+    const {barchart} = this.refs
+    const width = this.refs.barchart.parentNode.getBoundingClientRect().width
     this.barchart = new Barchart({
-      target: this.refs.barchart
+      target: barchart,
+      width
     })
-    // this.barchart.render([6, 1, -2, 3, 5, 3, 4, 2, 1])
     this.barchart.render(bar)
 
     // two point scaling
@@ -208,9 +210,21 @@ class App extends React.Component {
           <span style={{width: 80}}>dax</span>
           <canvas height={height} width={width} ref='sparkbar' />
         </div>
-        <div style={{display: 'flex', alignItems: 'center', margin: 20}}>
+        <div style={{display: 'flex', alignItems: 'center', margin: 20, height: 200}}>
           <span style={{width: 80}}>bar chart svg</span>
-          <svg height={height} width={width} ref='barchart' />
+          <div style={{flex: 1}}>
+            <svg ref='barchart' style={{maxWidth: '100%'}} />
+          </div>
+          <div style={{
+            background: '#eee',
+            height: '100%',
+            flex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            flex container for responsive test
+          </div>
         </div>
         <div style={{display: 'flex', alignItems: 'center', margin: 100}}>
           <span style={{width: 80}}>two point scaling</span>

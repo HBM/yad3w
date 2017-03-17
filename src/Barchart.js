@@ -1,7 +1,6 @@
 
 import {select} from 'd3-selection'
 import {scaleBand, scaleLinear} from 'd3-scale'
-import {extent} from 'd3-array'
 import {axisBottom, axisLeft} from 'd3-axis'
 
 const defaults = {
@@ -109,7 +108,7 @@ export default class Barchart {
   }
 
   resize = () => {
-    const {target, chart, margin, xTicks} = this
+    const {target, chart, margin} = this
 
     // get width from parent of svg container
     const width = target.parentNode.getBoundingClientRect().width
@@ -128,7 +127,7 @@ export default class Barchart {
       .call(this.xAxis)
 
     // adjust bars
-    const bars = chart.selectAll('.bar')
+    chart.selectAll('.bar')
       .attr('x', (d, i) => this.x(i))
       .attr('width', this.x.bandwidth())
   }

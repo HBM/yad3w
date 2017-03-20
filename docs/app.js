@@ -9,31 +9,14 @@ import {
   TwoPointScaling,
   LimitSwitch
 } from '../src/index.js'
+import {HashRouter, Route, Link} from 'react-router-dom'
+import LineChartComponent from './linechart'
+import SparklineComponent from './sparkline'
+import {random} from './utils'
 
 const goldenRatio = 1.61803398875
 const height = 25
 const width = height * goldenRatio * 3
-
-const random = () => {
-  const min = -10
-  const max = 10
-  return window.Math.floor(window.Math.random() * (max - min + 1)) + min
-}
-
-let data1 = []
-for (let i = 0; i < 50; i++) {
-  data1.push(random())
-}
-
-let data2 = []
-for (let i = 0; i < 50; i++) {
-  data2.push(random())
-}
-
-let data3 = []
-for (let i = 0; i < 50; i++) {
-  data3.push(random())
-}
 
 let bar = []
 for (let i = 0; i < 20; i++) {
@@ -50,35 +33,6 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    this.a = new LineChart({
-      target: this.refs.a
-    })
-    let lineChartData = []
-    for (let i = 0; i < 100; i++) {
-      lineChartData.push(random())
-    }
-    this.interval = window.setInterval(() => {
-      lineChartData = [
-        ...lineChartData.slice(1),
-        random()
-      ]
-      this.a.render(lineChartData)
-    }, 250)
-
-    this.bus1 = new Sparkline({
-      canvas: this.refs.bus1
-    })
-    this.bus1.render(data1)
-
-    this.bus2 = new Sparkline({
-      canvas: this.refs.bus2
-    })
-    this.bus2.render(data2)
-
-    this.bus3 = new Sparkline({
-      canvas: this.refs.bus3
-    })
-    this.bus3.render(data3)
     // sparkbar
     this.sparkbar = new Sparkbar({
       canvas: this.refs.sparkbar
@@ -149,18 +103,6 @@ class App extends React.Component {
     if (elapsed > fpsInterval) {
       then = now - (elapsed % fpsInterval)
 
-      data1.shift()
-      data1.push(random())
-      this.bus1.render(data1)
-
-      data2.shift()
-      data2.push(random())
-      this.bus2.render(data2)
-
-      data3.shift()
-      data3.push(random())
-      this.bus3.render(data3)
-
       bar.shift()
       bar.push(random())
       this.sparkbar.render(bar)
@@ -201,98 +143,100 @@ class App extends React.Component {
   render () {
     const {twoPointScaling} = this.state
     return (
-      <div>
-        <svg ref='a' />
-        <div style={{display: 'flex', alignItems: 'center', margin: 20}}>
-          <span style={{width: 80}}>dow jones</span>
-          <canvas height={height} width={width} ref='bus1' />
-        </div>
-        <div style={{display: 'flex', alignItems: 'center', margin: 20}}>
-          <span style={{width: 80}}>nasdaq</span>
-          <canvas height={height} width={width} ref='bus2' />
-        </div>
-        <div style={{display: 'flex', alignItems: 'center', margin: 20}}>
-          <span style={{width: 80}}>dax</span>
-          <canvas height={height} width={width} ref='bus3' />
-        </div>
-        <div style={{display: 'flex', alignItems: 'center', margin: 20}}>
-          <span style={{width: 80}}>dax</span>
-          <canvas height={height} width={width} ref='sparkbar' />
-        </div>
-        <div style={{display: 'flex', alignItems: 'center', margin: 20, height: 200}}>
-          <span style={{width: 80}}>bar chart svg</span>
-          <div style={{flex: 1}}>
-            <svg ref='barchart' style={{maxWidth: '100%'}} />
+      <HashRouter>
+        <div>
+          <ul>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/linechart'>Line chart</Link>
+            </li>
+            <li>
+              <Link to='/sparkline'>Sparkline</Link>
+            </li>
+          </ul>
+          <Route path='/linechart' component={LineChartComponent} />
+          <Route path='/sparkline' component={SparklineComponent} />
+          <div style={{display: 'flex', alignItems: 'center', margin: 20}}>
+            <span style={{width: 80}}>dax</span>
+            <canvas height={height} width={width} ref='sparkbar' />
           </div>
-          <div style={{
-            background: '#eee',
-            height: '100%',
-            flex: 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            flex container for responsive test
+          <div style={{display: 'flex', alignItems: 'center', margin: 20, height: 200}}>
+            <span style={{width: 80}}>bar chart svg</span>
+            <div style={{flex: 1}}>
+              <svg ref='barchart' style={{maxWidth: '100%'}} />
+            </div>
+            <div style={{
+              background: '#eee',
+              height: '100%',
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              flex container for responsive test
+            </div>
           </div>
-        </div>
-        <div style={{display: 'flex', alignItems: 'center', margin: 100}}>
-          <span style={{width: 80}}>two point scaling</span>
-          <svg height={height} width={width} ref='twoPointScaling' />
-        </div>
-        <form style={{marginLeft: 100}} onSubmit={this.onSubmit}>
-          <div>
-            <b>P </b><span>- x1</span>
-            <input
-              ref='x1'
-              placeholder='x1'
-              value={twoPointScaling[0].x}
-              onChange={(e) => this.onChangeTwoPointScaling(e, 0, 'x')}
-              onFocus={(e) => this.onFocusTwoPointScaling(e, 'x1')}
-              onBlur={(e) => this.onBlurTwoPointScaling(e, 'x1')}
-            />
-            <span>
-              y1
-            </span>
-            <input
-              ref='y1'
-              placeholder='y1'
-              value={twoPointScaling[0].y}
-              onChange={(e) => this.onChangeTwoPointScaling(e, 0, 'y')}
-              onFocus={(e) => this.onFocusTwoPointScaling(e, 'y1')}
-              onBlur={(e) => this.onBlurTwoPointScaling(e, 'y1')}
-            />
-          </div>
-          <div>
-            <b>Q </b><span>- x2</span>
-            <input
-              ref='x2'
-              placeholder='x2'
-              value={twoPointScaling[1].x}
-              onChange={(e) => this.onChangeTwoPointScaling(e, 1, 'x')}
-              onFocus={(e) => this.onFocusTwoPointScaling(e, 'x2')}
-              onBlur={(e) => this.onBlurTwoPointScaling(e, 'x2')}
-            />
-            <span>
-              y2
-            </span>
-            <input
-              ref='y2'
-              placeholder='y2'
-              value={twoPointScaling[1].y}
-              onChange={(e) => this.onChangeTwoPointScaling(e, 1, 'y')}
-              onFocus={(e) => this.onFocusTwoPointScaling(e, 'y2')}
-              onBlur={(e) => this.onBlurTwoPointScaling(e, 'y2')}
-            />
-          </div>
-          <button type='submit' onClick={this.onSubmit}>
-            submit
-          </button>
           <div style={{display: 'flex', alignItems: 'center', margin: 100}}>
-            <span style={{width: 80}}>limit switch</span>
-            <svg height={height} width={width} ref='limitSwitch' />
+            <span style={{width: 80}}>two point scaling</span>
+            <svg height={height} width={width} ref='twoPointScaling' />
           </div>
-        </form>
-      </div>
+          <form style={{marginLeft: 100}} onSubmit={this.onSubmit}>
+            <div>
+              <b>P </b><span>- x1</span>
+              <input
+                ref='x1'
+                placeholder='x1'
+                value={twoPointScaling[0].x}
+                onChange={(e) => this.onChangeTwoPointScaling(e, 0, 'x')}
+                onFocus={(e) => this.onFocusTwoPointScaling(e, 'x1')}
+                onBlur={(e) => this.onBlurTwoPointScaling(e, 'x1')}
+              />
+              <span>
+                y1
+              </span>
+              <input
+                ref='y1'
+                placeholder='y1'
+                value={twoPointScaling[0].y}
+                onChange={(e) => this.onChangeTwoPointScaling(e, 0, 'y')}
+                onFocus={(e) => this.onFocusTwoPointScaling(e, 'y1')}
+                onBlur={(e) => this.onBlurTwoPointScaling(e, 'y1')}
+              />
+            </div>
+            <div>
+              <b>Q </b><span>- x2</span>
+              <input
+                ref='x2'
+                placeholder='x2'
+                value={twoPointScaling[1].x}
+                onChange={(e) => this.onChangeTwoPointScaling(e, 1, 'x')}
+                onFocus={(e) => this.onFocusTwoPointScaling(e, 'x2')}
+                onBlur={(e) => this.onBlurTwoPointScaling(e, 'x2')}
+              />
+              <span>
+                y2
+              </span>
+              <input
+                ref='y2'
+                placeholder='y2'
+                value={twoPointScaling[1].y}
+                onChange={(e) => this.onChangeTwoPointScaling(e, 1, 'y')}
+                onFocus={(e) => this.onFocusTwoPointScaling(e, 'y2')}
+                onBlur={(e) => this.onBlurTwoPointScaling(e, 'y2')}
+              />
+            </div>
+            <button type='submit' onClick={this.onSubmit}>
+              submit
+            </button>
+            <div style={{display: 'flex', alignItems: 'center', margin: 100}}>
+              <span style={{width: 80}}>limit switch</span>
+              <svg height={height} width={width} ref='limitSwitch' />
+            </div>
+          </form>
+        </div>
+      </HashRouter>
     )
   }
 }

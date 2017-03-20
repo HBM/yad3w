@@ -1,7 +1,7 @@
 
 import React from 'react'
 import {
-  Sparkline,
+  Sparkline
 } from '../src/index.js'
 import {random} from './utils'
 
@@ -29,7 +29,6 @@ const fps = 5
 const fpsInterval = 1000 / fps
 
 export default class SparklineComponent extends React.Component {
-
   componentDidMount () {
     this.bus1 = new Sparkline({
       canvas: this.refs.bus1
@@ -96,5 +95,4 @@ export default class SparklineComponent extends React.Component {
       </div>
     )
   }
-
 }

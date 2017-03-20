@@ -33,4 +33,3 @@ export default class LineChartComponent extends React.Component {
     )
   }
 }
-

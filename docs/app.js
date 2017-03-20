@@ -2,8 +2,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {
-  LineChart,
-  Sparkline,
   Sparkbar,
   Barchart,
   TwoPointScaling,

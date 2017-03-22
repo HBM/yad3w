@@ -4,7 +4,7 @@ import {scaleLinear} from 'd3-scale'
 import {axisBottom, axisLeft} from 'd3-axis'
 import {line, curveLinear} from 'd3-shape'
 import {transition, active} from 'd3-transition'
-import {max} from 'd3-array'
+import {extent} from 'd3-array'
 import {easeLinear} from 'd3-ease'
 
 /**
@@ -109,9 +109,10 @@ export default class LineChart {
     const {x, y, xAxis, yAxis} = this
 
     x.domain([0, data.length - 2])
-    y.domain([0, max(data)])
+    y.domain(extent(data))
 
     select('.x.axis')
+      .attr('transform', `translate(0, ${this.y(0)})`)
       .call(xAxis)
 
     select('.y.axis')

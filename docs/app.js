@@ -8,7 +8,6 @@ import SparkbarComponent from './sparkbar'
 import BarChartComponent from './barchart'
 import TwoPointScalingComponent from './twoPointScaling'
 import LimitSwitchComponent from './limitSwitch'
-import {random} from './utils'
 
 class App extends React.Component {
   render () {

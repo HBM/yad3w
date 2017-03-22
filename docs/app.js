@@ -1,39 +1,20 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-  LimitSwitch
-} from '../src/index.js'
 import {HashRouter, Route, Link} from 'react-router-dom'
 import LineChartComponent from './linechart'
 import SparklineComponent from './sparkline'
 import SparkbarComponent from './sparkbar'
 import BarChartComponent from './barchart'
 import TwoPointScalingComponent from './twoPointScaling'
+import LimitSwitchComponent from './limitSwitch'
 import {random} from './utils'
 
-const goldenRatio = 1.61803398875
-const height = 25
-const width = height * goldenRatio * 3
-
 class App extends React.Component {
-  componentDidMount () {
-    // limit switch
-    this.limitSwitch = new LimitSwitch({
-      target: this.refs.limitSwitch
-    })
-    // const tmp = range(1000).map(val => Math.sin(val / 100))
-    let tmp = []
-    for (let i = 0; i < 10; i++) {
-      tmp.push(random())
-    }
-    this.limitSwitch.render(tmp)
-  }
-
   render () {
     return (
       <HashRouter>
-        <div>
+        <div style={{display: 'flex'}}>
           <ul>
             <li>
               <Link to='/'>Home</Link>
@@ -53,15 +34,18 @@ class App extends React.Component {
             <li>
               <Link to='/twopointscaling'>Two point scaling</Link>
             </li>
+            <li>
+              <Link to='/limitswitch'>Limit switch</Link>
+            </li>
           </ul>
-          <Route path='/linechart' component={LineChartComponent} />
-          <Route path='/sparkline' component={SparklineComponent} />
-          <Route path='/sparkbar' component={SparkbarComponent} />
-          <Route path='/barchart' component={BarChartComponent} />
-          <Route path='/twopointscaling' component={TwoPointScalingComponent} />
-          <div style={{display: 'flex', alignItems: 'center', margin: 100}}>
-            <span style={{width: 80}}>limit switch</span>
-            <svg height={height} width={width} ref='limitSwitch' />
+          <div style={{marginLeft: 50, flex: 1}}>
+            <Route exact path='/' component={() => <h1>yad3w</h1>} />
+            <Route path='/linechart' component={LineChartComponent} />
+            <Route path='/sparkline' component={SparklineComponent} />
+            <Route path='/sparkbar' component={SparkbarComponent} />
+            <Route path='/barchart' component={BarChartComponent} />
+            <Route path='/twopointscaling' component={TwoPointScalingComponent} />
+            <Route path='/limitswitch' component={LimitSwitchComponent} />
           </div>
         </div>
       </HashRouter>

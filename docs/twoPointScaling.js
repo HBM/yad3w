@@ -12,7 +12,6 @@ export default class TwoPointScalingComponent extends React.Component {
   }
 
   componentDidMount () {
-    // two point scaling
     this.twoPointScaling = new TwoPointScaling({
       target: this.refs.twoPointScaling,
       clickX: this.onClickX,
@@ -62,61 +61,56 @@ export default class TwoPointScalingComponent extends React.Component {
 
   render () {
     return (
-      <div>
-        <div style={{display: 'flex', alignItems: 'center', margin: 100}}>
-          <span style={{width: 80}}>two point scaling</span>
-          <svg height={height} width={width} ref='twoPointScaling' />
+      <form onSubmit={this.onSubmit}>
+        <svg height={height} width={width} ref='twoPointScaling' />
+        <div>
+          <b>P </b><span>- x1</span>
+          <input
+            ref='x1'
+            placeholder='x1'
+            value={this.state.twoPointScaling[0].x}
+            onChange={(e) => this.onChangeTwoPointScaling(e, 0, 'x')}
+            onFocus={(e) => this.onFocusTwoPointScaling(e, 'x1')}
+            onBlur={(e) => this.onBlurTwoPointScaling(e, 'x1')}
+          />
+          <span>
+            y1
+          </span>
+          <input
+            ref='y1'
+            placeholder='y1'
+            value={this.state.twoPointScaling[0].y}
+            onChange={(e) => this.onChangeTwoPointScaling(e, 0, 'y')}
+            onFocus={(e) => this.onFocusTwoPointScaling(e, 'y1')}
+            onBlur={(e) => this.onBlurTwoPointScaling(e, 'y1')}
+          />
         </div>
-        <form style={{marginLeft: 100}} onSubmit={this.onSubmit}>
-          <div>
-            <b>P </b><span>- x1</span>
-            <input
-              ref='x1'
-              placeholder='x1'
-              value={this.state.twoPointScaling[0].x}
-              onChange={(e) => this.onChangeTwoPointScaling(e, 0, 'x')}
-              onFocus={(e) => this.onFocusTwoPointScaling(e, 'x1')}
-              onBlur={(e) => this.onBlurTwoPointScaling(e, 'x1')}
-            />
-            <span>
-              y1
-            </span>
-            <input
-              ref='y1'
-              placeholder='y1'
-              value={this.state.twoPointScaling[0].y}
-              onChange={(e) => this.onChangeTwoPointScaling(e, 0, 'y')}
-              onFocus={(e) => this.onFocusTwoPointScaling(e, 'y1')}
-              onBlur={(e) => this.onBlurTwoPointScaling(e, 'y1')}
-            />
-          </div>
-          <div>
-            <b>Q </b><span>- x2</span>
-            <input
-              ref='x2'
-              placeholder='x2'
-              value={this.state.twoPointScaling[1].x}
-              onChange={(e) => this.onChangeTwoPointScaling(e, 1, 'x')}
-              onFocus={(e) => this.onFocusTwoPointScaling(e, 'x2')}
-              onBlur={(e) => this.onBlurTwoPointScaling(e, 'x2')}
-            />
-            <span>
-              y2
-            </span>
-            <input
-              ref='y2'
-              placeholder='y2'
-              value={this.state.twoPointScaling[1].y}
-              onChange={(e) => this.onChangeTwoPointScaling(e, 1, 'y')}
-              onFocus={(e) => this.onFocusTwoPointScaling(e, 'y2')}
-              onBlur={(e) => this.onBlurTwoPointScaling(e, 'y2')}
-            />
-          </div>
-          <button type='submit' onClick={this.onSubmit}>
-            submit
-          </button>
-        </form>
-      </div>
+        <div>
+          <b>Q </b><span>- x2</span>
+          <input
+            ref='x2'
+            placeholder='x2'
+            value={this.state.twoPointScaling[1].x}
+            onChange={(e) => this.onChangeTwoPointScaling(e, 1, 'x')}
+            onFocus={(e) => this.onFocusTwoPointScaling(e, 'x2')}
+            onBlur={(e) => this.onBlurTwoPointScaling(e, 'x2')}
+          />
+          <span>
+            y2
+          </span>
+          <input
+            ref='y2'
+            placeholder='y2'
+            value={this.state.twoPointScaling[1].y}
+            onChange={(e) => this.onChangeTwoPointScaling(e, 1, 'y')}
+            onFocus={(e) => this.onFocusTwoPointScaling(e, 'y2')}
+            onBlur={(e) => this.onBlurTwoPointScaling(e, 'y2')}
+          />
+        </div>
+        <button type='submit' onClick={this.onSubmit}>
+          submit
+        </button>
+      </form>
     )
   }
 }

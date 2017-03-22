@@ -27,9 +27,7 @@ export default class LineChartComponent extends React.Component {
 
   render () {
     return (
-      <div>
-        <svg ref='lineChart' />
-      </div>
+      <svg ref='lineChart' />
     )
   }
 }

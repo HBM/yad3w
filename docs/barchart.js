@@ -59,7 +59,6 @@ export default class BarChartComponent extends React.Component {
   render () {
     return (
       <div style={{display: 'flex', alignItems: 'center', margin: 20, height: 200}}>
-        <span style={{width: 80}}>bar chart svg</span>
         <div style={{flex: 1}}>
           <svg ref='barchart' style={{maxWidth: '100%'}} />
         </div>

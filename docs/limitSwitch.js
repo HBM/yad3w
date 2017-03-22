@@ -14,7 +14,7 @@ export default class LimitSwitchComponent extends React.Component {
     })
     let tmp = []
     for (let i = 0; i < 10; i++) {
-      tmp.push(random())
+      tmp.push(random(0, 10))
     }
     this.limitSwitch.render(tmp)
   }

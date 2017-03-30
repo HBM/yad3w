@@ -5,12 +5,8 @@ import {random} from './utils'
 
 let bar = []
 for (let i = 0; i < 20; i++) {
-  bar.push(random())
+  bar.push({timestamp: Date.now() - (19 - i) * 500, value: 0})
 }
-
-let then
-const fps = 5
-const fpsInterval = 1000 / fps
 
 export default class BarChartComponent extends React.Component {
   componentDidMount () {
@@ -22,14 +18,12 @@ export default class BarChartComponent extends React.Component {
       width
     })
     this.barchart.render(bar)
-
-    then = window.performance.now()
-    this.tick()
+    window.setInterval(this.tick, 500)
     window.addEventListener('resize', this.resize)
   }
 
   componentWillUnmount () {
-    window.cancelAnimationFrame(this.raf)
+    window.clearInterval(this.tick)
     window.removeEventListener('resize', this.resize)
   }
 
@@ -40,20 +34,10 @@ export default class BarChartComponent extends React.Component {
     this.barchart.resize(width)
   }
 
-  // single argument, a DOMHighResTimeStamp, which indicates the current time
-  // https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
-  tick = (newtime) => {
-    this.raf = window.requestAnimationFrame(this.tick)
-
-    const now = newtime
-    const elapsed = now - then
-    if (elapsed > fpsInterval) {
-      then = now - (elapsed % fpsInterval)
-
-      bar.shift()
-      bar.push(random())
-      this.barchart.render(bar)
-    }
+  tick = () => {
+    bar.shift()
+    bar.push({timestamp: Date.now(), value: random()})
+    this.barchart.render(bar)
   }
 
   render () {

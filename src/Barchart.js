@@ -18,15 +18,16 @@ const defaults = {
     left: 20
   },
 
-  xTicks: 0,
-
   yTicks: 5,
 
   minVal: -10,
 
-  maxVal: 10
+  maxVal: 10,
+
+  tickFormat: d => '-' + ((Date.now() - d) / 1000).toFixed(1) + ' s'
 
 }
+
 
 export default class Barchart {
   constructor (config) {
@@ -36,7 +37,7 @@ export default class Barchart {
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
 
-    const {minVal, maxVal, xTicks, yTicks} = this
+    const {minVal, maxVal, yTicks} = this
 
     this.chart = select(target)
       .attr('width', width)
@@ -53,7 +54,6 @@ export default class Barchart {
       .domain([minVal, maxVal])
 
     this.xAxis = axisBottom(this.x)
-      .ticks(xTicks)
 
     this.chart.append('g')
       .attr('class', 'x axis')
@@ -66,9 +66,15 @@ export default class Barchart {
   }
 
   render (data) {
-    const {x, y, xAxis, yAxis, chart} = this
+    const {x, y, xAxis, yAxis, chart, tickFormat} = this
 
-    x.domain(data.map((d, i) => i))
+    const domain = data.map(d => d.timestamp)
+
+    x.domain(domain)
+
+    this.xAxis
+      .tickValues(domain.filter((d, i) => (i - 1) % 4 === 0))
+      .tickFormat(tickFormat)
 
     chart.select('.x.axis')
       .attr('transform', `translate(0, ${this.y(0)})`)
@@ -90,10 +96,10 @@ export default class Barchart {
       .append('rect')
       .attr('class', 'bar')
       .merge(bars)
-      .attr('x', (d, i) => x(i))
-      .attr('y', d => y(Math.max(0, d)))
+      .attr('x', d => x(d.timestamp))
+      .attr('y', d => y(Math.max(0, d.value)))
       .attr('width', x.bandwidth())
-      .attr('height', d => Math.abs(y(d) - y(0)))
+      .attr('height', d => Math.abs(y(d.value) - y(0)))
 
     // exit selection
     bars
@@ -119,7 +125,7 @@ export default class Barchart {
 
     // adjust bars
     chart.selectAll('.bar')
-      .attr('x', (d, i) => this.x(i))
+      .attr('x', d => this.x(d.timestamp))
       .attr('width', this.x.bandwidth())
   }
 }

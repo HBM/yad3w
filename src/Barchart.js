@@ -2,30 +2,20 @@
 import {select} from 'd3-selection'
 import {scaleBand, scaleLinear} from 'd3-scale'
 import {axisBottom, axisLeft} from 'd3-axis'
+import {extent} from 'd3-array'
 
 const defaults = {
-
   target: '#chart',
-
   width: 500,
-
   height: 170,
-
   margin: {
     top: 20,
     right: 20,
     bottom: 20,
     left: 20
   },
-
   yTicks: 5,
-
-  minVal: -10,
-
-  maxVal: 10,
-
   tickFormat: d => '-' + ((Date.now() - d) / 1000).toFixed(1) + ' s'
-
 }
 
 export default class Barchart {
@@ -36,7 +26,7 @@ export default class Barchart {
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
 
-    const {minVal, maxVal, yTicks} = this
+    const {yTicks} = this
 
     this.chart = select(target)
       .attr('width', width)
@@ -50,7 +40,6 @@ export default class Barchart {
 
     this.y = scaleLinear()
       .rangeRound([h, 0])
-      .domain([minVal, maxVal])
 
     this.xAxis = axisBottom(this.x)
 
@@ -67,16 +56,17 @@ export default class Barchart {
   render (data) {
     const {x, y, xAxis, yAxis, chart, tickFormat} = this
 
-    const domain = data.map(d => d.timestamp)
+    y.domain(extent(data, v => v.value))
 
+    const domain = data.map(d => d.timestamp)
     x.domain(domain)
 
-    this.xAxis
+    xAxis
       .tickValues(domain.filter((d, i) => (i - 1) % 4 === 0))
       .tickFormat(tickFormat)
 
     chart.select('.x.axis')
-      .attr('transform', `translate(0, ${this.y(0)})`)
+      .attr('transform', `translate(0, ${y(0)})`)
       .call(xAxis)
 
     chart.select('.y.axis')

@@ -54,6 +54,11 @@ export default class Barchart {
   }
 
   render (data) {
+    // prevent rendering empty arrays
+    if (!data.length) {
+      return
+    }
+
     const {x, y, xAxis, yAxis, chart, tickFormat} = this
 
     const extented = extent(data, v => v.value)

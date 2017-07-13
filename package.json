@@ -1,6 +1,6 @@
 {
   "name": "yad3w",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Yet Another D3 Wrapper",
   "main": "lib/index.js",
   "keywords": [

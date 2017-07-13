@@ -35,7 +35,7 @@ export default class BarChartComponent extends React.Component {
 
   tick = () => {
     const [...bar] = this.state.bar
-    if (bar.length == 20) {
+    if (bar.length === 20) {
       bar.shift()
     }
     bar.push({timestamp: Date.now(), value: random()})

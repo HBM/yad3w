@@ -6,6 +6,7 @@ import LineChartComponent from './linechart'
 import SparklineComponent from './sparkline'
 import SparkbarComponent from './sparkbar'
 import BarChartComponent from './barchart'
+import AreaChartComponent from './areachart'
 import TwoPointScalingComponent from './twoPointScaling'
 import LimitSwitchComponent from './limitSwitch'
 
@@ -31,6 +32,9 @@ class App extends React.Component {
               <Link to='/barchart'>Bar chart</Link>
             </li>
             <li>
+              <Link to='/areachart'>Area chart</Link>
+            </li>
+            <li>
               <Link to='/twopointscaling'>Two point scaling</Link>
             </li>
             <li>
@@ -43,6 +47,7 @@ class App extends React.Component {
             <Route path='/sparkline' component={SparklineComponent} />
             <Route path='/sparkbar' component={SparkbarComponent} />
             <Route path='/barchart' component={BarChartComponent} />
+            <Route path='/areachart' component={AreaChartComponent} />
             <Route path='/twopointscaling' component={TwoPointScalingComponent} />
             <Route path='/limitswitch' component={LimitSwitchComponent} />
           </div>

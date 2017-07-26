@@ -3,7 +3,6 @@ import {select} from 'd3-selection'
 import {scaleLinear} from 'd3-scale'
 import {axisBottom, axisLeft} from 'd3-axis'
 import {line} from 'd3-shape'
-import {transition} from 'd3-transition'
 
 const defaults = {
   width: 400,

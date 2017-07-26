@@ -3,8 +3,7 @@ import {select} from 'd3-selection'
 import {scaleLinear} from 'd3-scale'
 import {axisBottom, axisLeft} from 'd3-axis'
 import {line, area} from 'd3-shape'
-import {extent} from 'd3-array'
-import {easeLinear} from 'd3-ease'
+import {max, min} from 'd3-array'
 
 /**
  * Default config.
@@ -42,7 +41,7 @@ export default class AreaChart {
   }
 
   init () {
-    const {target, width, height, margin, curve} = this
+    const {target, width, height, margin} = this
     const {xTicks, yTicks} = this
     const w = width - margin.left - margin.right
     const h = height - margin.top - margin.bottom
@@ -65,15 +64,6 @@ export default class AreaChart {
     this.yAxis = axisLeft(this.y)
       .ticks(yTicks)
 
-    this.chart.append('g')
-      .attr('class', 'Area x axis')
-      .attr('transform', `translate(0, ${this.y(0)})`)
-      .call(this.xAxis)
-
-    this.chart.append('g')
-      .attr('class', 'Area y axis')
-      .call(this.yAxis)
-
     this.area = area()
       .x((d, i) => this.x(i))
       .y0(() => this.y(0))
@@ -90,27 +80,71 @@ export default class AreaChart {
     this.chart
       .append('path')
       .attr('class', 'Area line')
+
+    this.chart.append('g')
+      .attr('class', 'Area x axis')
+      .attr('transform', `translate(0, ${this.y(0)})`)
+      .call(this.xAxis)
+
+    this.chart.append('g')
+      .attr('class', 'Area y axis')
+      .call(this.yAxis)
   }
 
   render (data) {
-    const {x, y, xAxis, yAxis} = this
+    const {chart, x, y, xAxis, yAxis} = this
 
     x.domain([0, data.length - 1])
-    y.domain(extent(data))
 
-    this.chart.select('.x.axis')
+    // set y domain depending on data to make sure x-axis is always visible
+    const low = min(data)
+    const high = max(data)
+    if (low >= 0) {
+      y.domain([0, high])
+    } else if (low < 0 && high > 0) {
+      y.domain([low, high])
+    } else if (high <= 0) {
+      y.domain([low, 0])
+    }
+
+    chart.select('.x.axis')
       .attr('transform', `translate(0, ${this.y(0)})`)
       .call(xAxis)
 
-    this.chart.select('.y.axis')
+    chart.select('.y.axis')
       .call(yAxis)
 
-    this.chart.select('.line')
+    chart.select('.line')
       .datum(data)
       .attr('d', this.line)
 
-    this.chart.select('.area')
+    chart.select('.area')
       .datum(data)
+      .attr('d', this.area)
+  }
+
+  resize = (width) => {
+    const {target, chart, margin, xAxis, line} = this
+
+    // change svg width
+    select(target).attr('width', width)
+
+    // calc new internal width
+    const w = width - margin.left - margin.right
+
+    // adjust horizontal range
+    this.x.range([0, w])
+
+    // adjust x axis
+    chart.select('.x.axis')
+      .call(xAxis)
+
+    // adjust line
+    chart.select('.line')
+      .attr('d', line)
+
+    // adjust area
+    chart.select('.area')
       .attr('d', this.area)
   }
 }

@@ -74,3 +74,30 @@ body {
 	stroke-width: 0;
 	fill: lightsteelblue;
 }
+
+.gauge-unit {
+	fill: grey;
+	font-size: 1rem;
+}
+
+.gauge-text {
+	font-size: 1.5rem;
+}
+
+.gauge-ticks {
+	font-size: 10px;
+}
+
+@media (min-width: 768px) {
+	.gauge-unit {
+		font-size: 3rem;
+	}
+
+	.gauge-text {
+		font-size: 3.5rem;
+	}
+
+	.gauge-ticks {
+		font-size: 14px;
+	}
+}

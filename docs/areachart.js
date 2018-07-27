@@ -3,6 +3,9 @@ import React from 'react'
 import {AreaChart} from '../src/index.js'
 import {random} from './utils'
 
+const min = 0.00001
+const max = 0.00002
+
 export default class LineChartComponent extends React.Component {
   componentDidMount () {
     this.area = new AreaChart({
@@ -10,12 +13,12 @@ export default class LineChartComponent extends React.Component {
     })
     let data = []
     for (let i = 0; i < 100; i++) {
-      data.push(random(5, 10))
+      data.push(random(min, max))
     }
     this.interval = window.setInterval(() => {
       data = [
         ...data.slice(1),
-        random(5, 10)
+        random(min, max)
       ]
       this.area.render(data)
     }, 250)

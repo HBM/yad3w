@@ -9,6 +9,7 @@ import BarChartComponent from './barchart'
 import AreaChartComponent from './areachart'
 import TwoPointScalingComponent from './twoPointScaling'
 import LimitSwitchComponent from './limitSwitch'
+import GaugeComponent from './gauge'
 
 class App extends React.Component {
   render () {
@@ -40,6 +41,9 @@ class App extends React.Component {
             <li>
               <Link to='/limitswitch'>Limit switch</Link>
             </li>
+            <li>
+              <Link to='/gauge'>Gauge</Link>
+            </li>
           </ul>
           <div style={{marginLeft: 50, flex: 1}}>
             <Route exact path='/' component={() => <h1>yad3w</h1>} />
@@ -50,6 +54,7 @@ class App extends React.Component {
             <Route path='/areachart' component={AreaChartComponent} />
             <Route path='/twopointscaling' component={TwoPointScalingComponent} />
             <Route path='/limitswitch' component={LimitSwitchComponent} />
+            <Route path='/gauge' component={GaugeComponent} />
           </div>
         </div>
       </HashRouter>

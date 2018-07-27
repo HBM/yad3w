@@ -63,6 +63,7 @@ export default class AreaChart {
 
     this.yAxis = axisLeft(this.y)
       .ticks(yTicks)
+      // .tickFormat(format('.6f'))
 
     this.area = area()
       .x((d, i) => this.x(i))

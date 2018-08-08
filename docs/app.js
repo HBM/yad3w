@@ -10,6 +10,7 @@ import AreaChartComponent from './areachart'
 import TwoPointScalingComponent from './twoPointScaling'
 import LimitSwitchComponent from './limitSwitch'
 import GaugeComponent from './gauge'
+import LineChartClipXComponent from './lineChartClipX'
 
 class App extends React.Component {
   render () {
@@ -44,6 +45,9 @@ class App extends React.Component {
             <li>
               <Link to='/gauge'>Gauge</Link>
             </li>
+            <li>
+              <Link to='/line-chart-clipx'>Line Chart ClipX</Link>
+            </li>
           </ul>
           <div style={{marginLeft: 50, flex: 1}}>
             <Route exact path='/' component={() => <h1>yad3w</h1>} />
@@ -55,6 +59,7 @@ class App extends React.Component {
             <Route path='/twopointscaling' component={TwoPointScalingComponent} />
             <Route path='/limitswitch' component={LimitSwitchComponent} />
             <Route path='/gauge' component={GaugeComponent} />
+            <Route path='/line-chart-clipx' component={LineChartClipXComponent} />
           </div>
         </div>
       </HashRouter>

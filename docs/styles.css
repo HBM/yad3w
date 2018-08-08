@@ -101,3 +101,16 @@ body {
 		font-size: 14px;
 	}
 }
+
+.area {
+	fill: lightsteelblue;
+}
+
+.x.axis.bottom path {
+	display: none;
+}
+
+.grid line {
+	shape-rendering: crispedges;
+	stroke: #dadada;
+}

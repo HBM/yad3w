@@ -144,7 +144,10 @@ export default class LineChart {
     // y.domain(extent(data, d => d.value))
 
     const yExtent = extent(data, d => d.value)
-    const yExtentDiff = 0.05 * Math.abs(yExtent[1] - yExtent[0])
+
+    // yExtent[1] and yExtent[0] might have the same value, e.g. steady signal like test signal
+    const yExtentDiff = 0.05 * (Math.abs(yExtent[1] - yExtent[0]) || yExtent[1])
+
     y.domain([yExtent[0] - yExtentDiff, yExtent[1] + yExtentDiff])
 
     this.area

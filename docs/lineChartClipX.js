@@ -13,7 +13,8 @@ export default class LineChartClipXComponent extends React.Component {
       // data.push(random())
       data.push({
         ts: Date.now() + i * 5 * 1000,
-        value: random()
+        // value: random()
+        value: 5
       })
     }
     this.chart.render(data)

@@ -34,6 +34,8 @@ export default class Gauge {
   init () {
     const {target, width, height, thickness} = this
 
+    const value = this.limit(this.value, this.min, this.max)
+
     this.scale = scaleLinear()
       .domain([this.min, this.max])
       .range([arcMin, arcMax])
@@ -69,7 +71,7 @@ export default class Gauge {
 
     // add orange foreground
     this.foreground = this.chart.append('path')
-      .datum({endAngle: this.scale(this.value)})
+      .datum({endAngle: this.scale(value)})
       // .datum({endAngle: 0.85 * arcMax})
       .style('fill', 'orange')
       .attr('class', 'gauge-foreground')
@@ -95,6 +97,17 @@ export default class Gauge {
     //     node.innerHTML = `${fmt(i(t))}&nbsp;<tspan class='gauge-unit' alignment-baseline='ideographic'>${unit}</tspan>`
     //   }
     // }
+  }
+
+  // limit makes sure value isn't bigger than max and smaller than min
+  limit (value, min, max) {
+    let val = value
+    if (value < min) {
+      val = min
+    } else if (value > max) {
+      val = max
+    }
+    return val
   }
 
   appendTicks () {
@@ -167,9 +180,11 @@ export default class Gauge {
     //   .tween('text', this.tweenText(value))
     //
 
+    const val = this.limit(value, min, max)
+
     // update foreground arc
     this.foreground
-      .datum({endAngle: this.scale(value)})
+      .datum({endAngle: this.scale(val)})
       .attr('d', this.myArc)
 
     // no transition for now since it costs too much performance

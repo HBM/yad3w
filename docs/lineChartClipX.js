@@ -10,11 +10,9 @@ export default class LineChartClipXComponent extends React.Component {
     })
     let data = []
     for (let i = 0; i < 20; i++) {
-      // data.push(random())
       data.push({
         ts: Date.now() + i * 5 * 1000,
-        // value: random()
-        value: 5
+        value: random()
       })
     }
     this.chart.render(data)

@@ -9,12 +9,12 @@ export default class LineChartClipXComponent extends React.Component {
       target: this.refs.svg
     })
     let data = []
-    for (let i = 0; i < 20; i++) {
-      data.push({
-        ts: Date.now() + i * 5 * 1000,
-        value: random()
-      })
-    }
+    // for (let i = 0; i < 20; i++) {
+    //   data.push({
+    //     ts: Date.now() + i * 5 * 1000,
+    //     value: random()
+    //   })
+    // }
     this.chart.render(data)
 
     window.addEventListener('resize', this.resize)

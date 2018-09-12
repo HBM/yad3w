@@ -138,6 +138,13 @@ export default class LineChart {
   }
 
   render (data) {
+    // prevent NaN values in DOM when data is empty
+    // extent returns [undefined, undefined] for an empty array
+    // and y(0) returns NaN
+    if (!data.length) {
+      return
+    }
+
     const {x, y, xAxisBottom, yAxis} = this
 
     x.domain(extent(data, d => d.ts))

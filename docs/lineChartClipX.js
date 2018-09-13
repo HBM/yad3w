@@ -10,11 +10,19 @@ export default class LineChartClipXComponent extends React.Component {
     })
     let data = []
     for (let i = 0; i < 20; i++) {
-      data.push({
-        ts: Date.now() + i * 5 * 1000,
-        value: random()
-      })
+      if (i < 10) {
+        data.push({
+          ts: undefined,
+          value: undefined
+        })
+      } else {
+        data.push({
+          ts: Date.now() + i * 5 * 1000,
+          value: random()
+        })
+      }
     }
+    console.log(data)
     this.chart.render(data)
 
     window.addEventListener('resize', this.resize)

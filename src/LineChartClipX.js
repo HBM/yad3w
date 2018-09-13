@@ -119,11 +119,13 @@ export default class LineChart {
       .call(this.yAxis)
 
     this.line = line()
+      .defined(d => d.ts && d.value)
       .x(d => this.x(d.ts))
       .y(d => this.y(d.value))
       .curve(curve)
 
     this.area = area()
+      .defined(d => d.ts && d.value)
       .x(d => this.x(d.ts))
       .y1(d => this.y(d.value))
       .curve(curve)
@@ -138,13 +140,6 @@ export default class LineChart {
   }
 
   render (data) {
-    // prevent NaN values in DOM when data is empty
-    // extent returns [undefined, undefined] for an empty array
-    // and y(0) returns NaN
-    if (!data.length) {
-      return
-    }
-
     const {x, y, xAxisBottom, yAxis} = this
 
     x.domain(extent(data, d => d.ts))
